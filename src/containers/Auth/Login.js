@@ -7,6 +7,9 @@ import './Login.scss';
 // import { FormattedMessage } from 'react-intl';
 
 
+import { handleLoginApi } from '../../services/userService';
+
+
 class Login extends Component {
     // eslint-disable-next-line no-useless-constructor
     constructor(props) {
@@ -35,9 +38,14 @@ class Login extends Component {
         })
     }
 
-    handleLogin = () => {
+    handleLogin = async () => {
         console.log(`Username: ${this.state.username}`)
         console.log(`Password: ${this.state.password}`)
+        try {
+            await handleLoginApi(this.state.username, this.state.password);
+        } catch (error) {
+            console.log(error);
+        }
     }
 
 
@@ -63,11 +71,11 @@ class Login extends Component {
                                 placeholder=" "
                                 onChange={(event) => this.handleOnChangePassword(event)} />
                             <label className="form-label">Mật khẩu</label>
-                            <span className="eye" onClick={()=>{this.handleShowHidePassword()}}>
+                            <span className="eye" onClick={() => { this.handleShowHidePassword() }}>
                                 <i class={this.state.show ? `fa fa-eye` : `fa fa-eye-slash`}></i>
                             </span>
 
-                            
+
                         </div>
                         <button className="form-btn" onClick={() => { this.handleLogin() }}>
                             Đăng nhập
