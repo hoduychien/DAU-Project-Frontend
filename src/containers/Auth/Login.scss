@@ -1,0 +1,138 @@
+.login {
+    height: 100vh;
+    background: url(../../assets/images/LOGIN.png),#F3FEFF;
+    background-repeat: no-repeat;
+    background-position:center 150px;
+    background-size: 80%;
+    text-align: center;
+    overflow: auto;
+    &-container {
+        width: 514px;
+        margin: 0 auto;
+        padding: 200px 0;
+        h1 {
+            font-weight: 700;
+            font-size: 56px;
+            line-height: 135%;
+            text-align: left;
+        }
+    }
+
+    &-content {
+
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+    }
+}
+
+.form {
+    &-field {
+        position: relative;
+        i{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 10px;
+            color:rgb(67, 67, 67);
+            cursor: pointer;
+        }
+    }
+    &-link{
+        cursor: pointer;
+    }
+    &-input {
+        width: 100%;
+        height: 50px;
+        font-size: 14px;
+        outline: none;
+        border: 0;
+        border-bottom: 1px solid #000;
+        background-color: transparent;
+        transition: all 0.2s linear;
+        &:focus+.form-label
+        {
+            top: -5px;
+        }
+        &:not(:placeholder-shown)+.form-label{
+            top: -5px;
+        }
+
+        
+    }
+
+    &-input:focus i
+    {
+        display: block;
+    }
+
+    &-label {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0;
+        color: rgb(67, 67, 67);
+        pointer-events: none;
+        transition: all 0.2s linear;
+    }
+
+    &-btn{
+        background: #1B1C31;
+        border-radius: 4px;
+        height: 50px;
+        border: none;
+        outline: none;
+        color: #fff;
+        transition: all 0.2s linear;
+        &:hover{
+            opacity: 0.8;
+        }
+    }
+
+    &-group{
+        width: 100%;
+        display: flex;
+        gap: 20px;
+        &>.form-btn{
+            width: 100%;
+        }
+        &>.form-btn:nth-child(1){
+            background: #F57059;
+        }
+        &>.form-btn:nth-child(2){
+            background: #0094FF;
+        }
+    }
+
+    &-line{
+        height: 1px;
+        background-color: #1B1C31;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+    .login {
+        &-container {
+            width: 300px;
+            padding: 120px 0;
+            h1 {
+                font-size: 40px;
+                line-height: 100%;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .login {
+        &-container {
+            width: 300px;
+            padding: 120px 20px;
+            h1 {
+                font-size: 40px;
+                line-height: 100%;
+            }
+        }
+    }
+}
