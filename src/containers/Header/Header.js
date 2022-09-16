@@ -19,8 +19,8 @@ class Header extends Component {
                 </div>
 
                 {/* nút logout */}
-                <div className="btn btn-logout" onClick={processLogout}>
-                    <i className="fas fa-sign-out-alt"></i>
+                <div className="btn-logout" onClick={processLogout}>
+                    Log Out
                 </div>
             </div>
         );
@@ -30,7 +30,7 @@ class Header extends Component {
 
 const mapStateToProps = state => {
     return {
-        isLoggedIn: state.admin.isLoggedIn
+        isLoggedIn: state.user.isLoggedIn
     };
 };
 

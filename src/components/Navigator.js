@@ -38,7 +38,7 @@ class Menu extends Component {
                         >
                             <FormattedMessage id={name} />
                             <div className="icon-right">
-                                <i className={"far fa-angle-right"} />
+                                <i className="fa fa-cog"></i>
                             </div>
                         </span>
                         <div>
@@ -48,10 +48,10 @@ class Menu extends Component {
                         </div>
                     </Fragment>
                 ) : (
-                        <Link to={link} className="menu-link" onClick={onLinkClick}>
-                            <FormattedMessage id={name} />
-                        </Link>
-                    )}
+                    <Link to={link} className="menu-link" onClick={onLinkClick}>
+                        <FormattedMessage id={name} />
+                    </Link>
+                )}
             </li>
         );
     }

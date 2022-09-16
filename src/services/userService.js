@@ -3,4 +3,11 @@ const handleLoginApi = (email, password) => {
     return axios.post('/api/login', { email, password });
 }
 
-export { handleLoginApi };
+const getAllUsers = (userId) => {
+    return axios.get(`/api/get-all-users?id=${userId}`)
+}
+
+export {
+    handleLoginApi,
+    getAllUsers
+};

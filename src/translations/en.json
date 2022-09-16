@@ -27,7 +27,7 @@
     },
     "menu": {
         "system": {
-            "header": "System",
+            "header": "SYSTEM",
             "system-administrator": {
                 "header": "System Administrator",
                 "user-manage": "User manage",

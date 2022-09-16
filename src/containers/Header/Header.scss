@@ -4,20 +4,30 @@
     z-index: 99;
     display: flex;
     justify-content: space-between;
-    background-color: $colormain;
-    color: $common-text-color;
-    height: 40px;
-    position: relative;
+    align-items: center;
+    background-color: $common-white;
+    padding: 15px 25px;
+    color: $colormain;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+
+
     .btn-logout {
         color: $common-text-color;
-        line-height: 40px;
-        height: 40px;
-        padding: 0 10px;
+        padding: 13px 36px;
+        background-color: #1B1C31;
+        font-weight: 400;
+        font-size: 14px;
+        border: 1px solid #1B1C31;
+        // border-radius: 4px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.2s linear;
+
         &:hover {
-            background-color: darken($colormain, 5);
-        }
-        i {
-            font-size: $base-size + 1px;
+            opacity: 0.9;
         }
     }
 }

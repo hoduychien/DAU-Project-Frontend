@@ -17,6 +17,7 @@ class Login extends Component {
         this.state = {
             username: '',
             password: '',
+            errorMessage: '',
             show: false
         }
     }
@@ -39,12 +40,32 @@ class Login extends Component {
     }
 
     handleLogin = async () => {
-        console.log(`Username: ${this.state.username}`)
-        console.log(`Password: ${this.state.password}`)
+
+        // clear error
+        this.setState({
+            errorMessage: '',
+        })
         try {
-            await handleLoginApi(this.state.username, this.state.password);
+            let data = await handleLoginApi(this.state.username, this.state.password);
+            if (data && data.errorCode !== 0) {
+                this.setState({
+                    errorMessage: data.message,
+                })
+            }
+            if (data && data.errorCode === 0) {
+                // eslint-disable-next-line no-undef
+                this.props.userLoginSuccess(data.user);
+                console.log("Success!!");
+            }
         } catch (error) {
-            console.log(error);
+            // show error
+            if (error.response) {
+                if (error.response.data) {
+                    this.setState({
+                        errorMessage: error.response.data.message,
+                    })
+                }
+            }
         }
     }
 
@@ -54,7 +75,7 @@ class Login extends Component {
             <div className="login">
                 <div className="login-container">
                     <div className="login-content">
-                        <h1>Đăng nhập</h1>
+                        <h1>Login</h1>
                         <div className="form-field">
                             <input
                                 type="text"
@@ -62,7 +83,7 @@ class Login extends Component {
                                 placeholder=" "
                                 onChange={(event) => this.handleOnChangeUsername(event)}
                             />
-                            <label className="form-label">Tên đăng nhập</label>
+                            <label className="form-label">Username</label>
                         </div>
                         <div className="form-field">
                             <input
@@ -70,24 +91,27 @@ class Login extends Component {
                                 className="form-input"
                                 placeholder=" "
                                 onChange={(event) => this.handleOnChangePassword(event)} />
-                            <label className="form-label">Mật khẩu</label>
+                            <label className="form-label">Password</label>
                             <span className="eye" onClick={() => { this.handleShowHidePassword() }}>
-                                <i class={this.state.show ? `fa fa-eye` : `fa fa-eye-slash`}></i>
+                                <i className={this.state.show ? `fa fa-eye` : `fa fa-eye-slash`}></i>
                             </span>
 
 
                         </div>
-                        <button className="form-btn" onClick={() => { this.handleLogin() }}>
-                            Đăng nhập
+                        <div className="form-error">
+                            {this.state.errorMessage}
+                        </div>
+                        <button type="button" className="form-btn" onClick={() => { this.handleLogin() }}>
+                            Login
                         </button>
                         <div className="form-link">
-                            <span>Quên mật khẩu ?</span>
+                            <span>Forgot Password ?</span>
                         </div>
 
                         <div className="form-line"></div>
 
                         <div>
-                            <span>Hoặc</span>
+                            <span>Or</span>
                         </div>
 
                         <div className="form-group">
@@ -115,8 +139,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         navigate: (path) => dispatch(push(path)),
-        adminLoginSuccess: (adminInfo) => dispatch(actions.adminLoginSuccess(adminInfo)),
-        adminLoginFail: () => dispatch(actions.adminLoginFail()),
+        // userLoginFail: () => dispatch(actions.userLoginFail()),
+        userLoginSuccess: (userInfo) => dispatch(actions.userLoginSuccess(userInfo)),
     };
 };
 

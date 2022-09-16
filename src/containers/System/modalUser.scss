@@ -1,0 +1,100 @@
+body {
+    box-sizing: border-box;
+    position: relative;
+}
+
+.modal {
+    &-container {
+        border: none;
+    }
+
+    &-body {}
+
+
+    &-title {
+        font-size: 22px;
+        font-weight: 500;
+    }
+
+    &-group {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-column-gap: 20px;
+        margin: 10px 0;
+    }
+
+    &-item {
+        display: flex;
+        flex-direction: column;
+        margin: 10px 0;
+
+        &-label {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        input {
+            height: 45px;
+            width: 100%;
+            outline: none;
+            border-radius: 2px;
+            border: 1px solid #ccc;
+            padding-left: 15px;
+            transition: all 0.2s linear;
+
+            &:focus {
+                border-color: #277BC0;
+            }
+        }
+    }
+
+    &-radio {
+        display: flex;
+        gap: 20px;
+
+        &-item {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+        }
+    }
+
+    &-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 10px;
+        color: #fff;
+        outline: none;
+        border: 0;
+        cursor: pointer;
+        font-weight: 500;
+        font-size: 14px;
+
+        &:first-child {
+            background-color: #ffff3f;
+            color: #000;
+        }
+
+        &:last-child {
+            background-color: #d90429;
+        }
+    }
+
+    &-error {
+        font-weight: 500;
+        color: #d90429;
+        padding: 10px 0;
+        text-align: center;
+    }
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+
+    input {
+        height: 50px;
+    }
+}
