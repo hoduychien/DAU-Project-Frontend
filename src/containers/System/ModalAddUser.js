@@ -22,6 +22,7 @@ class ModalAddUser extends Component {
     }
 
     componentDidMount() {
+        console.log("mounting modal")
     }
 
     toggle = () => {
@@ -64,7 +65,7 @@ class ModalAddUser extends Component {
     handleAddNewUser = () => {
         let isValid = this.validateInput();
         if (isValid === true) {
-            this.props.createNewUser(this.state);
+            this.props.createNewUser(this.state, 'abc');
             this.setState({
                 valid: '',
             })

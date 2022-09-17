@@ -3,7 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './userManage.scss';
 import './modalUser.scss';
-import { getAllUsers } from '../../services/userService';
+import { getAllUsers, createNewUserService, deleteUserService } from '../../services/userService';
 import Modal from './ModalAddUser';
 class UserManage extends Component {
 
@@ -16,6 +16,10 @@ class UserManage extends Component {
     }
 
     async componentDidMount() {
+        await this.getAll();
+    }
+
+    getAll = async () => {
         let response = await getAllUsers('all');
         if (response && response.errorCode === 0) {
             this.setState({
@@ -36,8 +40,44 @@ class UserManage extends Component {
         })
     }
 
-    createNewUser = (data) => {
-        console.log(data)
+    createNewUser = async (data) => {
+        try {
+            let response = await createNewUserService(data);
+            if (response && response.message.errorCode !== 0) {
+                alert(response.message.errorMessage);
+            }
+            else {
+                await this.getAll();
+                this.setState({
+                    isOpen: false,
+                })
+            }
+        } catch (error) {
+            console.log(error)
+        }
+
+    }
+
+    handleDeleteUser = async (user) => {
+        try {
+            // eslint-disable-next-line no-restricted-globals
+            let alert = confirm("Are you sure you want to delete?");
+            if (alert) {
+                let response = await deleteUserService(user.id);
+                if (response && response.message.errorCode === 0) {
+                    await this.getAll();
+                }
+                else {
+                    alert(response.message.errorMessage);
+                }
+            }
+            else {
+                return false;
+            }
+
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     render() {
@@ -89,7 +129,7 @@ class UserManage extends Component {
                                                 <button className="table-btn ">
                                                     Edit
                                                 </button>
-                                                <button className="table-btn">
+                                                <button className="table-btn" onClick={() => this.handleDeleteUser(item)}>
                                                     Delete
                                                 </button>
                                             </td>

@@ -12,7 +12,8 @@ class MenuGroup extends Component {
         return (
             <li className="menu-group">
                 <div className="menu-group-name">
-                    <FormattedMessage id={name} />
+                    {/* <FormattedMessage id={name} /> */}
+                    LOGO
                 </div>
                 <ul className="menu-list list-unstyled">
                     {children}
@@ -37,9 +38,6 @@ class Menu extends Component {
                             aria-expanded={"false"}
                         >
                             <FormattedMessage id={name} />
-                            <div className="icon-right">
-                                <i className="fa fa-cog"></i>
-                            </div>
                         </span>
                         <div>
                             <ul className="sub-menu-list list-unstyled">

@@ -30,9 +30,9 @@
             "header": "HỆ THỐNG",
             "system-administrator": {
                 "header": "Quản trị hệ thống",
-                "user-manage": "Quản lý người sử dụng",
-                "product-manage": "Quản lý gói",
-                "register-package-group-or-account": "Đăng ký gói dịch vụ cho nhóm/tài khoản"
+                "user-manage": "Quản lý người dùng",
+                "product-manage": "Quản lý khoá học",
+                "register-package-group-or-account": "Đăng ký"
             },
             "system-parameter": {
                 "header": "Tham số hệ thống"

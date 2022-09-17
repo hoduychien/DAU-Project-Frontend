@@ -1,33 +1,101 @@
 @import "../../styles/common.scss";
 
 .header-container {
-    z-index: 99;
+    z-index: 999;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: $common-white;
-    padding: 15px 25px;
-    color: $colormain;
+    flex-direction: column;
+    background-color: $colormain;
+    color: #fff;
     position: fixed;
-    width: 100%;
+    width: 18%;
     top: 0;
     left: 0;
+    bottom: 0;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
 
+.sidebar {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 20px;
+    width: 100%;
 
-    .btn-logout {
-        color: $common-text-color;
-        padding: 13px 36px;
-        background-color: #1B1C31;
-        font-weight: 400;
-        font-size: 14px;
-        border: 1px solid #1B1C31;
-        // border-radius: 4px;
-        text-align: center;
+    &-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 25px;
+
+        h3 {
+            font-size: 18px;
+            line-height: 0;
+        }
+    }
+
+    &-item {
+        padding: 20px;
         cursor: pointer;
-        transition: all 0.2s linear;
 
-        &:hover {
-            opacity: 0.9;
+        &>div {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        &-bottom {
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+            display: flex;
+            justify-content: space-between;
+            background-color: $colormain;
+        }
+
+        &-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            img {
+                width: 48px;
+                height: 48px;
+                border-radius: 10px;
+            }
+        }
+
+        &-info {
+            display: flex;
+            flex-direction: column;
+
+            span {
+                font-size: 10px;
+            }
+
+            p {
+                margin-bottom: 0;
+                font-weight: 500;
+                font-size: 12px;
+            }
+        }
+    }
+
+    &-search {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+
+        input {
+            width: 100%;
+            border: 0;
+            outline: 0;
+            background: transparent;
+            color: #fff;
         }
     }
 }
