@@ -40,7 +40,6 @@ class Login extends Component {
     }
 
     handleLogin = async () => {
-
         // clear error
         this.setState({
             errorMessage: '',
