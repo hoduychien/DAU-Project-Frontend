@@ -104,7 +104,12 @@ class Login extends Component {
                             Login
                         </button>
                         <div className="form-link">
-                            <span>Forgot Password ?</span>
+                            <span>
+                                You don't have an account.
+                                <a href="/register">
+                                    Register Now
+                                </a>
+                            </span>
                         </div>
 
                         <div className="form-line"></div>

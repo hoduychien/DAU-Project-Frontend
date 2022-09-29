@@ -27,17 +27,23 @@
     },
     "menu": {
         "system": {
-            "header": "SYSTEM",
+            "header": "System",
             "system-administrator": {
-                "header": "System Administrator",
+                "header": "System manage",
                 "user-manage": "User manage",
-                "product-manage": "Package manage",
-                "register-package-group-or-account": "Register service package for group/account"
+                "redux-manage": "Account manage"
+                
             },
             "system-parameter": {
                 "header": "System-parameter"
             }
-        }
+        },
+        "home": "Dashboard",
+        "message": "Messenger",
+        "vi": "Languages (VN)",
+        "en": "Languages (EN)",
+        "setting": "Settings"
+
     },
     "system": {
         "user-manage": {
@@ -116,5 +122,28 @@
             "remove-assign-fail": "Fail to unassign service package to customer",
             "sure-delete-assign": "Are you sure to unassign service package to customer?"
         }
+    },
+
+    "home-header":{
+        "home": "Home",
+        "course": "Courses",
+        "subjects": "Subjects",
+        "lecturers": "Lecturers",
+        "user": "Profile",
+        "light-mode": "Display : Light",
+        "darnk-mode": "Display : Dark",
+        "lang": "Language",
+        "login": "Login",
+        "register": "Register",
+        "logout": "Logout",
+        "title": "Free programming course registration system",
+        "heading": "Signing up for a programming course has never been so easy",
+        "search": "Search",
+        "see-more": "See More",
+        "desc-1": "Easily choose the program that suits your needs and time.",
+        "desc-2": "Get closer to your courses.",
+        "desc-3": "The curriculum is refined and compared with market demand, minimizing the content but still meeting the requirements of businesses.",
+        "desc-4": "Learners can participate in a strong and enthusiastic learning community from CodeGym Online to exchange and exchange knowledge.",
+        "desc-5": "The program is designed and taught by a team of experienced experts at CyberLearn. In addition to long-term experience in businesses, CyberLearn instructors also have pedagogical expertise to provide students with rich practical knowledge and experiences."
     }
 }

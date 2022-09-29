@@ -7,6 +7,9 @@ import { getAllUsers, createNewUserService, deleteUserService, editUserService }
 import Modal from './ModalAddUser';
 import ModalEditUser from './ModalEditUser';
 import { emitter } from '../../utils/emitter';
+import Swal from 'sweetalert2';
+
+
 class UserManage extends Component {
 
     constructor(props) {
@@ -54,7 +57,13 @@ class UserManage extends Component {
         try {
             let response = await createNewUserService(data);
             if (response && response.message.errorCode !== 0) {
-                alert(response.message.errorMessage);
+                let err = response.message.errorMessage
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    confirmButtonText: 'I get it',
+                    text: err,
+                })
             }
             else {
                 await this.getAll();
@@ -144,14 +153,12 @@ class UserManage extends Component {
                         <button
                             className="header-btn"
                             onClick={() => this.handleAddUser()}>
-
                             Create User
                         </button>
                     </div>
                     <table>
                         <tbody>
                             <tr>
-                                <th>ID</th>
                                 <th>FullName</th>
                                 <th>Email</th>
                                 <th>Phone</th>
@@ -163,7 +170,6 @@ class UserManage extends Component {
                                 arrUsers && arrUsers.map((item, index) => {
                                     return (
                                         <tr>
-                                            <td>{item.id}</td>
                                             <td>{item.firstName} {item.lastName}</td>
                                             <td>{item.email}</td>
                                             <td>{item.phone}</td>

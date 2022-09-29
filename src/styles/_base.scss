@@ -9,7 +9,17 @@ html {
   font-family: $fontmain;
   font-size: $base-size - 2px;
   height: 100vh;
-  overflow: hidden;
+  overflow: scroll;
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  border-radius: 100rem;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
 }
 
 .btn {
@@ -27,6 +37,45 @@ html {
     font-size: $base-size - 3px;
   }
 }
+
+.button {
+  border-radius: 4px;
+  color: #fff;
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+
+  &--primary {
+    background: #1B1C31;
+    padding: 14px 20px;
+  }
+
+  &--hover {
+    color: #000;
+    padding: 14px 20px;
+
+    a {
+      text-decoration: none;
+    }
+
+    &:hover {
+      color: #000 !important;
+    }
+  }
+
+  &--secondary {
+    background: #1B1C31;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 14px 68px !important;
+  }
+
+  &:hover {
+    color: #fff;
+  }
+}
+
 
 .btn-edit,
 .btn-add,

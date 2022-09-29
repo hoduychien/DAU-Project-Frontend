@@ -27,17 +27,22 @@
     },
     "menu": {
         "system": {
-            "header": "HỆ THỐNG",
+            "header": "Hệ thống",
             "system-administrator": {
                 "header": "Quản trị hệ thống",
                 "user-manage": "Quản lý người dùng",
-                "product-manage": "Quản lý khoá học",
-                "register-package-group-or-account": "Đăng ký"
+                "redux-manage": "Quản lý tài khoản"
+                
             },
             "system-parameter": {
                 "header": "Tham số hệ thống"
             }
-        }
+        },
+        "home": "Trang chủ",
+        "message": "Tin nhắn",
+        "vi": "Ngôn Ngữ (VN)",
+        "en": "Ngôn Ngữ (EN)",
+        "setting": "Cài đặt"
     },
     "system": {
         "user-manage": {
@@ -116,5 +121,28 @@
             "remove-assign-fail": "Bỏ gán gói dịch vụ cho khách hàng thất bại",
             "sure-delete-assign": "Bạn có chắc chắn muốn bỏ gán gói dịch vụ cho khách hàng?"
         }
+    },
+
+    "home-header":{
+        "home": "Trang chủ",
+        "course": "Khoá học",
+        "subjects": "Môn Học",
+        "lecturers": "Giảng viên",
+        "user": "Profile",
+        "lang": "Ngôn ngữ",
+        "light-mode": "Giao diện : sáng",
+        "darnk-mode": "Giao diện : tối",
+        "login": "Đăng nhập",
+        "register": "Đăng ký",
+        "logout": "Đăng xuất",
+        "title": "Hệ thống đăng ký khóa học lập trình miễn phí",
+        "heading": "Đăng ký một khóa học lập trình chưa bao giờ dễ dàng đến thế",
+        "search": "Tìm kiếm",
+        "see-more": "Xem Thêm",
+        "desc-1": "Dễ dàng lựa chọn chương trình phù hợp với nhu cầu và thời gian của bạn.",
+        "desc-2": "Hãy đến gần hơn với các khóa học của bạn.",
+        "desc-3": "Chương trình học được chắt lọc và đối chiếu với nhu cầu thị trường, tối giản các nội dung nhưng vẫn đáp ứng tốt các yêu cầu từ doanh nghiệp.",
+        "desc-4": "Người học được tham gia vào cộng đồng học tập lớn mạnh và nhiệt huyết từ CodeGym Online để giao lưu, trao đổi kiến thức.",
+        "desc-5": "Chương trình được thiết kế và giảng dạy bởi đội ngũ chuyên gia giàu kinh nghiệm tại CyberLearn. Ngoài kinh nghiệm làm việc lâu năm tại các doanh nghiệp, giảng viên CyberLearn còn am hiểu chuyên môn sư phạm để có thể đưa tới học viên những kiến thức và trải nghiệm thực tiễn phong phú."
     }
 }

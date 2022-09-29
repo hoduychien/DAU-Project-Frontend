@@ -19,7 +19,7 @@ class ModalEditUser extends Component {
             address: '',
             phone: '',
             gender: '',
-            roleId: '',
+            // roleId: '',
             valid: ''
         }
     }
@@ -38,7 +38,7 @@ class ModalEditUser extends Component {
                 address: user.address,
                 phone: user.phone,
                 gender: user.gender,
-                roleId: user.roleId,
+                // roleId: user.roleId,
             })
         }
 
@@ -65,7 +65,7 @@ class ModalEditUser extends Component {
             'address',
             'phone',
             'gender',
-            'roleId'
+            // 'roleId'
         ]
         let isValid = true;
         for (let i = 0; i < arrInput.length; i++) {
@@ -188,7 +188,7 @@ class ModalEditUser extends Component {
                                     </div>
                                 </div>
 
-                                <div>
+                                {/* <div>
                                     <label className="modal-item-label">Role</label>
                                     <div className="modal-radio">
                                         <div className="modal-radio-item">
@@ -210,7 +210,7 @@ class ModalEditUser extends Component {
                                             />
                                         </div>
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
 
 

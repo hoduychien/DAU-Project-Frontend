@@ -1,0 +1,112 @@
+@import "../App.scss";
+
+.section {
+    position: relative;
+    padding-bottom: 50px;
+
+    &-title {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 18px;
+        margin-top: 50px;
+        cursor: pointer;
+    }
+
+    &-desc {
+        text-align: center;
+        margin: 0 auto;
+        width: 870px;
+        font-size: 14px;
+    }
+
+    &-more {
+        position: absolute;
+        right: 60px;
+        bottom: 40px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        cursor: pointer;
+        font-weight: 500;
+        color: #ff9600;
+
+        i {
+            transition: all 0.2s linear;
+        }
+
+        &:hover i {
+            transform: translateX(5px);
+        }
+    }
+}
+
+.slick-slide img {
+    margin: auto;
+    width: 100% !important;
+    height: 200px;
+    object-fit: cover;
+    padding: 0;
+    cursor: pointer;
+
+}
+
+.slick-list {
+    margin: 0 -10px;
+}
+
+.slick-slide>div {
+    padding: 0 10px;
+}
+
+
+.slick-prev {
+    background: url('../../assets/images/prev.png') center center no-repeat !important;
+
+    &::before {
+        display: none;
+    }
+}
+
+.slick-next {
+    background: url('../../assets/images/next.png') center center no-repeat !important;
+
+    &::before {
+        display: none;
+    }
+}
+
+.slick-dots {
+    display: flex;
+    justify-content: center;
+    margin-bottom: -10px !important;
+
+    li {
+        margin: -30px 0.25rem !important;
+    }
+
+    button {
+        display: block;
+        width: 7px !important;
+        height: 7px !important;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        border-radius: 100rem;
+        background-color: #1B1C31 !important;
+        opacity: .5;
+        text-indent: -9999px;
+        transition: all 0.35s;
+    }
+
+    li.slick-active button {
+        background-color: #1B1C31 !important;
+        opacity: 1;
+        width: 40px !important;
+        height: 7px !important;
+        z-index: 999;
+    }
+
+}

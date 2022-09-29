@@ -1,0 +1,114 @@
+.subjects {
+    &-content {
+        padding: 40px;
+    }
+
+    &-list {
+        margin: 0 50px;
+        padding: 20px 0;
+    }
+
+    &-item {
+        width: 100% !important;
+        background-color: #fff;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+        position: relative;
+        margin-bottom: 10px;
+        border-radius: 4px;
+        overflow: hidden;
+
+        &-info {
+            padding: 10px !important;
+        }
+
+        &-title {
+            font-size: 18px;
+            font-weight: 500;
+            width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 25px;
+            -webkit-line-clamp: 2;
+            height: 50px;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+        }
+
+        &-vote {
+            margin: 5px 0;
+            color: #ff9600;
+        }
+
+        &-desc {
+            margin-top: 5px;
+            width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 25px;
+            -webkit-line-clamp: 3;
+            height: 75px;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            margin-bottom: 40px;
+        }
+
+        &-more {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            color: #ff9600;
+            cursor: pointer;
+
+            i {
+                transition: all 0.2s linear;
+            }
+
+            &:hover i {
+                transform: translateX(5px);
+            }
+        }
+    }
+
+    &-post {
+        margin-top: 40px;
+        display: flex;
+        padding: 0 163px;
+        gap: 20px;
+        align-items: center;
+
+        &-left {
+            width: 487px;
+
+        }
+
+        &-right {
+            width: 575px;
+            height: 391px;
+
+            &>img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        &-heading {
+            font-size: 30px;
+            font-weight: 500;
+            line-height: 120%;
+            margin-bottom: 20px;
+        }
+
+        &-desc {
+            font-weight: 400;
+            font-size: 15px;
+            line-height: 150%;
+            margin-bottom: 20px;
+        }
+    }
+}

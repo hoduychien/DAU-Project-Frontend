@@ -4,7 +4,7 @@
     display: flex;
     margin: 0;
     padding: 0;
-    color: #1B1C31;
+    color: #ffffff;
 
 
     &.list-unstyled,
@@ -15,12 +15,6 @@
     .menu-group {
         &:hover {
             cursor: pointer;
-        }
-
-        .menu-group-name {
-            line-height: 40px;
-            padding: 0 15px;
-            font-weight: 700;
         }
 
         .menu-list {
