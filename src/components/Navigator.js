@@ -12,8 +12,7 @@ class MenuGroup extends Component {
         return (
             <li className="menu-group">
                 <div className="menu-group-name">
-                    {/* <FormattedMessage id={name} /> */}
-                    <FormattedMessage id="menu.home" />
+                    <FormattedMessage id={name} />
                 </div>
                 <ul className="menu-list list-unstyled">
                     {children}

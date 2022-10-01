@@ -42,87 +42,21 @@
         "message": "Tin nhắn",
         "vi": "Ngôn Ngữ (VN)",
         "en": "Ngôn Ngữ (EN)",
-        "setting": "Cài đặt"
-    },
-    "system": {
-        "user-manage": {
-            "fail-to-load-fouser": "Không thể tải về danh sách người dùng",
-            "user-id": "Mã người sử dụng",
-            "usertype": "Loại người dùng",
-            "username": "Tên người dùng",
-            "fullname": "Tên đầy đủ",
-            "mobile": "Số điện thoại",
-            "email": "Email",
-            "status": "Trạng thái",
-            "add-user": "Thêm người dùng",
-            "edit-user": "Sửa thông tin người dùng",
-            "password": "Mật khẩu",
-            "retype-password": "Nhập lại mật khẩu",
-            "add-user-success": "Thêm người dùng thành công",
-            "edit-user-success": "Thay đổi thông tin người dùng thành công",
-            "add-user-fail": "Thêm người dùng thất bại",
-            "edit-user-fail": "Thay đổi thông tin người dùng thất bại",
-            "del-user-success": "Xóa người dùng thành công",
-            "del-user-fail": "Xóa người dùng thất bại",
-            "invalid-input": {
-                "username": "Quý khách vui lòng nhập tên người dùng",
-                "fullname": "Quý khách vui lòng nhập tên đầy đủ",
-                "password": "Quý khách vui lòng nhập mật khẩu"
-            },
-            "sure-delete-user": "Bạn có chắc chắn muốn xóa người dùng này?"
+        "setting": "Cài đặt",
+        "admin":{
+            "user-manage": "Quản lý người dùng",
+            "redux-user-manage": "Quản lý tài khoản",
+            "lecture-manager": "Quản lý giảng viên",
+            "system": "Quản lý hệ thống"
         },
-        "product-manage": {
-            "fail-to-load-foprtype": "Không thể tải về danh sách gói",
-            "prid": "Mã gói",
-            "prname": "Tên gói",
-            "prtype": "Loại gói",
-            "status": "Trạng thái",
-            "description": "Diễn giải",
-            "effective-date": "Ngày hiệu lực",
-            "expiration-date": "Ngày hết hiệu lực",
-            "add-product": "Thêm gói",
-            "add-product-success": "Thêm gói thành công",
-            "add-product-fail": "Thêm gói thất bại",
-            "edit-product": "Sửa thông tin gói",
-            "package-decentralize": "Phân quyền chức năng",
-            "edit-product-success": "Thay đổi thông tin gói thành công",
-            "edit-product-fail": "Thay đổi thông tin gói thất bại",
-            "delete-product-success": "Xóa gói thành công",
-            "delete-product-fail": "Xóa gói thất bại",
-            "invalid-input": {
-                "prid": "Quý khách vui lòng nhập mã gói",
-                "prname": "Quý khách vui lòng nhập tên gói"
-            },
-            "fail-to-load-decentralize-info": "Không thể tải về thông tin phân quyền chức năng",
-            "save-decentralize-success": "Lưu phân quyền chức năng thành công",
-            "save-decentralize-fail": "Lưu phân quyền chức năng thất bại",
-            "sure-delete-package": "Bạn có chắc chắn muốn xóa gói này?"
+        "course": {
+            "course-manage": "Quản lý khoá học"
         },
-        "register-package-group-or-acc": {
-            "assign-service-package-to-customer": "Gán gói dịch vụ cho khách hàng",
-            "package-name": "Tên gói",
-            "assign-type": "Loại gán",
-            "cust-acc-group": "Nhóm KH/Tài khoản",
-            "effective-date": "Ngày hiệu lực",
-            "expiration-date": "Ngày hết hiệu lực",
-            "assign": "Gán",
-            "manage-assign-groups": "Quản lý gán nhóm",
-            "group-cust-acc-name": "Tên nhóm/tài khoản KH",
-            "del-assign": "Xóa gán",
-            "fail-to-load-manage-assign-groups-list": "Không thể tải về thông tin quản lý gán nhóm",
-            "invalid-selected": {
-                "currentfoProduct": "Gói đang chọn không hợp lệ",
-                "currentAssignType": "Loại gán không hợp lệ",
-                "currentFoUser": "Nhóm KH/Tài khoản không hợp lệ"
-            },
-            "assign-service-package-to-customer-success": "Gán gói dịch vụ cho khách hàng thành công",
-            "assign-service-package-to-customer-fail": "Gán gói dịch vụ cho khách hàng thất bại",
-            "remove-assign-success": "Bỏ gán gói dịch vụ cho khách hàng thành công",
-            "remove-assign-fail": "Bỏ gán gói dịch vụ cho khách hàng thất bại",
-            "sure-delete-assign": "Bạn có chắc chắn muốn bỏ gán gói dịch vụ cho khách hàng?"
+        "subjects": {
+            "subjects-manage": "Quản lý môn học",
+            "class-manage": "Quản lý lớp học"
         }
     },
-
     "home-header":{
         "home": "Trang chủ",
         "course": "Khoá học",
@@ -144,5 +78,25 @@
         "desc-3": "Chương trình học được chắt lọc và đối chiếu với nhu cầu thị trường, tối giản các nội dung nhưng vẫn đáp ứng tốt các yêu cầu từ doanh nghiệp.",
         "desc-4": "Người học được tham gia vào cộng đồng học tập lớn mạnh và nhiệt huyết từ CodeGym Online để giao lưu, trao đổi kiến thức.",
         "desc-5": "Chương trình được thiết kế và giảng dạy bởi đội ngũ chuyên gia giàu kinh nghiệm tại CyberLearn. Ngoài kinh nghiệm làm việc lâu năm tại các doanh nghiệp, giảng viên CyberLearn còn am hiểu chuyên môn sư phạm để có thể đưa tới học viên những kiến thức và trải nghiệm thực tiễn phong phú."
+    },
+    "modal":{
+        "create-user": "Tạo người dùng",
+        "email": "Email",
+        "password": "Mật khẩu",
+        "firstname": "Họ",
+        "lastname": "Tên",
+        "address": "Địa chỉ",
+        "phone": "Số điện thoại",
+        "gender": "Giớ tính",
+        "location": "Chức vụ",
+        "role": "Vai trò",
+        "avatar": "Ảnh đại diện",
+        "create": "Tạo người dùng",
+        "cancel": "Huỷ",
+        "male": "Nam",
+        "female": "Nữ",
+        "lecture": "Giảng viên",
+        "doctor": "Tiến sĩ",
+        "master": "Thạc sĩ"
     }
 }

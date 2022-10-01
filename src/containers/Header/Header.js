@@ -4,6 +4,7 @@ import { FormattedMessage } from 'react-intl';
 import * as actions from "../../store/actions";
 import Navigator from '../../components/Navigator';
 import { adminMenu } from './menuApp';
+import { courseMenu } from './menuCourse';
 import './Header.scss';
 import { languages } from '../../utils'
 
@@ -16,35 +17,36 @@ class Header extends Component {
     render() {
         const { processLogout, language, userInfo } = this.props;
 
-        console.log('check :', userInfo)
         return (
             <div className="header-container">
+                <div className="sidebar-title">
+                    <i className="fas fa-bars"></i>
+                    <h3>CyberLearn</h3>
+                </div>
                 <ul className="sidebar">
-                    <div className="sidebar-title">
-                        <i className="fas fa-bars"></i>
-                        <h3>CyberLearn</h3>
-                    </div>
-                    <li className="sidebar-item sidebar-search">
+                    {/* <li className="sidebar-item sidebar-search">
                         <input type="text" placeholder="Search ..." />
-                    </li>
+                    </li> */}
 
                     <li className="sidebar-item">
                         <div>
                             <i className="fas fa-home"></i>
-                            <Navigator menus={adminMenu} />
+                            <FormattedMessage id="menu.home" />
                         </div>
+
                     </li>
                     <li className="sidebar-item">
                         <div>
                             <i className="fas fa-users-cog"></i>
-                            <FormattedMessage id="menu.system.header" />
+                            <Navigator menus={adminMenu} />
                         </div>
                     </li>
 
                     <li className="sidebar-item">
                         <div>
-                            <i className="fab fa-facebook-messenger"></i>
-                            <FormattedMessage id="menu.message" />
+                            <i className="fas fa-bookmark"></i>
+                            {/* <FormattedMessage id="menu.message" /> */}
+                            <Navigator menus={courseMenu} />
                         </div>
                     </li>
                     <li className={language === languages.VI ? "sidebar-item active-lang" : "sidebar-item"}>

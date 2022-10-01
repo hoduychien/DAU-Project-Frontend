@@ -17,8 +17,7 @@ class HomeHeader extends Component {
 
 
     render() {
-        console.log("check", this.props.isLoggedIn)
-        const { processLogout, isLoggedIn, userInfo } = this.props;
+        const { processLogout, isLoggedIn, userInfo, language } = this.props;
         return (
             <React.Fragment>
                 <div className="home-header">
@@ -73,7 +72,7 @@ class HomeHeader extends Component {
                             </div>
 
                             <div className="header-action">
-                                <a href="http://localhost:3000/login" target="_blank" className="button button--primary" rel="noreferrer">
+                                <a href="http://localhost:3000/login" target="_blank" className={language === languages.VI ? "button button--primary" : "button button--long"} rel="noreferrer">
                                     <FormattedMessage id="home-header.login" />
                                 </a>
                             </div>

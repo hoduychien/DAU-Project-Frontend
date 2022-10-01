@@ -18,6 +18,7 @@
         }
 
         .menu-list {
+            width: 200px;
             display: none;
             background-color: #fff;
             border-radius: 4px;
@@ -28,17 +29,19 @@
 
             .menu {
                 display: flex;
-                justify-content: center;
-                align-items: center;
-                padding: 10px 20px;
-                height: 35px;
-                line-height: 35px;
                 text-transform: none;
+
+
+                &.active a {
+                    font-weight: 700;
+                    color: #F57059;
+                }
 
 
                 .menu-link {
                     text-decoration: none;
                     color: #1B1C31;
+                    padding: 10px;
                 }
 
                 .sub-menu-list {
@@ -49,8 +52,6 @@
                     position: absolute;
                     top: 0;
                     left: 100%;
-                    padding: 0;
-                    padding: 0 10px;
 
                     .sub-menu {
                         padding: 0 15px;

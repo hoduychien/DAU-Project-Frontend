@@ -23,11 +23,15 @@ const editUserService = (data) => {
     return axios.put(`/api/edit-user`, data)
 }
 
+const getAllKeywordsService = (type) => {
+    return axios.get(`/api/get-key?type=${type}`)
+}
 
 export {
     handleLoginApi,
     getAllUsers,
     createNewUserService,
     deleteUserService,
-    editUserService
+    editUserService,
+    getAllKeywordsService
 };
