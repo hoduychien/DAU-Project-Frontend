@@ -90,7 +90,6 @@ class ModalAddUser extends Component {
                 avatar: base64.currentTarget.result
             })
         }
-        else { }
 
     }
 

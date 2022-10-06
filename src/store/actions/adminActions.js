@@ -180,20 +180,17 @@ export const deleteUserFailed = () => ({
 export const updateUserStart = (id) => {
     return async (dispatch, getState) => {
         try {
-            let res = await editCourseService(id);
+            let res = await editUserService(id);
             console.log(res.errorCode)
             if (res && res.errorCode === 0) {
                 dispatch(updateUserSuccess())
-
             }
             else {
                 dispatch(updateUserFailed())
-
             }
         } catch (error) {
             dispatch(updateUserFailed())
             console.log(error);
-            console.log("sdadsa")
         }
     }
 }
@@ -237,7 +234,6 @@ export const updateCourseStart = (id) => {
     return async (dispatch, getState) => {
         try {
             let res = await editCourseService(id);
-
             if (res && res.message.errorCode === 0) {
                 dispatch(updateCourseSuccess())
             }

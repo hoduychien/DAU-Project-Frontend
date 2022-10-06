@@ -4,7 +4,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { connect } from 'react-redux';
 import Swal from 'sweetalert2';
 import './ModalUser.scss';
-import { languages } from '../../../utils';
+import { languages, CommonUtils } from '../../../utils';
 import { getAllKeywordsService } from '../../../services/userService';
 import *  as actions from "../../../store/actions"
 import avatar from "../../../assets/images/avatar-df.png";
@@ -26,6 +26,7 @@ class ModalEditUserRedux extends Component {
             phone: '',
             gender: '',
             position: '',
+            avatar: '',
             roleId: '',
             valid: '',
             genderArr: [],
@@ -42,7 +43,6 @@ class ModalEditUserRedux extends Component {
         this.props.getPositionStart();
         this.props.getRoleStart();
         let user = this.props.currentUser;
-        console.log(user)
 
         if (user && !_.isEmpty(user)) {
 
@@ -65,8 +65,6 @@ class ModalEditUserRedux extends Component {
                 gender: user.gender,
                 desc: user.desc,
                 previewImage: imgBase64,
-            }, () => {
-                console.log(this.state.avatar)
             })
         }
     }
@@ -76,6 +74,21 @@ class ModalEditUserRedux extends Component {
         this.props.toggle();
     }
 
+    handleOnchangeImage = async (event) => {
+        let data = event.target.files;
+        let file = data[0];
+
+        if (file) {
+            let base64 = await CommonUtils.getBase64(file);
+            let url = URL.createObjectURL(file);
+
+            this.setState({
+                previewImage: url,
+                avatar: base64.currentTarget.result
+            })
+        }
+
+    }
     handleOnchangeInput = (event, id) => {
         let stateCopy = { ...this.state };
         stateCopy[id] = event.target.value;
@@ -110,6 +123,16 @@ class ModalEditUserRedux extends Component {
         return isValid;
     }
 
+    handleUpdateUser = () => {
+        let isValid = this.validateInput();
+        if (isValid === true) {
+            this.props.editUser(this.state);
+            this.setState({
+                valid: '',
+            })
+        }
+    }
+
     componentDidUpdate(prevProps) {
         if (prevProps.genders !== this.props.genders) {
             let genderArray = this.props.genders;
@@ -137,31 +160,7 @@ class ModalEditUserRedux extends Component {
 
     }
 
-    handleUpdateUser = () => {
-        let isValid = this.validateInput();
-        if (isValid === true) {
-            this.props.editUser(this.state);
-            this.setState({
-                valid: '',
-            })
-        }
-    }
 
-    handleOnchangeImage = (event) => {
-        let data = event.target.files;
-        let file = data[0];
-        console.log(data);
-
-        if (file) {
-            let url = URL.createObjectURL(file);
-            this.setState({
-                previewImage: url,
-                avatar: url
-            })
-        }
-        else { }
-
-    }
 
 
     render() {

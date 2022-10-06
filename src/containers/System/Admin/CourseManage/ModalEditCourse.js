@@ -111,19 +111,7 @@ class ModalEditCourse extends Component {
         }
     }
 
-    handleOnchangeImage = (event) => {
-        let data = event.target.files;
-        let file = data[0];
-        console.log(data);
 
-        if (file) {
-            let url = URL.createObjectURL(file);
-            this.setState({
-                previewImage: url,
-                image: url
-            })
-        }
-    }
 
     render() {
         let imgUrl = this.state.previewImage;

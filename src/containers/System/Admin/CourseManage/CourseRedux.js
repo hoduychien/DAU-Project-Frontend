@@ -109,14 +109,7 @@ class CourseRedux extends Component {
         this.setState({
             isOpenEditModal: false,
         })
-        Swal.fire({
-            icon: 'success',
-            title: 'Update Success',
-            showConfirmButton: false,
-            timer: 1500
-        })
     }
-
 
     async componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.courses !== this.props.courses) {
@@ -215,7 +208,7 @@ const mapDispatchToProps = dispatch => {
     return {
         fetchAllCourseStart: () => dispatch(actions.fetchAllCourseStart()),
         deleteCourseStart: (id) => dispatch(actions.deleteCourseStart(id)),
-        updateCourseStart: (user) => dispatch(actions.updateUserStart(user))
+        updateCourseStart: (course) => dispatch(actions.updateCourseStart(course))
     };
 };
 
