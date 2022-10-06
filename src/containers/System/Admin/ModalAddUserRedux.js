@@ -4,10 +4,13 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { connect } from 'react-redux';
 import Swal from 'sweetalert2';
 import './ModalUser.scss';
-import { languages } from '../../../utils';
+import { languages, CommonUtils } from '../../../utils';
 import { getAllKeywordsService } from '../../../services/userService';
 import *  as actions from "../../../store/actions"
-import avatar from "../../../assets/images/avatar.png"
+import avatar from "../../../assets/images/avatar-df.png";
+import 'react-image-lightbox/style.css';
+import { emitter } from '../../../utils/emitter';
+
 
 class ModalAddUser extends Component {
 
@@ -21,24 +24,46 @@ class ModalAddUser extends Component {
             address: '',
             phone: '',
             gender: '',
+            position: '',
             roleId: '',
+            avatar: '',
             valid: '',
-            genderArr: []
+            genderArr: [],
+            positionArr: [],
+            roleArr: [],
+            previewImage: '',
         }
+        this.listenEmitter();
+    }
+
+    listenEmitter() {
+        emitter.on('EVEN_CLEAR_MODAL_DATA', () => {
+            let roleArray = this.props.roles;
+            let positionArray = this.props.positions;
+            let genderArray = this.props.genders;
+            this.setState({
+                email: '',
+                password: '',
+                firstName: '',
+                lastName: '',
+                address: '',
+                phone: '',
+                roleId: roleArray && roleArray.length > 0 ? roleArray[2].keyMap : '',
+                position: positionArray && positionArray.length > 0 ? positionArray[0].keyMap : '',
+                gender: genderArray && genderArray.length > 0 ? genderArray[0].keyMap : '',
+                avatar: '',
+                valid: '',
+                previewImage: '',
+                desc: ''
+
+            })
+        })
     }
 
     async componentDidMount() {
         this.props.getGenderStart();
-        // try {
-        //     let res = await getAllKeywordsService('gender');
-        //     if (res && res.errorCode === 0) {
-        //         this.setState({
-        //             genderArr: res.data
-        //         })
-        //     }
-        // } catch (error) {
-        //     console.log(error)
-        // }
+        this.props.getPositionStart();
+        this.props.getRoleStart();
     }
 
     toggle = () => {
@@ -52,6 +77,23 @@ class ModalAddUser extends Component {
             ...stateCopy
         })
     }
+    handleOnchangeImage = async (event) => {
+        let data = event.target.files;
+        let file = data[0];
+
+        if (file) {
+            let base64 = await CommonUtils.getBase64(file);
+            let url = URL.createObjectURL(file);
+
+            this.setState({
+                previewImage: url,
+                avatar: base64.currentTarget.result
+            })
+        }
+        else { }
+
+    }
+
 
     validateInput = () => {
         let arrInput = [
@@ -62,8 +104,9 @@ class ModalAddUser extends Component {
             'address',
             'phone',
             'gender',
-            'location',
-            'roleId'
+            'position',
+            'roleId',
+            'desc'
         ]
         let isValid = true;
         for (let i = 0; i < arrInput.length; i++) {
@@ -78,46 +121,58 @@ class ModalAddUser extends Component {
         return isValid;
     }
 
+
     handleAddNewUser = async () => {
         let isValid = await this.validateInput();
         let err = this.state.valid;
         if (isValid === true) {
-            Swal.fire({
-                icon: 'success',
-                title: 'Done !!!',
-                confirmButtonText: 'I get it',
-                text: "Tạo người dùng thành công",
-            })
+            this.props.createNewUser(this.state);
             this.setState({
                 valid: '',
             })
-        }
-        else {
+        } else {
             Swal.fire({
                 icon: 'error',
-                title: 'Opp ...',
+                title: 'Oops...',
                 confirmButtonText: 'I get it',
-                confirmButtonColor: '#3085d6',
                 text: err,
-            })
-            this.setState({
-                valid: '',
             })
         }
     }
 
     componentDidUpdate(prevProps) {
         if (prevProps.genders !== this.props.genders) {
+            let genderArray = this.props.genders;
             this.setState({
-                genderArr: this.props.genders
+                genderArr: genderArray,
+                gender: genderArray && genderArray.length > 0 ? genderArray[0].keyMap : ''
+            })
+        }
+        if (prevProps.positions !== this.props.positions) {
+            let positionArray = this.props.positions;
+
+            this.setState({
+                positionArr: positionArray,
+                position: positionArray && positionArray.length > 0 ? positionArray[0].keyMap : ''
+            })
+        }
+        if (prevProps.roles !== this.props.roles) {
+            let roleArray = this.props.roles;
+            this.setState({
+                roleArr: roleArray,
+                roleId: roleArray && roleArray.length > 0 ? roleArray[2].keyMap : ''
             })
         }
     }
 
 
+
     render() {
-        let genderArray = this.state.genderArr;
         let language = this.props.language;
+        let genderArray = this.state.genderArr;
+        let roleArray = this.state.roleArr;
+        let positionArray = this.state.positionArr;
+        let imgUrl = this.state.previewImage;
 
         return (
             <div>
@@ -194,6 +249,19 @@ class ModalAddUser extends Component {
                                         value={this.state.address}
                                     />
                                 </div>
+
+                                <div className="modal-item">
+                                    <label className="modal-item-label">
+                                        Description
+                                    </label>
+                                    <textarea
+                                        type="text"
+                                        className="modal-item-input" rows="4" cols="50"
+                                        placeholder="Enter description ..."
+                                        onChange={(event) => { this.handleOnchangeInput(event, "desc") }}
+                                        value={this.state.desc}
+                                    />
+                                </div>
                                 <div className="modal-item">
                                     <label className="modal-item-label">
                                         <FormattedMessage id="modal.phone" />
@@ -217,7 +285,9 @@ class ModalAddUser extends Component {
                                             genderArray && genderArray.length > 0 &&
                                             genderArray.map((item, index) => {
                                                 return (
-                                                    <option key={index} > {language === languages.VI ? item.vi : item.en}</option>
+                                                    <option key={index} value={item.keyMap} >
+                                                        {language === languages.VI ? item.vi : item.en}
+                                                    </option>
                                                 )
                                             })
                                         }
@@ -227,14 +297,22 @@ class ModalAddUser extends Component {
                                 </div>
                                 <div className="modal-item">
                                     <label className="modal-item-label">
-                                        <FormattedMessage id="modal.location" />
+                                        <FormattedMessage id="modal.position" />
                                     </label>
                                     <div className="modal-item-input">
-                                        <select id="inputState" className="" onChange={(event) => { this.handleOnchangeInput(event, "location") }}>
-                                            <option selected disabled hidden>Choose Location ...</option>
-                                            <option value="1">Lecturer</option>
-                                            <option value="1">Doctor</option>
-                                            <option value="1">Master</option>
+                                        <select id="inputState" className="" onChange={(event) => { this.handleOnchangeInput(event, "position") }}>
+                                            <option selected disabled hidden>Choose Position ...</option>
+
+                                            {
+                                                positionArray && positionArray.length > 0 &&
+                                                positionArray.map((item, index) => {
+                                                    return (
+                                                        <option key={index} value={item.keyMap}>
+                                                            {language === languages.VI ? item.vi : item.en}
+                                                        </option>
+                                                    )
+                                                })
+                                            }
                                         </select>
 
                                         <i className="fas fa-chevron-down"></i>
@@ -247,9 +325,16 @@ class ModalAddUser extends Component {
                                     <div className="modal-item-input">
                                         <select id="inputState" className="" onChange={(event) => { this.handleOnchangeInput(event, "roleId") }}>
                                             <option selected disabled hidden>Choose Role ...</option>
-                                            <option value="1">Admin</option>
-                                            <option value="2">Lecturer</option>
-                                            <option value="3">Student</option>
+                                            {
+                                                roleArray && roleArray.length > 0 &&
+                                                roleArray.map((item, index) => {
+                                                    return (
+                                                        <option key={index} value={item.keyMap} >
+                                                            {language === languages.VI ? item.vi : item.en}
+                                                        </option>
+                                                    )
+                                                })
+                                            }
                                         </select>
                                         <i className="fas fa-chevron-down"></i>
                                     </div>
@@ -258,14 +343,15 @@ class ModalAddUser extends Component {
                                     <label className="modal-item-label">
                                         <FormattedMessage id="modal.avatar" />
                                     </label>
-                                    <input className="modal-item-input" type="file" id="avatar" accept="image/*" />
-                                    <label for="avatar" className="modal-item-avatar">
-                                        Choose a photo
+                                    <input className="modal-item-input" type="file"
+                                        id="avatar"
+                                        accept="image/*"
+                                        onChange={(event) => this.handleOnchangeImage(event)} />
+                                    <label className="modal-item " htmlFor="avatar" >
+                                        <img src={imgUrl === '' ? avatar : imgUrl} alt="" />
                                     </label>
                                 </div>
-                                <div className="modal-item modal-item-img">
-                                    <img src={avatar} alt="" />
-                                </div>
+
 
                             </div>
 
@@ -281,6 +367,7 @@ class ModalAddUser extends Component {
 
                     </ModalBody>
                 </Modal>
+
             </div >
         )
     }
@@ -289,13 +376,17 @@ class ModalAddUser extends Component {
 const mapStateToProps = state => {
     return {
         language: state.app.language,
-        genders: state.admin.genderArr
+        genders: state.admin.genderArr,
+        positions: state.admin.positionArr,
+        roles: state.admin.roleArr
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         getGenderStart: () => dispatch(actions.fetchGenderStart()),
+        getPositionStart: () => dispatch(actions.fetchPositionStart()),
+        getRoleStart: () => dispatch(actions.fetchRoleStart()),
     };
 };
 

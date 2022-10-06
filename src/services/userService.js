@@ -27,11 +27,16 @@ const getAllKeywordsService = (type) => {
     return axios.get(`/api/get-key?type=${type}`)
 }
 
+const getLecturers = (limit) => {
+    return axios.get(`/api/get-lecturer-list?limit=${limit}`)
+}
+
 export {
     handleLoginApi,
     getAllUsers,
     createNewUserService,
     deleteUserService,
     editUserService,
-    getAllKeywordsService
+    getAllKeywordsService,
+    getLecturers
 };

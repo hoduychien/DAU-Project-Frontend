@@ -6,23 +6,49 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import lecturer_1 from "../../../assets/course/lecturer-1.png";
-import lecturer_2 from "../../../assets/course/lecturer-2.png";
-import lecturer_3 from "../../../assets/course/lecturer-3.png";
 import facebook from '../../../assets/course/facebook.png';
 import mail from '../../../assets/course/mail.png';
 import twitter from '../../../assets/course/twitter.png';
 import instagram from '../../../assets/course/instagram.png';
 
+import { languages } from '../../../utils'
+
+import * as actions from "../../../store/actions"
+
 
 class Lecturers extends Component {
 
+    constructor(props) {
+        super(props)
+        this.state = {
+            lecturersArr: []
+        }
+    }
+
+
+    componentDidMount() {
+        this.props.loadLecturer();
+
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.lecturerData !== this.props.lecturerData) {
+            this.setState({
+                lecturersArr: this.props.lecturerData
+            })
+        }
+    }
+
     render() {
+        let lectures = this.state.lecturersArr;
+        let { language } = this.props;
+
         let settings = {
             dots: true,
-            infinite: true,
+            infinite: false,
             speed: 500,
             slidesToShow: 3,
-            slidesToScroll: 1,
+            slidesToScroll: 1
         };
         return (
             <section className="section" id="lecturers">
@@ -37,96 +63,43 @@ class Lecturers extends Component {
                     </div>
                     <div className="lecturers-list">
                         <Slider {...settings}>
-                            <div className="lecturers-item">
-                                <img src={lecturer_1} alt="" />
-                                <div className="lecturers-item-info">
-                                    <span className="lecturers-item-title">Phạm Huy Hoàng</span>
-                                    <p className="lecturers-item-text">Chuyên môn: Java, NodeJs, ReactJs ...</p>
-                                    <p className="lecturers-item-desc">Kinh nghiệm 8 năm trong ngành Công nghệ thông tin</p>
-                                    <div className="lecturers-item-social">
-                                        <img src={facebook} alt="" />
-                                        <img src={mail} alt="" />
-                                        <img src={twitter} alt="" />
-                                        <img src={instagram} alt="" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="lecturers-item">
-                                <img src={lecturer_2} alt="" />
-                                <div className="lecturers-item-info">
-                                    <span className="lecturers-item-title">Phạm Huy Hoàng</span>
-                                    <p className="lecturers-item-text">Chuyên môn: Java, NodeJs, ReactJs ...</p>
-                                    <p className="lecturers-item-desc">Kinh nghiệm 8 năm trong ngành Công nghệ thông tin</p>
-                                    <div className="lecturers-item-social">
-                                        <img src={facebook} alt="" />
-                                        <img src={mail} alt="" />
-                                        <img src={twitter} alt="" />
-                                        <img src={instagram} alt="" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="lecturers-item">
-                                <img src={lecturer_3} alt="" />
-                                <div className="lecturers-item-info">
-                                    <span className="lecturers-item-title">Phạm Huy Hoàng</span>
-                                    <p className="lecturers-item-text">Chuyên môn: Java, NodeJs, ReactJs ...</p>
-                                    <p className="lecturers-item-desc">Kinh nghiệm 8 năm trong ngành Công nghệ thông tin</p>
-                                    <div className="lecturers-item-social">
-                                        <img src={facebook} alt="" />
-                                        <img src={mail} alt="" />
-                                        <img src={twitter} alt="" />
-                                        <img src={instagram} alt="" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="lecturers-item">
-                                <img src={lecturer_1} alt="" />
-                                <div className="lecturers-item-info">
-                                    <span className="lecturers-item-title">Phạm Huy Hoàng</span>
-                                    <p className="lecturers-item-text">Chuyên môn: Java, NodeJs, ReactJs ...</p>
-                                    <p className="lecturers-item-desc">Kinh nghiệm 8 năm trong ngành Công nghệ thông tin</p>
-                                    <div className="lecturers-item-social">
-                                        <img src={facebook} alt="" />
-                                        <img src={mail} alt="" />
-                                        <img src={twitter} alt="" />
-                                        <img src={instagram} alt="" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="lecturers-item">
-                                <img src={lecturer_2} alt="" />
-                                <div className="lecturers-item-info">
-                                    <span className="lecturers-item-title">Phạm Huy Hoàng</span>
-                                    <p className="lecturers-item-text">Chuyên môn: Java, NodeJs, ReactJs ...</p>
-                                    <p className="lecturers-item-desc">Kinh nghiệm 8 năm trong ngành Công nghệ thông tin</p>
-                                    <div className="lecturers-item-social">
-                                        <img src={facebook} alt="" />
-                                        <img src={mail} alt="" />
-                                        <img src={twitter} alt="" />
-                                        <img src={instagram} alt="" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="lecturers-item">
-                                <img src={lecturer_3} alt="" />
-                                <div className="lecturers-item-info">
-                                    <span className="lecturers-item-title">Phạm Huy Hoàng</span>
-                                    <p className="lecturers-item-text">Chuyên môn: Java, NodeJs, ReactJs ...</p>
-                                    <p className="lecturers-item-desc">Kinh nghiệm 8 năm trong ngành Công nghệ thông tin</p>
-                                    <div className="lecturers-item-social">
-                                        <img src={facebook} alt="" />
-                                        <img src={mail} alt="" />
-                                        <img src={twitter} alt="" />
-                                        <img src={instagram} alt="" />
-                                    </div>
-                                </div>
-                            </div>
+
+                            {
+                                lectures && lectures.length > 0 && lectures.map((item, index) => {
+                                    let imgBase64 = ''
+                                    if (item.avatar) {
+                                        imgBase64 = new Buffer(item.avatar, 'base64').toString('binary')
+                                    }
+
+                                    return (
+                                        <div className="lecturers-item">
+                                            <img src={imgBase64} alt="" />
+                                            <div className="lecturers-item-info">
+                                                <span className="lecturers-item-title">
+                                                    {item.firstName} {item.lastName}
+                                                </span>
+                                                <p className="lecturers-item-text">
+                                                    Chức vụ : {language === languages.VI ? item.positionData.vi : item.positionData.en}
+                                                </p>
+                                                <p className="lecturers-items">Chuyên môn: Java, NodeJs, ReactJs ...</p>
+                                                <p className="lecturers-item-desc">{item.desc}</p>
+                                                <div className="lecturers-item-social">
+                                                    <img src={facebook} alt="" />
+                                                    <img src={mail} alt="" />
+                                                    <img src={twitter} alt="" />
+                                                    <img src={instagram} alt="" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )
+                                })
+                            }
                         </Slider>
                     </div>
-                    {/* <div className="section-more">
-                        Xem Thêm
-                        <i className="fas fa-arrow-right"></i>
-                    </div> */}
+
+                </div>
+                <div className="button button--secondary">
+                    <FormattedMessage id="home-header.see-more" />
                 </div>
             </section>
         );
@@ -136,12 +109,15 @@ class Lecturers extends Component {
 
 const mapStateToProps = state => {
     return {
-        isLoggedIn: state.user.isLoggedIn
+        isLoggedIn: state.user.isLoggedIn,
+        lecturerData: state.admin.lecturerData,
+        language: state.app.language,
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
+        loadLecturer: () => dispatch(actions.fetchAllLecturers())
     };
 };
 

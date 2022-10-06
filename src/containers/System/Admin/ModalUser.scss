@@ -38,6 +38,10 @@ body {
             grid-column: 1 / span 2;
         }
 
+        &:nth-child(6) {
+            grid-column: 1 / span 2;
+        }
+
 
 
         i {
@@ -120,6 +124,7 @@ body {
             height: 100px;
             object-fit: cover;
             border-radius: 100rem;
+            cursor: pointer;
         }
     }
 

@@ -37,14 +37,15 @@ class HomeHeader extends Component {
                                     <FormattedMessage id="home-header.course" />
                                 </a>
                             </li>
-                            <li className="header-menu-item">
-                                <a href="#subjects" className="header-menu-link">
-                                    <FormattedMessage id="home-header.subjects" />
-                                </a>
-                            </li>
+
                             <li className="header-menu-item">
                                 <a href="#lecturers" className="header-menu-link">
                                     <FormattedMessage id="home-header.lecturers" />
+                                </a>
+                            </li>
+                            <li className="header-menu-item">
+                                <a href="#subjects" className="header-menu-link">
+                                    <FormattedMessage id="home-header.subjects" />
                                 </a>
                             </li>
                             <li className="header-menu-item">

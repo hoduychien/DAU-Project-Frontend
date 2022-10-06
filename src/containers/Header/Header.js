@@ -7,15 +7,28 @@ import { adminMenu } from './menuApp';
 import { courseMenu } from './menuCourse';
 import './Header.scss';
 import { languages } from '../../utils'
+import avatar from "../../assets/images/avatar-df.png";
+
 
 class Header extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            previewImage: '',
+        }
+    }
 
     handleChangeLanguage = (language) => {
         this.props.changeLanguageRedux(language);
     }
     render() {
         const { processLogout, language, userInfo } = this.props;
+        const userAvatar = userInfo.avatar;
+        let imgBase64 = ''
+        if (userAvatar) {
+            imgBase64 = new Buffer(userInfo.avatar, 'base64').toString('binary')
+        }
 
         return (
             <div className="header-container">
@@ -70,7 +83,7 @@ class Header extends Component {
 
                     <li className="sidebar-item sidebar-item-bottom">
                         <div className="sidebar-item-profile">
-                            <img src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" alt="" />
+                            <img src={imgBase64 ? imgBase64 : avatar} alt="" />
                             <div className="sidebar-item-info">
                                 <p>{userInfo.firstName} {userInfo.lastName} </p>
                                 <span>{userInfo.email}</span>

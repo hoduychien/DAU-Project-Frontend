@@ -82,6 +82,7 @@
     },
     "modal":{
         "create-user": "Create new user",
+        "update": "Update",
         "email": "Email",
         "password": "Password",
         "firstname": "First Name",
@@ -89,7 +90,7 @@
         "address": "Address",
         "phone": "Phone Number",
         "gender": "Gender",
-        "location": "Location",
+        "position": "Position",
         "role": "Role",
         "avatar": "Avatar",
         "create": "Create",

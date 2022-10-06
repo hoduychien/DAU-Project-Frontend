@@ -62,6 +62,7 @@
 
 .slick-prev {
     background: url('../../assets/images/prev.png') center center no-repeat !important;
+    transition: all 0.2s linear;
 
     &::before {
         display: none;
@@ -70,6 +71,7 @@
 
 .slick-next {
     background: url('../../assets/images/next.png') center center no-repeat !important;
+    transition: all 0.2s linear;
 
     &::before {
         display: none;
@@ -109,4 +111,9 @@
         z-index: 999;
     }
 
+}
+
+.slick-disabled {
+    opacity: 0 !important;
+    transition: all 0.2s linear;
 }

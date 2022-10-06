@@ -81,6 +81,7 @@
     },
     "modal":{
         "create-user": "Tạo người dùng",
+        "update": "Cập nhật",
         "email": "Email",
         "password": "Mật khẩu",
         "firstname": "Họ",
@@ -88,7 +89,7 @@
         "address": "Địa chỉ",
         "phone": "Số điện thoại",
         "gender": "Giớ tính",
-        "location": "Chức vụ",
+        "position": "Chức vụ",
         "role": "Vai trò",
         "avatar": "Ảnh đại diện",
         "create": "Tạo người dùng",

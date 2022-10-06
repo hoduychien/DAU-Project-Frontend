@@ -176,13 +176,13 @@ class ModalAddUser extends Component {
                                     <div className="modal-radio">
                                         <div className="modal-radio-item">
                                             <label htmlFor="male">Male</label>
-                                            <input type="radio" name="gender" id="male" value="Male"
+                                            <input type="radio" name="gender" id="male" value="M"
                                                 onChange={(event) => { this.handleOnchangeInput(event, "gender") }}
                                             />
                                         </div>
                                         <div className="modal-radio-item">
                                             <label htmlFor="female">Female</label>
-                                            <input type="radio" name="gender" id="female" value="Female"
+                                            <input type="radio" name="gender" id="female" value="F"
                                                 onChange={(event) => { this.handleOnchangeInput(event, "gender") }}
                                             />
                                         </div>
@@ -194,19 +194,19 @@ class ModalAddUser extends Component {
                                     <div className="modal-radio">
                                         <div className="modal-radio-item">
                                             <label htmlFor="admin">Admin</label>
-                                            <input type="radio" name="roleRadio" id="admin" value="1"
+                                            <input type="radio" name="roleRadio" id="admin" value="R1"
                                                 onChange={(event) => { this.handleOnchangeInput(event, "roleId") }}
                                             />
                                         </div>
                                         <div className="modal-radio-item">
-                                            <label htmlFor="mentor">Mentor</label>
-                                            <input type="radio" name="roleRadio" id="mentor" value="2"
+                                            <label htmlFor="mentor">Lecture</label>
+                                            <input type="radio" name="roleRadio" id="mentor" value="R2"
                                                 onChange={(event) => { this.handleOnchangeInput(event, "roleId") }}
                                             />
                                         </div>
                                         <div className="modal-radio-item">
                                             <label htmlFor="student">Student</label>
-                                            <input type="radio" name="roleRadio" id="student" value="3"
+                                            <input type="radio" name="roleRadio" id="student" value="R3"
                                                 onChange={(event) => { this.handleOnchangeInput(event, "roleId") }}
                                             />
                                         </div>

@@ -19,7 +19,8 @@ class Login extends Component {
             address: '',
             phone: '',
             gender: '',
-            roleId: 3,
+            position: '',
+            roleId: 'R3',
             valid: ''
         }
     }
@@ -171,13 +172,13 @@ class Login extends Component {
                         <div className="modal-radio">
                             <div className="modal-radio-item">
                                 <label htmlFor="male">Male</label>
-                                <input type="radio" name="gender" id="male" value="Male"
+                                <input type="radio" name="gender" id="male" value="M"
                                     onChange={(event) => { this.handleOnchangeInput(event, "gender") }}
                                 />
                             </div>
                             <div className="modal-radio-item">
                                 <label htmlFor="female">Female</label>
-                                <input type="radio" name="gender" id="female" value="Female"
+                                <input type="radio" name="gender" id="female" value="F"
                                     onChange={(event) => { this.handleOnchangeInput(event, "gender") }}
                                 />
                             </div>
