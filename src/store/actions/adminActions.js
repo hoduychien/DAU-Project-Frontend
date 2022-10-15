@@ -5,11 +5,21 @@ import {
     editUserService,
     getAllUsers,
     deleteUserService,
-    getLecturers
+    getLecturers,
 } from '../../services/userService';
 
-import { getAllCourses, deleteCourseService, editCourseService } from '../../services/courseService'
-import { getAllSubject, deleteSubjectService } from '../../services/subjectService'
+import {
+    getAllCourses,
+    deleteCourseService,
+    editCourseService
+} from '../../services/courseService'
+import {
+    getAllSubject,
+    deleteSubjectService,
+    editSubjectService,
+    saveInfoSubject,
+    getDetailSubject
+} from '../../services/subjectService'
 import Swal from 'sweetalert2';
 
 export const fetchGenderStart = () => {
@@ -181,7 +191,7 @@ export const updateUserStart = (id) => {
     return async (dispatch, getState) => {
         try {
             let res = await editUserService(id);
-            console.log(res.errorCode)
+            console.log(id)
             if (res && res.errorCode === 0) {
                 dispatch(updateUserSuccess())
             }
@@ -230,33 +240,6 @@ export const fetchAllCourseFailed = () => ({
     type: actionTypes.FETCH_ALL_COURSE_FAILED
 })
 
-export const updateCourseStart = (id) => {
-    return async (dispatch, getState) => {
-        try {
-            let res = await editCourseService(id);
-            if (res && res.message.errorCode === 0) {
-                dispatch(updateCourseSuccess())
-            }
-            else {
-                dispatch(updateCourseFailed())
-            }
-        } catch (error) {
-            dispatch(updateCourseFailed())
-            console.log(error);
-
-        }
-    }
-}
-
-export const updateCourseSuccess = () => ({
-    type: actionTypes.UPDATE_COURSE_SUCCESS
-})
-
-export const updateCourseFailed = () => ({
-    type: actionTypes.UPDATE_COURSE_FAILED
-})
-
-
 export const deleteCourseStart = (id) => {
     return async (dispatch, getState) => {
         try {
@@ -281,6 +264,33 @@ export const deleteCourseSuccess = () => ({
 
 export const deleteCourseFailed = () => ({
     type: actionTypes.DELETE_COURSE_FAILED
+})
+
+export const editCourseStart = (data) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await editCourseService(data);
+            if (res && res.errorCode === 0) {
+                dispatch(editCourseSuccess())
+                dispatch(fetchAllCourseStart())
+            }
+            else {
+                dispatch(editCourseFailed())
+
+            }
+        } catch (error) {
+            dispatch(editCourseFailed())
+            console.log(error);
+        }
+    }
+}
+
+export const editCourseSuccess = () => ({
+    type: actionTypes.UPDATE_COURSE_SUCCESS
+})
+
+export const editCourseFailed = () => ({
+    type: actionTypes.UPDATE_COURSE_FAILED
 })
 
 
@@ -334,7 +344,6 @@ export const fetchAllSubjectFailed = () => ({
     type: actionTypes.FETCH_ALL_SUBJECT_FAILED
 })
 
-
 export const deleteSubjectStart = (id) => {
     return async (dispatch, getState) => {
         try {
@@ -363,3 +372,116 @@ export const deleteSubjectSuccess = () => ({
 export const deleteSubjectFailed = () => ({
     type: actionTypes.DELETE_SUBJECT_FAILED
 })
+
+export const editSubjectStart = (data) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await editSubjectService(data);
+            if (res && res.errorCode === 0) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Done',
+                    confirmButtonText: 'Ok',
+                    text: "Edit subject success ~~",
+                })
+                dispatch(editSubjectSuccess())
+                dispatch(fetchAllSubjectStart())
+            }
+            else {
+                dispatch(editSubjectFailed())
+            }
+        } catch (error) {
+            dispatch(editSubjectFailed())
+            console.log(error);
+        }
+    }
+}
+
+export const editSubjectSuccess = () => ({
+    type: actionTypes.UPDATE_SUBJECT_SUCCESS
+})
+
+export const editSubjectFailed = () => ({
+    type: actionTypes.UPDATE_SUBJECT_FAILED
+})
+
+
+export const saveInfoDetailSubject = (data) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await saveInfoSubject(data);
+            if (res && res.errorCode === 0) {
+                let message = res.errorMessage;
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Done',
+                    confirmButtonText: 'Ok',
+                    text: message,
+                })
+                dispatch({
+                    type: actionTypes.SAVE_INFO_SUBJECT_SUCCESS,
+                })
+            }
+            else {
+                dispatch({
+                    type: actionTypes.SAVE_INFO_SUBJECT_FAILED
+                })
+            }
+        } catch (error) {
+            console.log(error)
+            alert("lỗi 2")
+            dispatch({
+                type: actionTypes.SAVE_INFO_SUBJECT_FAILED
+            })
+        }
+    }
+}
+
+export const fetchSubjectDetailStart = (id) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getDetailSubject(id);
+            if (res && res.errorCode === 0) {
+                dispatch({
+                    type: actionTypes.FETCH_DETAIL_SUBJECT_SUCCESS,
+                    detailSubjectData: res.data
+                })
+            }
+            else {
+                dispatch({
+                    type: actionTypes.FETCH_DETAIL_SUBJECT_FAILED
+                })
+            }
+        } catch (error) {
+            console.log(error)
+            dispatch({
+                type: actionTypes.FETCH_DETAIL_SUBJECT_FAILED
+            })
+        }
+    }
+}
+
+
+export const fetchScheduleTimeStart = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllKeywordsService("TIME");
+            if (res && res.errorCode === 0) {
+                dispatch({
+                    type: actionTypes.FETCH_SCHEDULE_TIME_SUCCESS,
+                    dataTime: res.data
+                })
+            }
+            else {
+                dispatch({
+                    type: actionTypes.FETCH_SCHEDULE_TIME_FAILED
+                })
+            }
+        } catch (error) {
+            console.log(error)
+            dispatch({
+                type: actionTypes.FETCH_SCHEDULE_TIME_FAILED
+            })
+        }
+    }
+}

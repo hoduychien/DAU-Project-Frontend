@@ -46,16 +46,18 @@
         "admin":{
             "user-manage": "Users manage",
             "redux-user-manage": "Account manage",
-            "lecture-manager": "Lecturers manage",
+            "lecture-manager": "Lecturers schedule",
             "system": "System manage"
         },
         "course": {
-            "course-manage": "Courses manage"
+            "course-manage": "Courses manage",
+            "course-info": "Courses Infomation"
         },
         "subjects": {
             "subjects-manage": "Subjects manage",
-            
-            "class-manage": "Classes manage"
+            "subjects-info": "Subjects Infomation",
+            "class-manage": "Classes manage",
+            "subjects-schedule": "Subjects Schedule"
         }
     },
     "home-header":{

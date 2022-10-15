@@ -11,6 +11,7 @@ html {
   height: 100vh;
   overflow: scroll;
   scroll-behavior: smooth;
+
 }
 
 ::-webkit-scrollbar {
@@ -20,6 +21,13 @@ html {
 
 ::-webkit-scrollbar-track {
   background: #f1f1f1;
+}
+
+textarea {
+  &:focus {
+    border-color: #277BC0;
+    transition: all 0.2s linear;
+  }
 }
 
 .btn {
@@ -38,21 +46,84 @@ html {
   }
 }
 
+.mt-10 {
+  margin-top: 10px;
+}
+
 .button {
   border-radius: 4px;
   color: #fff;
   display: inline-block;
   cursor: pointer;
   text-decoration: none;
+  transition: all 0.2s linear;
 
   &--primary {
     background: #1B1C31;
     padding: 14px 20px;
+
+    a {
+      text-decoration: none;
+
+      &:hover {
+        color: #fff;
+      }
+    }
+  }
+
+  &--disable {
+    background: #b5b5b5;
+    padding: 8px 25px;
+    color: #000 !important;
+
+    a {
+      text-decoration: none;
+
+      &:hover {
+        color: #000;
+      }
+    }
+  }
+
+  &--enable {
+    background: #FEDB39;
+    padding: 8px 25px;
+    color: #000 !important;
+
+    a {
+      text-decoration: none;
+
+      &:hover {
+        color: #000;
+      }
+    }
+  }
+
+  &--update {
+    background: #FEDB39;
+    padding: 14px 40px;
+    color: #000 !important;
+
+    a {
+      text-decoration: none;
+
+      &:hover {
+        color: #000;
+      }
+    }
   }
 
   &--long {
     background: #1B1C31;
     padding: 14px 40px;
+
+    a {
+      text-decoration: none;
+
+      &:hover {
+        color: #fff !important;
+      }
+    }
   }
 
   &--hover {
@@ -61,6 +132,7 @@ html {
 
     a {
       text-decoration: none;
+      color: #000;
     }
 
     &:hover {
@@ -79,4 +151,13 @@ html {
   &:hover {
     color: #fff;
   }
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+.css-g1d714-ValueContainer {
+  padding: 0 10px !important;
 }

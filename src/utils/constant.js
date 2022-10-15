@@ -4,7 +4,9 @@ export const path = {
     LOGIN: '/login',
     REGISTER: '/register',
     LOG_OUT: '/logout',
-    SYSTEM: '/system'
+    SYSTEM: '/system',
+    LECTURER: '/lecturer',
+    DETAIL_SUBJECT: '/detail-subjects/:id'
 };
 
 export const languages = {
@@ -25,4 +27,10 @@ export const dateFormat = {
 export const YesNoObj = {
     YES: 'Y',
     NO: 'N'
+}
+
+export const USER_ROLE = {
+    ADMIN: 'R1',
+    LECTURER: 'R2',
+    STUDENT: 'R3',
 }

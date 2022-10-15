@@ -46,15 +46,19 @@
         "admin":{
             "user-manage": "Quản lý người dùng",
             "redux-user-manage": "Quản lý tài khoản",
-            "lecture-manager": "Quản lý giảng viên",
+            "lecture-manager": "Kế hoạch giảng dạy",
             "system": "Quản lý hệ thống"
         },
         "course": {
-            "course-manage": "Quản lý khoá học"
+            "course-manage": "Quản lý khoá học",
+            "course-info": "Thông tin khoá học"
+
         },
         "subjects": {
+            "subjects-info": "Thông tin môn học",
             "subjects-manage": "Quản lý môn học",
-            "class-manage": "Quản lý lớp học"
+            "class-manage": "Quản lý lớp học",
+            "subjects-schedule": "Kế hoạch khai giảng"
         }
     },
     "home-header":{

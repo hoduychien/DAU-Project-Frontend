@@ -6,17 +6,36 @@ import { connect } from 'react-redux';
 import './Navigator.scss';
 
 class MenuGroup extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            showChild: true,
+        }
+    }
+
+
+    handleShowChild = () => {
+        this.setState({
+            showChild: !this.state.showChild
+        })
+    }
+
 
     render() {
         const { name, children } = this.props;
         return (
             <li className="menu-group">
                 <div className="menu-group-name">
-                    <FormattedMessage id={name} />
+                    <div onClick={() => this.handleShowChild()}>
+                        <FormattedMessage id={name} />
+                    </div>
+                    <div className={this.state.showChild ? "menu-group-list" : "menu-group-list d-none"}>
+                        <div className="menu-group-item">
+                            {children}
+                        </div>
+                    </div>
                 </div>
-                <ul className="menu-list list-unstyled">
-                    {children}
-                </ul>
+
             </li>
         );
     }

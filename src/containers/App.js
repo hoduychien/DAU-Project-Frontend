@@ -10,7 +10,10 @@ import Home from '../routes/Home';
 import Login from './Auth/Login';
 import Register from './Auth/Register';
 import System from '../routes/System';
+import Lecturer from '../routes/Lecturer';
+import Subject from '../routes/Subject';
 import HomePage from './HomePage/HomePage.js';
+import DetailSubject from './Student/Subject/DetailSubject';
 
 import { CustomToastCloseButton } from '../components/CustomToast';
 
@@ -45,8 +48,12 @@ class App extends Component {
                                 <Route path={path.LOGIN} component={userIsNotAuthenticated(Login)} />
                                 <Route path={path.REGISTER} component={(Register)} />
                                 <Route path={path.SYSTEM} component={userIsAuthenticated(System)} />
+                                <Route path={path.LECTURER} component={userIsAuthenticated(Lecturer)} />
+                                <Route path={'/subject/'} component={userIsAuthenticated(Subject)} />
                                 <Route path={path.HOMEPAGE} component={(HomePage)} />
+                                <Route path={path.DETAIL_SUBJECT} component={DetailSubject} />
                             </Switch>
+
                         </span>
 
                         <ToastContainer

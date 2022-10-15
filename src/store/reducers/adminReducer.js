@@ -7,7 +7,10 @@ const initialState = {
     roleArr: [],
     users: [],
     Lecturers: [],
-    subjectData: []
+    subjectData: [],
+    detailSubjectData: [],
+    dataTime: []
+
 }
 
 const adminReducer = (state = initialState, action) => {
@@ -92,6 +95,28 @@ const adminReducer = (state = initialState, action) => {
             }
         case actionTypes.FETCH_ALL_SUBJECT_FAILED:
             state.subjectData = []
+            return {
+                ...state,
+            }
+
+        case actionTypes.FETCH_DETAIL_SUBJECT_SUCCESS:
+            state.detailSubjectData = action.detailSubjectData;
+            return {
+                ...state,
+            }
+        case actionTypes.FETCH_DETAIL_SUBJECT_FAILED:
+            state.detailSubjectData = []
+            return {
+                ...state,
+            }
+
+        case actionTypes.FETCH_SCHEDULE_TIME_SUCCESS:
+            state.dataTime = action.dataTime;
+            return {
+                ...state,
+            }
+        case actionTypes.FETCH_SCHEDULE_TIME_FAILED:
+            state.dataTime = []
             return {
                 ...state,
             }

@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 import { createSubjectService } from '../../../../services/subjectService';
 import { emitter } from '../../../../utils/emitter';
 import Modal from './ModalAddSubject';
-
+import ModalEditSubjectRedux from './ModalEditSubjectRedux';
 
 class CourseRedux extends Component {
 
@@ -14,15 +14,19 @@ class CourseRedux extends Component {
         super(props);
         this.state = {
             isOpen: false,
-            allSubject: []
+            allSubject: [],
+            isOpenEditModal: false,
+            userEdit: {},
+            userIdEdit: ''
         }
     }
 
-    getAll = async () => {
-        this.props.fetchAllSubjectStart();
-    }
+
     async componentDidMount() {
         await this.getAll();
+    }
+    getAll = async () => {
+        this.props.fetchAllSubjectStart();
     }
 
     handleAddSubject = () => {
@@ -31,9 +35,35 @@ class CourseRedux extends Component {
         })
     }
 
-    toggleUserModal = () => {
+    togglesSubjectModal = () => {
         this.setState({
             isOpen: !this.state.isOpen,
+        })
+    }
+    toggleEditModal = () => {
+        this.setState({
+            isOpenEditModal: !this.state.isOpenEditModal,
+        })
+    }
+    handleEditUser = (user) => {
+        this.setState({
+            isOpenEditModal: true,
+            userEdit: user,
+        })
+    }
+    handleUpdateSubject = async (data) => {
+        this.props.editSubjectStartRedux({
+            id: data.id,
+            name: data.name,
+            desc: data.desc,
+            location: data.location,
+            image: data.image,
+        });
+        setTimeout(() => {
+            this.getAll();
+        }, 500)
+        this.setState({
+            isOpenEditModal: false,
         })
     }
 
@@ -63,6 +93,13 @@ class CourseRedux extends Component {
         }
     }
 
+    async componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.subjectData !== this.props.subjectData) {
+            this.setState({
+                allSubject: this.props.subjectData,
+            })
+        }
+    }
     handleDeleteSubject = (subject) => {
         Swal.fire({
             title: 'Are you sure?',
@@ -85,17 +122,6 @@ class CourseRedux extends Component {
         console.log(subject)
     }
 
-
-
-    async componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.subjectData !== this.props.subjectData) {
-            this.setState({
-                allSubject: this.props.subjectData,
-            })
-        }
-
-    }
-
     render() {
         let subjectArr = this.state.allSubject
         return (
@@ -103,9 +129,19 @@ class CourseRedux extends Component {
 
                 <Modal
                     isOpen={this.state.isOpen}
-                    toggle={this.toggleUserModal}
+                    toggle={this.togglesSubjectModal}
                     createNewSubject={this.createNewSubject}
                 />
+
+                {
+                    this.state.isOpenEditModal &&
+                    <ModalEditSubjectRedux
+                        isOpen={this.state.isOpenEditModal}
+                        toggle={this.toggleEditModal}
+                        currentSubject={this.state.userEdit}
+                        editSubject={this.handleUpdateSubject}
+                    />
+                }
                 <div className="table-users">
                     <div className="header">
                         <div className="header-title">
@@ -140,6 +176,7 @@ class CourseRedux extends Component {
                                             <td>{item.desc}</td>
                                             <td className="table-action">
                                                 <button className="table-btn"
+                                                    onClick={() => this.handleEditUser(item)}
                                                 >
                                                     Edit
                                                 </button>
@@ -172,6 +209,7 @@ const mapDispatchToProps = dispatch => {
     return {
         fetchAllSubjectStart: () => dispatch(actions.fetchAllSubjectStart()),
         deleteSubjectStart: (id) => dispatch(actions.deleteSubjectStart(id)),
+        editSubjectStartRedux: (data) => dispatch(actions.editSubjectStart(data))
     };
 };
 

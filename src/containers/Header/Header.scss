@@ -12,6 +12,18 @@
     left: 0;
     bottom: 0;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Old versions of Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
 }
 
 .active-lang {
@@ -42,16 +54,22 @@
     }
 
     &-item {
-        padding: 20px 10px;
+        padding: 10px 10px;
+        padding-top: 10px;
+        padding-bottom: 15px;
         cursor: pointer;
+
+        &-name {
+            flex: 1;
+        }
 
 
         &>div {
             display: flex;
-            gap: 10px;
 
             i {
                 padding-top: 3px;
+                min-width: 28px;
             }
         }
 

@@ -5,16 +5,19 @@ import './homeHeader.scss';
 import heroBanner from '../../assets/images/Hero.png';
 import { FormattedMessage } from 'react-intl';
 import { languages } from '../../utils';
-import { changeLanguageApp } from '../../store/actions'
-// import avatar from '../../assets/images/avatar.png'
+import { changeLanguageApp } from '../../store/actions';
+import { withRouter } from 'react-router'
+
 
 class HomeHeader extends Component {
-
-
     changeLanguage = (lang) => {
         this.props.changeLanguageRedux(lang);
     }
 
+    handleBackHome = () => {
+        this.props.history.push(`/`);
+        window.scrollTo(0, 0)
+    }
 
     render() {
         const { processLogout, isLoggedIn, userInfo, language } = this.props;
@@ -23,33 +26,35 @@ class HomeHeader extends Component {
                 <div className="home-header">
                     <div className="home-header-main">
                         <div className="home-header-logo">
-                            <span>LOGO</span>
+                            <span onClick={() => this.handleBackHome()}>
+                                CyberLearn
+                            </span>
                         </div>
 
                         <ul className="header-menu">
                             <li className="header-menu-item">
-                                <a href="#!" className="header-menu-link">
+                                <div className="header-menu-link">
                                     <FormattedMessage id="home-header.home" />
-                                </a>
+                                </div>
                             </li>
                             <li className="header-menu-item">
-                                <a href="#course" className="header-menu-link">
+                                <div className="header-menu-link">
                                     <FormattedMessage id="home-header.course" />
-                                </a>
+                                </div>
                             </li>
 
                             <li className="header-menu-item">
-                                <a href="#lecturers" className="header-menu-link">
+                                <div className="header-menu-link">
                                     <FormattedMessage id="home-header.lecturers" />
-                                </a>
+                                </div>
                             </li>
                             <li className="header-menu-item">
-                                <a href="#subjects" className="header-menu-link">
+                                <div className="header-menu-link">
                                     <FormattedMessage id="home-header.subjects" />
-                                </a>
+                                </div>
                             </li>
                             <li className="header-menu-item">
-                                <a href="#!" className="header-menu-link header-menu-parent">
+                                <div className="header-menu-link header-menu-parent">
                                     <FormattedMessage id="home-header.lang" />
                                     <i className="fas fa-chevron-down"></i>
 
@@ -61,7 +66,7 @@ class HomeHeader extends Component {
                                             <span onClick={() => this.changeLanguage(languages.EN)}>English (EN)</span>
                                         </div>
                                     </div>
-                                </a>
+                                </div>
                             </li>
                         </ul>
 
@@ -88,6 +93,13 @@ class HomeHeader extends Component {
                                     <div>
                                         <i className="fas fa-user"></i>
                                         <FormattedMessage id="home-header.user" />
+                                    </div>
+                                </div>
+
+                                <div className={userInfo && userInfo.roleId === 'R1' ? "header-item " : "header-item d-none"}>
+                                    <div>
+                                        <i className="fab fa-windows"></i>
+                                        <a href="/system/user-manage-redux" target="_blank">Dashboard</a>
                                     </div>
                                 </div>
 
@@ -125,39 +137,41 @@ class HomeHeader extends Component {
                     </div>
                 </div>
 
-                <div className="home-hero">
-                    <div className="home-hero-content">
-                        <div className="home-hero-title">
-                            <FormattedMessage id="home-header.title" />
-                        </div>
-                        <div className="home-hero-heading">
-                            <FormattedMessage id="home-header.heading" />
-                        </div>
-                        <div className="home-hero-desc">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Odio elementum tortor facilisi tristique viverra ullamcorper odio mi tincidunt.
-                        </div>
-                        <div className="home-hero-search">
-                            <input type="text" placeholder="Tìm kiếm mọi thứ tại đây..." />
-                            <div className="home-hero-search-btn">
-                                <FormattedMessage id="home-header.search" />
-                            </div>
-                        </div>
-                        <div className="home-hero-tag">
-                            <div className="home-hero-tag-item">
-                                <i className="fas fa-check-circle"></i>
-                                Sign up for free
-                            </div>
-                            <div className="home-hero-tag-item">
-                                <i className="fas fa-check-circle"></i>
-                                Great Service
-                            </div>
-                        </div>
-                    </div>
-                    <div className="home-hero-banner">
-                        <img src={heroBanner} alt="" />
-                    </div>
-                </div>
 
+                {this.props.showHero === true &&
+                    <div className="home-hero">
+                        <div className="home-hero-content">
+                            <div className="home-hero-title">
+                                <FormattedMessage id="home-header.title" />
+                            </div>
+                            <div className="home-hero-heading">
+                                <FormattedMessage id="home-header.heading" />
+                            </div>
+                            <div className="home-hero-desc">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Odio elementum tortor facilisi tristique viverra ullamcorper odio mi tincidunt.
+                            </div>
+                            <div className="home-hero-search">
+                                <input type="text" placeholder="Tìm kiếm mọi thứ tại đây..." />
+                                <div className="home-hero-search-btn">
+                                    <FormattedMessage id="home-header.search" />
+                                </div>
+                            </div>
+                            <div className="home-hero-tag">
+                                <div className="home-hero-tag-item">
+                                    <i className="fas fa-check-circle"></i>
+                                    Sign up for free
+                                </div>
+                                <div className="home-hero-tag-item">
+                                    <i className="fas fa-check-circle"></i>
+                                    Great Service
+                                </div>
+                            </div>
+                        </div>
+                        <div className="home-hero-banner">
+                            <img src={heroBanner} alt="" />
+                        </div>
+                    </div>
+                }
                 <div className="home-slide">
 
                 </div>
@@ -184,4 +198,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeHeader);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(HomeHeader));

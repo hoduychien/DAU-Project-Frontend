@@ -16,8 +16,8 @@ const deleteCourseService = (id) => {
     })
 }
 
-const editCourseService = (data) => {
-    return axios.put(`/api/edit-courses`, data)
+const editCourseService = (id) => {
+    return axios.put(`/api/edit-courses`, id)
 }
 
 

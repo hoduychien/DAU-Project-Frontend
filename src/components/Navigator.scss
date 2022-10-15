@@ -119,3 +119,28 @@
         }
     }
 }
+
+.menu-group-item {
+    color: #fff !important;
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    color: #fff;
+    padding: 15px 10px !important;
+    gap: 15px;
+
+    a {
+        color: #fff;
+
+        &:hover {
+            color: #fff;
+        }
+    }
+}
+
+.active {
+    a {
+        color: #F57059 !important;
+        font-weight: 600;
+    }
+}

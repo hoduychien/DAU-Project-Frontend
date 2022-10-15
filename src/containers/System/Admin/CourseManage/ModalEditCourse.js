@@ -5,31 +5,31 @@ import { connect } from 'react-redux';
 import Swal from 'sweetalert2';
 import { languages, CommonUtils } from '../../../../utils';
 import *  as actions from "../../../../store/actions"
-import thumb from "../../../../assets/course/default-placeholder.png";
+import avatar from "../../../../assets/images/avatar-df.png";
 import 'react-image-lightbox/style.css';
 import _ from 'lodash';
 
 
 
-class ModalEditCourse extends Component {
+class ModalEditSubjectRedux extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
+            id: '',
             name: '',
-            desc: '',
             schedule: '',
             image: '',
-            valid: '',
             previewImage: '',
+            desc: ''
         }
     }
 
     async componentDidMount() {
         let course = this.props.currentCourse;
-        console.log(course)
 
         if (course && !_.isEmpty(course)) {
+
             let imgBase64 = ''
             if (course.image) {
                 imgBase64 = new Buffer(course.image, 'base64').toString('binary')
@@ -39,8 +39,8 @@ class ModalEditCourse extends Component {
                 id: course.id,
                 name: course.name,
                 schedule: course.schedule,
+                image: imgBase64,
                 desc: course.desc,
-                image: course.image,
                 previewImage: imgBase64,
             })
         }
@@ -50,13 +50,6 @@ class ModalEditCourse extends Component {
         this.props.toggle();
     }
 
-    handleOnchangeInput = (event, id) => {
-        let stateCopy = { ...this.state };
-        stateCopy[id] = event.target.value;
-        this.setState({
-            ...stateCopy
-        })
-    }
     handleOnchangeImage = async (event) => {
         let data = event.target.files;
         let file = data[0];
@@ -73,26 +66,6 @@ class ModalEditCourse extends Component {
 
     }
 
-
-    validateInput = () => {
-        let arrInput = [
-            'name',
-            'desc',
-            'schedule',
-        ]
-        let isValid = true;
-        for (let i = 0; i < arrInput.length; i++) {
-            if (!this.state[arrInput[i]]) {
-                isValid = false;
-                this.setState({
-                    valid: `Missing Parameter: ${arrInput[i]}`
-                })
-                break;
-            }
-        }
-        return isValid;
-    }
-
     handleOnchangeInput = (event, id) => {
         let stateCopy = { ...this.state };
         stateCopy[id] = event.target.value;
@@ -101,7 +74,33 @@ class ModalEditCourse extends Component {
         })
     }
 
-    handleUpdateCourse = () => {
+    validateInput = () => {
+        let arrInput = [
+            'name',
+            'schedule',
+            'desc'
+        ]
+        let isValid = true;
+        for (let i = 0; i < arrInput.length; i++) {
+            if (!this.state[arrInput[i]]) {
+                isValid = false;
+                this.setState({
+                    valid: `Missing Parameter: ${arrInput[i]}`
+
+                })
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Oops...',
+                    confirmButtonText: 'I get it',
+                    text: `Missing Parameter: ${arrInput[i]}`
+                })
+                break;
+            }
+        }
+        return isValid;
+    }
+
+    handleUpdateSubject = () => {
         let isValid = this.validateInput();
         if (isValid === true) {
             this.props.editCourse(this.state);
@@ -111,9 +110,31 @@ class ModalEditCourse extends Component {
         }
     }
 
+    componentDidUpdate(prevProps) {
+        if (prevProps.genders !== this.props.genders) {
+            let genderArray = this.props.genders;
 
+            this.setState({
+                genderArr: genderArray,
+            })
+        }
+        if (prevProps.positions !== this.props.positions) {
+            let positionArray = this.props.positions;
+
+            this.setState({
+                positionArr: positionArray,
+            })
+        }
+        if (prevProps.roles !== this.props.roles) {
+            let roleArray = this.props.roles;
+            this.setState({
+                roleArr: roleArray,
+            })
+        }
+    }
 
     render() {
+
         let imgUrl = this.state.previewImage;
 
         return (
@@ -128,31 +149,33 @@ class ModalEditCourse extends Component {
                     <ModalBody>
                         <div className="modals-body">
                             <h3 className="modals-title">
-                                Update Course
+                                <FormattedMessage id="modals.create-user" />
                             </h3>
                             <div className="modals-group">
                                 <div className="modals-item">
                                     <label className="modals-item-label">
-                                        Course Name
+                                        Subject name
                                     </label>
                                     <input
                                         type="text"
                                         className="modals-item-input"
-                                        placeholder="Enter course name ..."
+                                        placeholder="Enter subject name ..."
                                         onChange={(event) => { this.handleOnchangeInput(event, "name") }}
                                         value={this.state.name}
+
                                     />
                                 </div>
                                 <div className="modals-item">
                                     <label className="modals-item-label">
-                                        Schedule
+                                        schedule
                                     </label>
                                     <textarea
                                         type="text"
-                                        className="modals-item-input" rows="4" cols="50"
+                                        className="modals-item-input" rows="5" cols="50"
                                         placeholder="Enter schedule ..."
                                         onChange={(event) => { this.handleOnchangeInput(event, "schedule") }}
                                         value={this.state.schedule}
+
                                     />
                                 </div>
                                 <div className="modals-item">
@@ -167,16 +190,17 @@ class ModalEditCourse extends Component {
                                         value={this.state.desc}
                                     />
                                 </div>
+
                                 <div className="modals-item">
                                     <label className="modals-item-label">
-                                        Thumbnail
+                                        <FormattedMessage id="modal.avatar" />
                                     </label>
                                     <input className="modals-item-input" type="file"
                                         id="avatar"
                                         accept="image/*"
                                         onChange={(event) => this.handleOnchangeImage(event)} />
                                     <label className="modals-item " htmlFor="avatar" >
-                                        <img src={imgUrl === '' ? thumb : imgUrl} alt="" />
+                                        <img src={imgUrl === '' ? avatar : imgUrl} alt="" />
                                     </label>
                                 </div>
 
@@ -184,15 +208,14 @@ class ModalEditCourse extends Component {
                             </div>
 
                             <div className="modals-group-action">
-                                <button className="modals-btn" onClick={() => this.handleUpdateCourse()} >
-                                    <FormattedMessage id="modal.create" />
+                                <button className="modals-btn" onClick={() => this.handleUpdateSubject()} >
+                                    <FormattedMessage id="modal.update" />
                                 </button>
                                 <button className="modals-btn" onClick={() => this.toggle()} >
                                     <FormattedMessage id="modal.cancel" />
                                 </button>
                             </div>
                         </div>
-
                     </ModalBody>
                 </Modal>
 
@@ -211,7 +234,7 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ModalEditCourse);
+export default connect(mapStateToProps, mapDispatchToProps)(ModalEditSubjectRedux);
 
 
 

@@ -3,23 +3,21 @@ import { connect } from 'react-redux';
 import './CourseRedux.scss'
 import *  as actions from "../../../../store/actions";
 import Modal from './ModalAddCourseRedux';
-import ModalEditSubject from './ModalEditCourse';
+import ModalEditCourse from './ModalEditCourse';
 import Swal from 'sweetalert2';
-import { createCourseService } from '../../../../services/courseService';
+import { createCourseService, editCourseService } from '../../../../services/courseService';
 import { emitter } from '../../../../utils/emitter';
 
 
 
 class CourseRedux extends Component {
-
-
     constructor(props) {
         super(props);
         this.state = {
             isOpen: false,
             AllCourses: [],
             isOpenEditModal: false,
-            userEdit: {},
+            courseEdit: {},
 
         }
     }
@@ -29,6 +27,7 @@ class CourseRedux extends Component {
     }
     async componentDidMount() {
         await this.getAll();
+
     }
 
     handleAddUser = () => {
@@ -39,7 +38,7 @@ class CourseRedux extends Component {
     handleEditUser = (user) => {
         this.setState({
             isOpenEditModal: true,
-            userEdit: user,
+            courseEdit: user,
         })
     }
 
@@ -51,6 +50,21 @@ class CourseRedux extends Component {
     toggleEditModal = () => {
         this.setState({
             isOpenEditModal: !this.state.isOpenEditModal,
+        })
+    }
+    handleUpdateUser = async (data) => {
+        this.props.editCourseStart({
+            id: data.id,
+            name: data.name,
+            desc: data.desc,
+            schedule: data.schedule,
+            image: data.image,
+        });
+        setTimeout(() => {
+            this.getAll();
+        }, 500)
+        this.setState({
+            isOpenEditModal: false,
         })
     }
 
@@ -101,15 +115,9 @@ class CourseRedux extends Component {
         })
 
     }
-    handleUpdateCourse = async (data) => {
-        this.props.updateCourseStart(data);
-        setTimeout(() => {
-            this.getAll();
-        }, 500)
-        this.setState({
-            isOpenEditModal: false,
-        })
-    }
+
+
+
 
     async componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.courses !== this.props.courses) {
@@ -133,11 +141,11 @@ class CourseRedux extends Component {
 
                 {
                     this.state.isOpenEditModal &&
-                    <ModalEditSubject
+                    <ModalEditCourse
                         isOpen={this.state.isOpenEditModal}
                         toggle={this.toggleEditModal}
-                        currentCourse={this.state.userEdit}
-                        editCourse={this.handleUpdateCourse}
+                        currentCourse={this.state.courseEdit}
+                        editCourse={this.handleUpdateUser}
                     />
                 }
                 <div className="table-users">
@@ -208,7 +216,7 @@ const mapDispatchToProps = dispatch => {
     return {
         fetchAllCourseStart: () => dispatch(actions.fetchAllCourseStart()),
         deleteCourseStart: (id) => dispatch(actions.deleteCourseStart(id)),
-        updateCourseStart: (course) => dispatch(actions.updateCourseStart(course))
+        editCourseStart: (data) => dispatch(actions.editCourseStart(data))
     };
 };
 

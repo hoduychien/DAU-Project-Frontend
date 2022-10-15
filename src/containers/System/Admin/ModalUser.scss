@@ -75,9 +75,17 @@ body {
             border: 1px solid #ccc;
             padding: 0 15px;
             transition: all 0.2s linear;
+            cursor: pointer !important;
 
             &:focus {
                 border-color: #277BC0;
+            }
+        }
+
+        textarea {
+            &:focus {
+                border-color: #277BC0;
+                transition: all 0.2s linear;
             }
         }
 

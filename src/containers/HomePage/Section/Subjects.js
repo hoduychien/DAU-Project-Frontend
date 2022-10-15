@@ -5,15 +5,40 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { FormattedMessage } from 'react-intl';
-import htmlCss from "../../../assets/course/html-css.jpg";
-import frontend from "../../../assets/course/front-end.jpg";
-import python from "../../../assets/course/python.jpg";
-import backend from "../../../assets/course/backend.png";
+import * as actions from "../../../store/actions";
+import { withRouter } from 'react-router'
 
+import bannerCourse from "../../../assets/images/banner-1.png";
 
 class Subjects extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            subjectArr: []
+        }
+    }
+
+    componentDidMount() {
+        window.scrollTo(0, 0);
+        this.props.loadSubject();
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.subjectData !== this.props.subjectData) {
+            this.setState({
+                subjectArr: this.props.subjectData
+            })
+        }
+    }
+
+    handleDetailSubject = (subject) => {
+        this.props.history.push(`/detail-subjects/${subject.id}`)
+    }
+
 
     render() {
+        let subjects = this.state.subjectArr;
+
         let settings = {
             infinite: true,
             speed: 500,
@@ -35,85 +60,72 @@ class Subjects extends Component {
                     </div>
                     <div className="subjects-list">
                         <Slider {...settings}>
-                            <div className="subjects-item">
-                                <img src={python} alt="" />
-                                <div className="subjects-item-info">
-                                    <div className="subjects-item-vote">
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <i className="far fa-star"></i>
-                                    </div>
-                                    <span className="subjects-item-title">Lập Trình Python Căn Bản</span>
-                                    <p className="subjects-item-desc">Làm quên với máy tính và kiến thức cơ bản về ngành công nghê thông tin</p>
-                                    <div className="subjects-item-more">
-                                        <FormattedMessage id="home-header.see-more" />
-                                        <i className="fas fa-arrow-right"></i>
-                                    </div>
-                                </div>
 
-                            </div>
-                            <div className="subjects-item">
-                                <img src={frontend} alt="" />
-                                <div className="subjects-item-info">
-                                    <div className="subjects-item-vote">
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <i className="far fa-star"></i>
-                                    </div>
-                                    <span className="subjects-item-title">Lập Trình FRONT-END Chuyên Nghiệp</span>
-                                    <p className="subjects-item-desc">Làm quên với máy tính và kiến thức cơ bản về ngành công nghê thông tin</p>
-                                    <div className="subjects-item-more">
-                                        <FormattedMessage id="home-header.see-more" />
-                                        <i className="fas fa-arrow-right"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="subjects-item">
-                                <img src={backend} alt="" />
-                                <div className="subjects-item-info">
-                                    <div className="subjects-item-vote">
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <i className="far fa-star"></i>
-                                    </div>
-                                    <span className="subjects-item-title">Lập trình BACK-END chuyên nghiệp</span>
-                                    <p className="subjects-item-desc">Làm quên với máy tính và kiến thức cơ bản về ngành công nghê thông tin</p>
-                                    <div className="subjects-item-more">
-                                        <FormattedMessage id="home-header.see-more" />
-                                        <i className="fas fa-arrow-right"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="subjects-item">
-                                <img src={htmlCss} alt="" />
-                                <div className="subjects-item-info">
-                                    <div className="subjects-item-vote">
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <i className="fas fa-star"></i>
-                                        <i className="far fa-star"></i>
-                                    </div>
-                                    <span className="subjects-item-title">Khoá Học HTML/CSS Cơ Bản</span>
-                                    <p className="subjects-item-desc">Làm quên với máy tính và kiến thức cơ bản về ngành công nghê thông tin</p>
-                                    <div className="subjects-item-more">
-                                        <FormattedMessage id="home-header.see-more" />
-                                        <i className="fas fa-arrow-right"></i>
-                                    </div>
-                                </div>
-                            </div>
+                            {
+                                subjects && subjects.length > 0 && subjects.map((item, index) => {
+                                    let imgBase64 = ''
+                                    if (item.image) {
+                                        imgBase64 = new Buffer(item.image, 'base64').toString('binary')
+                                    }
+
+                                    return (
+                                        <div className="subjects-item">
+                                            <div onClick={() => this.handleDetailSubject(item)}>
+                                                <img src={imgBase64} alt="" />
+                                            </div>
+                                            <div className="subjects-item-info">
+                                                <div className="subjects-item-vote">
+                                                    <i className="fas fa-star"></i>
+                                                    <i className="fas fa-star"></i>
+                                                    <i className="fas fa-star"></i>
+                                                    <i className="fas fa-star"></i>
+                                                    <i className="far fa-star"></i>
+                                                </div>
+                                                <span className="subjects-item-title">
+                                                    {item.name}
+                                                </span>
+                                                <p className="subjects-item-desc">
+                                                    {item.desc}
+                                                </p>
+                                                <p className="subjects-item-descs">
+                                                    {item.location}
+                                                </p>
+                                                <div className="subjects-item-more" onClick={() => this.handleDetailSubject(item)}>
+                                                    <FormattedMessage id="home-header.see-more" />
+                                                    <i className="fas fa-arrow-right"></i>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    )
+                                })
+                            }
                         </Slider>
                     </div>
-                </div>
 
-                <div className="button button--secondary">
-                    <FormattedMessage id="home-header.see-more" />
+                    <div className="course-post">
+                        <div className="course-post-left">
+                            <div className="course-post-heading">
+                                <FormattedMessage id="home-header.desc-2" />
+
+                            </div>
+                            <div className="course-post-desc">
+                                <FormattedMessage id="home-header.desc-3" />
+                            </div>
+                            <div className="course-post-desc">
+                                <FormattedMessage id="home-header.desc-4" />
+                            </div>
+
+                            <div className="button button--primary">
+                                <FormattedMessage id="home-header.see-more" />
+                            </div>
+
+                        </div>
+
+                        <div className="course-post-right">
+                            <img src={bannerCourse} alt="" />
+                        </div>
+                    </div>
                 </div>
             </section>
         );
@@ -124,13 +136,15 @@ class Subjects extends Component {
 const mapStateToProps = state => {
     return {
         isLoggedIn: state.user.isLoggedIn,
-        language: state.app.language
+        language: state.app.language,
+        subjectData: state.admin.subjectData,
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
+        loadSubject: () => dispatch(actions.fetchAllSubjectStart())
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Subjects);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Subjects));

@@ -1,0 +1,56 @@
+.subject-schedule {
+    &-container {
+        margin: 10px;
+        margin-left: 256px;
+    }
+
+    &-title {
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 27px;
+        padding: 10px 0;
+    }
+
+    &-list {
+        margin-top: 10px;
+        padding: 50px;
+        background: #fff;
+        border: 1px solid #ccc;
+        border-radius: 2px;
+    }
+}
+
+.subjects-form {
+    display: flex;
+    // justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.subjects-items {
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+
+    Select {
+        padding: 10px;
+    }
+
+    &:nth-child(2) {
+        max-width: 308px;
+
+        input {
+            height: 38px;
+            width: 100%;
+            outline: none;
+            border-radius: 2px;
+            border: 1px solid #ccc;
+            padding-left: 15px;
+            transition: all 0.2s linear;
+
+            &:focus {
+                border-color: #277BC0;
+            }
+        }
+    }
+}

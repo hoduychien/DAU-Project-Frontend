@@ -45,11 +45,24 @@
             overflow: hidden;
             text-overflow: ellipsis;
             line-height: 25px;
-            -webkit-line-clamp: 3;
-            height: 75px;
+            -webkit-line-clamp: 2;
+            height: 50px;
             display: -webkit-box;
             -webkit-box-orient: vertical;
-            margin-bottom: 40px;
+            margin-bottom: 10px;
+        }
+
+        &-descs {
+            margin-top: 5px;
+            width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 25px;
+            -webkit-line-clamp: 2;
+            height: 50px;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            margin-bottom: 50px;
         }
 
         &-more {

@@ -1,0 +1,40 @@
+.lecturer-schedule {
+    &-container {
+        margin: 10px;
+        margin-left: 256px;
+    }
+
+    &-title {
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 27px;
+        padding: 10px 0;
+    }
+
+    &-list {
+        margin: 10px;
+        margin-left: 16px;
+    }
+
+    &-heading {
+        display: flex;
+        align-items: center;
+        margin-top: 50px;
+        margin-bottom: 20px;
+        padding: 0 10px;
+        gap: 10px;
+
+        p {
+            font-size: 16px;
+            font-weight: 600;
+            padding: 0;
+            margin: 0;
+        }
+    }
+
+    &-sent {
+        cursor: pointer;
+        color: rgb(76, 129, 229);
+        font-weight: 500;
+    }
+}

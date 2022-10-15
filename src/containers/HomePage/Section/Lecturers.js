@@ -5,7 +5,6 @@ import './Lecturers.scss';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import lecturer_1 from "../../../assets/course/lecturer-1.png";
 import facebook from '../../../assets/course/facebook.png';
 import mail from '../../../assets/course/mail.png';
 import twitter from '../../../assets/course/twitter.png';

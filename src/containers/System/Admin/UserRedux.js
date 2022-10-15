@@ -59,6 +59,8 @@ class UserRedux extends Component {
         this.setState({
             isOpenEditModal: false,
         })
+
+        console.log(data)
     }
 
     createNewUser = async (data) => {

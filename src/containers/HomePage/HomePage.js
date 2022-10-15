@@ -13,10 +13,10 @@ class HomePage extends Component {
     render() {
         return (
             <div>
-                <HomeHeader />
+                <HomeHeader showHero={true} />
+                <Subjects />
                 <Course />
                 <Lecturers />
-                <Subjects />
                 <Footer />
             </div>
         );

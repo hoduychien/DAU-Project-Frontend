@@ -16,9 +16,27 @@ const deleteSubjectService = (id) => {
     })
 }
 
+const editSubjectService = (data) => {
+    return axios.put(`/api/edit-subject`, data);
+}
 
+const saveInfoSubject = (data) => {
+    return axios.post(`/api/save-info-subject`, data);
+}
+
+const getDetailSubject = (id) => {
+    return axios.get(`api/get-detail-subject?id=${id}`);
+}
+
+const saveSubjectSchedule = (data) => {
+    return axios.post(`/api/create-subject-schedule`, data);
+}
 export {
     getAllSubject,
     createSubjectService,
     deleteSubjectService,
+    editSubjectService,
+    saveInfoSubject,
+    getDetailSubject,
+    saveSubjectSchedule
 };
