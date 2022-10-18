@@ -9,7 +9,7 @@ class HomePage extends Component {
         return (
             <div>
                 <footer>
-                    <ul class="icons">
+                    <ul className="icons">
                         <li>
                             <div>
                                 <ion-icon name="logo-whatsapp"></ion-icon>
@@ -31,7 +31,7 @@ class HomePage extends Component {
                             </div>
                         </li>
                     </ul>
-                    <ul class="menu">
+                    <ul className="menu">
                         <li>
                             <div>Home</div>
                         </li>
@@ -48,7 +48,7 @@ class HomePage extends Component {
                             <div>Contact Us</div>
                         </li>
                     </ul>
-                    <div class="footer-copyright">
+                    <div className="footer-copyright">
                         <p>Copyright @ 2022 All Rights Reserved.</p>
                     </div>
                 </footer>

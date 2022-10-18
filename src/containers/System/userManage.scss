@@ -13,10 +13,6 @@ body {
     overflow: auto;
 }
 
-::-webkit-scrollbar {
-    display: none;
-}
-
 .header {
     margin-left: 18%;
     background-color: $colormain;
@@ -26,6 +22,7 @@ body {
     align-items: center;
     padding: 10px;
     gap: 10px;
+    margin-top: 60px;
 
     &-title {
         flex: 1;

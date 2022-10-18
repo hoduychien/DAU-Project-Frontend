@@ -4,9 +4,9 @@ export const courseMenu = [
             {
                 name: 'menu.course.course-manage', link: '/system/course-manage'
             },
-            {
-                name: 'menu.course.course-info', link: '/system/course-info'
-            }
+            // {
+            //     name: 'menu.course.course-info', link: '/system/course-info'
+            // }
         ]
     },
 ];

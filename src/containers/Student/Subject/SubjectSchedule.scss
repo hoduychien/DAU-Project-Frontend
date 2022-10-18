@@ -1,0 +1,21 @@
+.schedule-time-select {
+    // border: 1px solid #ccc;
+
+
+    select {
+        width: 105%;
+        border: 0;
+        outline: 0;
+        color: #0094FF;
+    }
+
+    option {
+        padding: 10px;
+        color: #000000;
+        width: 200px;
+    }
+}
+
+.schedule-item-notification {
+    font-style: italic;
+}

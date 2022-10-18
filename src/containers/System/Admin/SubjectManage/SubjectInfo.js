@@ -137,7 +137,7 @@ class SubjectInfo extends Component {
         return (
             <div className="subject-container">
                 <div className="subject-title">
-                    Tạo bài viết giới thiệu môn học
+                    Quản lý thông tin môn học
                 </div>
                 <div className="subject-form">
                     <div className="modals-item">

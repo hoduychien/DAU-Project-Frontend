@@ -31,6 +31,10 @@ const getDetailSubject = (id) => {
 const saveSubjectSchedule = (data) => {
     return axios.post(`/api/create-subject-schedule`, data);
 }
+
+const getScheduleByMonth = (subjectId, month) => {
+    return axios.get(`/api/get-subject-schedule-by-month?subjectId=${subjectId}&date=${month}`)
+}
 export {
     getAllSubject,
     createSubjectService,
@@ -38,5 +42,6 @@ export {
     editSubjectService,
     saveInfoSubject,
     getDetailSubject,
-    saveSubjectSchedule
+    saveSubjectSchedule,
+    getScheduleByMonth
 };

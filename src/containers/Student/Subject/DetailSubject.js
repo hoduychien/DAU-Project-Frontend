@@ -4,7 +4,8 @@ import HomeHeader from '../../HomePage/HomeHeader';
 import banner from '../../../assets/course/banner.png';
 import "./DetailSubject.scss";
 import Footer from '../../Footer/Footer';
-import * as actions from '../../../store/actions'
+import * as actions from '../../../store/actions';
+import SubjectSchedule from '../../Student/Subject/SubjectSchedule'
 
 class DetailSubject extends Component {
 
@@ -95,36 +96,16 @@ class DetailSubject extends Component {
 
                     <div className="schedule-main">
                         <div className="schedule-left">
-                            <div className="schedule-item">
-                                <div className="schedule-time">
-                                    <p>Lịch mở lớp : Tháng 10</p>
-                                    <i className="fas fa-chevron-down"></i>
-                                </div>
-                            </div>
-                            <div className="schedule-item">
-                                <div>7:30 - 10:30</div>
-                                <div className="line"></div>
-                                <div className="button button--long">
-                                    Đăng ký
-                                </div>
-                            </div>
-                            <div className="schedule-item">
-                                <div>7:30 - 10:30</div>
-                                <div className="line"></div>
-                                <div className="button button--long">
-                                    Đăng ký
-                                </div>
-                            </div>
-                            <div className="schedule-item">
-                                <div>7:30 - 10:30</div>
-                                <div className="line"></div>
-                                <div className="button button--long">
-                                    Đăng ký
-                                </div>
-                            </div>
+
+                            <SubjectSchedule
+                                subjectId={subjectDetail && subjectDetail.id ? subjectDetail.id : -1}
+                            />
+
                         </div>
 
                         <div className="schedule-right">
+
+                            <div className="space-50"></div>
                             <div className="schedule-time">
                                 <p>Thông tin</p>
                             </div>
@@ -132,11 +113,19 @@ class DetailSubject extends Component {
                             <div className="schedule-location">
                                 Địa chỉ: {subjectDetail.location}
                             </div>
+                            {subjectDetail && subjectDetail.Markdown && subjectDetail.Markdown.contentCode
+                                &&
+                                <div
+                                >
+                                    {subjectDetail.Markdown.desc}
+                                </div>
+                            }
                             <div className="schedule-price">
                                 Giá: 9.000.000 vnđ
                             </div>
-                            <div className="schedule-more">
+                            <div className="schedule-mores">
                                 <p>Xem chi tiết</p>
+                                <i className="fas fa-chevron-right"></i>
                             </div>
                         </div>
                     </div>

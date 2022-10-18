@@ -6,10 +6,7 @@ export const adminMenu = [
             },
             {
                 name: 'menu.admin.lecture-manager', link: '/lecturer/lecture-manage'
-            },
-            {
-                name: 'menu.admin.system', link: '/system/admin-manage'
-            },
+            }
         ]
     },
 ];

@@ -119,12 +119,9 @@ class SubjectSchedule extends Component {
             return;
         }
 
-
-        // let dateFormat = moment(curentDate).format('DD/MM/YYYY');
-        // let monthFormat = moment(curentDate).format('MM/YYYY');
-
         let dateFormat = new Date(curentDate).getTime();
-        let monthFormat = new Date(curentDate).getTime();
+        let monthFormat = (new Date(curentDate).getMonth() + 1) + "/" + new Date(curentDate).getFullYear();
+
 
 
         if (rangeTime && rangeTime.length > 0) {
@@ -154,7 +151,7 @@ class SubjectSchedule extends Component {
         let res = await saveSubjectSchedule({
             arrSchedule: result,
             subjectId: selectedOption.value,
-            dateFormat: dateFormat
+            dateFormat: dateFormat + ''
         })
 
         if (res.errorCode === 0) {
@@ -205,7 +202,7 @@ class SubjectSchedule extends Component {
                             </label>
                             <DatePicker
                                 onChange={this.handleChangeDate}
-                                placeholder={"Choose mouth"}
+                                placeholder={"Choose month"}
                                 selected={this.state.curentDate}
                                 minDate={new Date()}
                             />

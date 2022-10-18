@@ -119,26 +119,35 @@
 .schedule {
     &-main {
         display: flex;
-        align-items: flex-end;
-        gap: 100px;
+        // align-items: flex-end;
+        gap: 50px;
     }
 
-    &-more {
+    &-mores {
+        cursor: pointer;
         display: flex;
         align-items: center;
         gap: 5px;
-        color: #fff;
-        cursor: pointer;
-        background: #1B1C31;
-        width: 165px;
-        padding: 14px 20px;
-        border-radius: 4px;
+
+        transition: all 0.2s linear;
 
         p {
             padding: 0;
-            margin: 0 auto;
+            margin: 0;
             font-weight: 500;
         }
+
+        &:hover {
+            i {
+                transform: translateX(2px);
+            }
+        }
+
+        i {
+
+            transition: all 0.2s linear;
+        }
+
     }
 
     &-title {
@@ -158,12 +167,36 @@
         position: relative;
         cursor: pointer;
         color: #0094FF;
-        font-weight: 500;
-        font-size: 15px;
+        font-weight: 400;
+        font-size: 16px;
+        position: relative;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
 
         p {
             padding: 0;
             margin: 0;
+        }
+    }
+
+    &-select {
+        position: absolute;
+        width: 110%;
+        left: -10px;
+        top: 110%;
+        background: #fff;
+        font-weight: 400;
+        border-radius: 4px;
+        color: #000;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+        &-item {
+            padding: 10px;
+        }
+
+        &-item:not(:last-child) {
+            border-bottom: 1px solid #ccc;
         }
     }
 
@@ -175,10 +208,11 @@
         display: flex;
         flex-direction: column;
         gap: 20px;
+        min-width: 50%;
     }
 
     &-right {
-        max-width: 450px;
+        max-width: 420px;
         display: flex;
         flex-direction: column;
         gap: 20px;

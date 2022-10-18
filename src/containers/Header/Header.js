@@ -70,78 +70,115 @@ class Header extends Component {
 
         return (
 
-            <div className="header-container">
-                <div className="sidebar-title">
-                    <i className="fas fa-bars"></i>
-                    <h3>CyberLearn</h3>
+            <React.Fragment>
+                <div className="header-container">
+                    <div className="sidebar-title">
+                        <i className="fas fa-bars"></i>
+                        <h3>CyberLearn</h3>
+                    </div>
+                    <ul className="sidebar">
+
+                        <li className="sidebar-item">
+                            <div>
+                                <i className="fas fa-home"></i>
+                                <FormattedMessage id="menu.home" className="sidebar-item-name" />
+                            </div>
+
+                        </li>
+                        <li className="sidebar-item">
+                            <div>
+                                <i className="fas fa-users-cog"></i>
+                                <Navigator menus={this.state.menuApp} className="sidebar-item-name" />
+                            </div>
+                        </li>
+
+                        <li className={this.state.check ? "sidebar-item" : "sidebar-item d-none"}>
+                            <div>
+                                <i className="fas fa-bookmark"></i>
+                                <Navigator menus={this.state.menuCourse} className="sidebar-item-name" />
+
+                            </div>
+                        </li>
+
+                        <li className={this.state.check ? "sidebar-item" : "sidebar-item  d-none"}>
+                            <div>
+                                <i className="fas fa-book"></i>
+                                <Navigator menus={this.state.menuSubject} className="sidebar-item-name" />
+                            </div>
+                        </li>
+
+                        <li className={language === languages.VI ? "sidebar-item active-lang" : "sidebar-item"}>
+                            <div onClick={() => this.handleChangeLanguage(languages.VI)}>
+                                <i className="fas fa-globe"></i>
+                                <FormattedMessage id="menu.vi" className="sidebar-item-name" />
+                            </div>
+                        </li>
+                        <li className={language === languages.EN ? "sidebar-item active-lang" : "sidebar-item"}>
+                            <div onClick={() => this.handleChangeLanguage(languages.EN)}>
+                                <i className="fas fa-globe"></i>
+                                <FormattedMessage id="menu.en" className="sidebar-item-name" />
+                            </div>
+                        </li>
+                        <li className="sidebar-item">
+                            <div>
+                                <i className="fas fa-cog"></i>
+                                <FormattedMessage id="menu.setting" className="sidebar-item-name" />
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-                <ul className="sidebar">
 
-                    <li className="sidebar-item">
-                        <div>
-                            <i className="fas fa-home"></i>
-                            <FormattedMessage id="menu.home" className="sidebar-item-name" />
+                <div className="nav">
+                    <div className="nav-left">
+                        <div className="nav-search">
+                            <input type="text" placeholder="Search ..." />
                         </div>
+                    </div>
+                    <div className="nav-right">
 
-                    </li>
-                    <li className="sidebar-item">
-                        <div>
-                            <i className="fas fa-users-cog"></i>
-                            <Navigator menus={this.state.menuApp} className="sidebar-item-name" />
-                        </div>
-                    </li>
-
-                    <li className={this.state.check ? "sidebar-item" : "sidebar-item d-none"}>
-                        <div>
-                            <i className="fas fa-bookmark"></i>
-                            {/* <FormattedMessage id="menu.message" /> */}
-                            <Navigator menus={this.state.menuCourse} className="sidebar-item-name" />
-                        </div>
-                    </li>
-
-                    <li className={this.state.check ? "sidebar-item" : "sidebar-item  d-none"}>
-                        <div>
-                            <i className="fas fa-book"></i>
-                            {/* <FormattedMessage id="menu.message" /> */}
-                            <Navigator menus={this.state.menuSubject} className="sidebar-item-name" />
-                        </div>
-                    </li>
-
-                    <li className={language === languages.VI ? "sidebar-item active-lang" : "sidebar-item"}>
-                        <div onClick={() => this.handleChangeLanguage(languages.VI)}>
-                            <i className="fas fa-globe"></i>
-                            <FormattedMessage id="menu.vi" className="sidebar-item-name" />
-                        </div>
-                    </li>
-                    <li className={language === languages.EN ? "sidebar-item active-lang" : "sidebar-item"}>
-                        <div onClick={() => this.handleChangeLanguage(languages.EN)}>
-                            <i className="fas fa-globe"></i>
-                            <FormattedMessage id="menu.en" className="sidebar-item-name" />
-                        </div>
-                    </li>
-                    <li className="sidebar-item">
-                        <div>
-                            <i className="fas fa-cog"></i>
-                            <FormattedMessage id="menu.setting" className="sidebar-item-name" />
-                        </div>
-                    </li>
-
-                    <li className="sidebar-item sidebar-item-bottom">
-                        <div className="sidebar-item-profile">
-                            <img src={imgBase64 ? imgBase64 : avatar} alt="" />
-                            <div className="sidebar-item-info">
-                                <p>{userInfo.firstName} {userInfo.lastName} </p>
-                                <span>{userInfo.email}</span>
+                        <div className="nav-notifi">
+                            <div className="nav-notifi-item">
+                                <i className="far fa-envelope"></i>
+                            </div>
+                            <div className="nav-notifi-item">
+                                <i className="far fa-bell"></i>
                             </div>
                         </div>
-                        <div onClick={processLogout}>
-                            <i className="fas fa-sign-out-alt"></i>
+                        <div className="nav-profile">
+                            <img src={imgBase64 ? imgBase64 : avatar} alt="" />
+                            <div className="nav-profile-detail">
+                                <div className="nav-profile-detail-item">
+                                    <div>
+                                        <div>{userInfo.firstName} {userInfo.lastName} </div>
+                                        <br />
+                                        Signed in as <br />
+                                        <span>{userInfo.email}</span>
+                                    </div>
+                                </div>
+
+                                <div className="nav-profile-detail-item">
+                                    <i className="fas fa-user-circle"></i>
+                                    Profile
+                                </div>
+                                <div className="nav-profile-detail-item">
+                                    <i className="fas fa-cog"></i>
+                                    Setting
+                                </div>
+                                <div className="nav-profile-detail-item">
+                                    <i className="fas fa-comment-dots"></i>
+                                    Status
+                                </div>
+                                <div onClick={processLogout} className="nav-profile-detail-item">
+                                    <i className="fas fa-sign-out-alt"></i>
+                                    Sign out
+                                </div>
+
+
+                            </div>
                         </div>
-                    </li>
-                </ul>
-
-
-            </div>
+                    </div>
+                </div>
+            </React.Fragment>
         );
     }
 
