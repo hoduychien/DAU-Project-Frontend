@@ -215,12 +215,15 @@ class SubjectSchedule extends Component {
                         <div className="subject-schedule-list">
                             <div className="schedule-main">
                                 <div className="schedule-left">
+                                    <div className="schedule-time">
+                                        <p>Chọn thời gian học</p>
+                                    </div>
                                     {rangeTime && rangeTime.length > 0 &&
                                         rangeTime.map((item, index) => {
                                             return (
                                                 <div className="schedule-item" >
-                                                    <div>{language === languages.VI ? item.vi : item.en}</div>
-                                                    <div className="line-1"></div>
+                                                    <div className="schedule-times">{language === languages.VI ? item.vi : item.en}</div>
+                                                    <div className="line-2"></div>
                                                     <div className={item.isSelected === true ? "button button--enable" : "button button--disable"} key={index}
                                                         onClick={() => this.handelClickButtonTime(item)}
                                                     >
@@ -231,21 +234,7 @@ class SubjectSchedule extends Component {
                                         })
                                     }
                                 </div>
-                                <div className="schedule-right">
-                                    <div className="schedule-time">
-                                        <p>Thông tin</p>
-                                    </div>
-                                    <div className="schedule-location">
-                                        Lorem, ipsum dolor sit amet consectetur adipisicing.
-                                    </div>
-                                    <div className="schedule-location">
-                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis libero, quibusdam
-                                        repellat adipisci quam culpa ad cupiditate officia doloremque suscipit?
-                                    </div>
-                                    <div className="schedule-price">
-                                        Lorem ipsum dolor sit amet.
-                                    </div>
-                                </div>
+
                             </div>
 
                         </div>

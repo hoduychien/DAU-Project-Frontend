@@ -159,7 +159,8 @@
             position: relative;
 
             &:hover .header-menu-child {
-                display: block;
+                opacity: 1;
+                visibility: visible;
             }
         }
 
@@ -168,8 +169,10 @@
             position: absolute;
             top: 110%;
             left: 0;
-            display: none;
+            opacity: 0;
+            visibility: hidden;
             background: #fff;
+            transition: all 0.2s linear;
             box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
             padding: 10px;
 
@@ -190,20 +193,21 @@
         font-size: 15px;
 
         &:hover .header-user {
-            display: flex;
-            flex-direction: column;
+            opacity: 1;
+            visibility: visible;
         }
     }
 
     &-user {
-        display: none;
+        opacity: 0;
+        visibility: hidden;
         width: 225px;
         background: #fff;
         position: absolute;
         right: -10px;
         top: 110%;
         padding: 10px 5px;
-
+        transition: all 0.2s linear;
         box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
         a {
@@ -243,7 +247,19 @@
     }
 }
 
+.nav-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
 
+    img {
+        width: 38px;
+        height: 38px;
+        border-radius: 100rem;
+        object-fit: cover;
+    }
+}
 
 .d-none {
     display: none;

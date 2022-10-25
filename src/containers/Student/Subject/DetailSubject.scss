@@ -1,33 +1,31 @@
 .subject {
-    &-details {}
-
     &-banner {
+        margin-top: 60px;
         width: 100%;
-        height: 455px;
+        height: 432px;
         position: relative;
 
         img {
             width: 100%;
             height: 100%;
-            filter: brightness(0.4);
+            object-fit: cover;
+            filter: brightness(0.6);
         }
     }
 
     &-info {
-        width: 1100px;
+        width: 100%;
         min-height: 330px;
-        background: #FFFFFF;
-        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
-        border-radius: 10px;
         position: absolute;
         left: 50%;
-        bottom: -120px;
-        transform: translateX(-50%);
+        top: 50%;
+        transform: translate(-50%, -50%);
         display: flex;
         flex-direction: column;
         justify-content: center;
         gap: 20px;
         padding: 50px;
+        color: #ffffffdc;
     }
 
     &-name {
@@ -97,7 +95,7 @@
     &-schedule {
         margin: 0 auto;
         padding: 35px 90px;
-        margin-top: 180px;
+        margin-top: 50px;
         width: 1100px;
         min-height: 330px;
         background: #FFFFFF;
@@ -119,8 +117,8 @@
 .schedule {
     &-main {
         display: flex;
-        // align-items: flex-end;
-        gap: 50px;
+        justify-content: flex-start;
+        gap: 10px;
     }
 
     &-mores {
@@ -207,12 +205,11 @@
     &-left {
         display: flex;
         flex-direction: column;
-        gap: 20px;
-        min-width: 50%;
+        gap: 10px;
+        min-width: 60%;
     }
 
     &-right {
-        max-width: 420px;
         display: flex;
         flex-direction: column;
         gap: 20px;
@@ -221,22 +218,29 @@
     &-item {
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        gap: 10px;
+        // justify-content: space-between;
+        gap: 20px;
         font-weight: 400;
         font-size: 14px;
     }
 }
 
 .line-1 {
-    width: 200px;
+    width: 500px;
     height: 1px;
     background: #747474;
     margin: 20px auto;
+    margin-bottom: 60px;
 }
 
 .line {
     width: 150px;
+    height: 1px;
+    background: #747474;
+}
+
+.line-2 {
+    width: 50%;
     height: 1px;
     background: #747474;
 }

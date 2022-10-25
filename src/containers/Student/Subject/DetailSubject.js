@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import HomeHeader from '../../HomePage/HomeHeader';
-import banner from '../../../assets/course/banner.png';
+import banner from '../../../assets/images/banner.png';
 import "./DetailSubject.scss";
 import Footer from '../../Footer/Footer';
 import * as actions from '../../../store/actions';
@@ -43,20 +43,22 @@ class DetailSubject extends Component {
 
                 <div className="subject-details">
                     <div className="subject-banner">
-                        <img src={imgBase64} alt="" />
+                        <img src={banner} alt="" />
                         <div className="subject-info">
                             <div className="subject-name">
                                 {subjectDetail.name}
                             </div>
 
+
                             {subjectDetail && subjectDetail.Markdown && subjectDetail.Markdown.contentCode
                                 &&
-                                <div
-                                >
+                                <div>
                                     {subjectDetail.Markdown.desc}
                                 </div>
                             }
-
+                            <div>
+                                {subjectDetail.desc}
+                            </div>
                             <div className="subject-vote">
                                 <div>
                                     <i className="fas fa-star"></i>
@@ -95,6 +97,9 @@ class DetailSubject extends Component {
                     <div className="line-1"></div>
 
                     <div className="schedule-main">
+
+
+
                         <div className="schedule-left">
 
                             <SubjectSchedule
@@ -105,7 +110,6 @@ class DetailSubject extends Component {
 
                         <div className="schedule-right">
 
-                            <div className="space-50"></div>
                             <div className="schedule-time">
                                 <p>Thông tin</p>
                             </div>
@@ -123,10 +127,10 @@ class DetailSubject extends Component {
                             <div className="schedule-price">
                                 Giá: 9.000.000 vnđ
                             </div>
-                            <div className="schedule-mores">
+                            {/*<div className="schedule-mores">
                                 <p>Xem chi tiết</p>
                                 <i className="fas fa-chevron-right"></i>
-                            </div>
+                        </div>*/}
                         </div>
                     </div>
 

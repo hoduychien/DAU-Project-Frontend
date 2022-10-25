@@ -32,7 +32,8 @@ class Subjects extends Component {
     }
 
     handleDetailSubject = (subject) => {
-        this.props.history.push(`/detail-subjects/${subject.id}`)
+        this.props.history.push(`/detail-subjects/${subject.id}`);
+        window.scrollTo(0, 0)
     }
 
 
@@ -44,7 +45,7 @@ class Subjects extends Component {
             speed: 500,
             autoplay: true,
             autoplaySpeed: 2000,
-            slidesToShow: 3,
+            slidesToShow: 4,
             slidesToScroll: 1,
         };
         return (
@@ -102,6 +103,9 @@ class Subjects extends Component {
                             }
                         </Slider>
                     </div>
+
+
+
 
                     <div className="course-post">
                         <div className="course-post-left">

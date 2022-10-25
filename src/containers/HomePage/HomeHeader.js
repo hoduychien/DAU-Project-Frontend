@@ -7,6 +7,7 @@ import { FormattedMessage } from 'react-intl';
 import { languages } from '../../utils';
 import { changeLanguageApp } from '../../store/actions';
 import { withRouter } from 'react-router'
+import avatar from "../../assets/images/avatar-df.png";
 
 
 class HomeHeader extends Component {
@@ -21,6 +22,16 @@ class HomeHeader extends Component {
 
     render() {
         const { processLogout, isLoggedIn, userInfo, language } = this.props;
+        let imgBase64 = ''
+        if (isLoggedIn) {
+            const userAvatar = userInfo.avatar;
+            if (userAvatar) {
+                imgBase64 = new Buffer(userInfo.avatar, 'base64').toString('binary')
+            }
+        }
+        else {
+            imgBase64 = avatar
+        }
         return (
             <React.Fragment>
                 <div className="home-header">
@@ -72,65 +83,54 @@ class HomeHeader extends Component {
 
                         <div className={isLoggedIn === true ? "header-auth d-none" : "header-auth"}>
                             <div className="header-action">
-                                <a href="http://localhost:3000/register" target="_blank" className="button button--hover" rel="noreferrer">
+                                <a href="http://localhost:3000/register" className="button button--hover" rel="noreferrer">
                                     <FormattedMessage id="home-header.register" />
                                 </a>
                             </div>
 
                             <div className="header-action">
-                                <a href="http://localhost:3000/login" target="_blank" className={language === languages.VI ? "button button--primary" : "button button--long"} rel="noreferrer">
+                                <a href="http://localhost:3000/login" className={language === languages.VI ? "button button--primary" : "button button--long"} rel="noreferrer">
                                     <FormattedMessage id="home-header.login" />
                                 </a>
                             </div>
                         </div>
 
-                        <div className={isLoggedIn === false ? "header-user-info d-none" : "header-user-info"}>
-                            {/* <img src={avatar} alt="" /> */}
-                            Welcome {userInfo && userInfo.firstName ? userInfo.firstName : ''} {userInfo && userInfo.lastName ? userInfo.lastName : ''} !
-                            <div className="header-user">
 
-                                <div className="header-item">
+                        <div className={isLoggedIn === false ? "nav-profile d-none" : "nav-profile"}>
+
+
+
+
+                            <div className="nav-user">
+                                <div>{userInfo && userInfo.firstName ? userInfo.firstName : ''}  {userInfo && userInfo.lastName ? userInfo.lastName : ''}  </div>
+                                <img src={imgBase64 ? imgBase64 : avatar} alt="" />
+                            </div>
+
+
+                            <div className="nav-profile-detail">
+                                <div className="nav-profile-detail-item">
                                     <div>
-                                        <i className="fas fa-user"></i>
-                                        <FormattedMessage id="home-header.user" />
+                                        <div>{userInfo && userInfo.firstName ? userInfo.firstName : ''}  {userInfo && userInfo.lastName ? userInfo.lastName : ''}  </div>
+                                        <br />
+                                        Signed in as <br />
+                                        <span>{userInfo && userInfo.email ? userInfo.email : ''} </span>
                                     </div>
                                 </div>
-
-                                <div className={userInfo && userInfo.roleId === 'R1' ? "header-item " : "header-item d-none"}>
-                                    <div>
-                                        <i className="fab fa-windows"></i>
-                                        <a href="/system/user-manage-redux" target="_blank">Dashboard</a>
-                                    </div>
+                                <div className="nav-profile-detail-item">
+                                    <i className="fas fa-user-circle"></i>
+                                    Profile
                                 </div>
-
-                                <div className="header-item">
-                                    <div>
-                                        <i className="fas fa-sun"></i>
-                                        <FormattedMessage id="home-header.light-mode" />
-                                    </div>
-                                    <i className="fas fa-chevron-right"></i>
-
+                                <div className="nav-profile-detail-item">
+                                    <i className="fas fa-cog"></i>
+                                    Setting
                                 </div>
-                                <div className="header-item">
-                                    <div>
-                                        <i className="fas fa-language"></i>
-                                        <FormattedMessage id="home-header.lang" />
-                                    </div>
-                                    <i className="fas fa-chevron-right"></i>
+                                <div className={userInfo && userInfo.roleId === 'R3' ? "nav-profile-detail-item d-none" : "nav-profile-detail-item "}>
+                                    <i className="fab fa-windows"></i>
+                                    <a href="/system/user-manage-redux" target="_blank">Dashboard</a>
                                 </div>
-
-                                <div className="header-item">
-                                    <div>
-                                        <i className="fas fa-cog"></i>
-                                        <FormattedMessage id="menu.setting" />
-                                    </div>
-                                </div>
-
-                                <div onClick={processLogout} className="header-item">
-                                    <div>
-                                        <i className="fas fa-sign-out-alt"></i>
-                                        <FormattedMessage id="home-header.logout" />
-                                    </div>
+                                <div onClick={processLogout} className="nav-profile-detail-item">
+                                    <i className="fas fa-sign-out-alt"></i>
+                                    Sign out
                                 </div>
                             </div>
                         </div>
@@ -138,7 +138,8 @@ class HomeHeader extends Component {
                 </div>
 
 
-                {this.props.showHero === true &&
+                {
+                    this.props.showHero === true &&
                     <div className="home-hero">
                         <div className="home-hero-content">
                             <div className="home-hero-title">

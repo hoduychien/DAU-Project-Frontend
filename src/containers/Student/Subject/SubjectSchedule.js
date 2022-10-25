@@ -21,7 +21,7 @@ class SubjectSchedule extends Component {
     async componentDidMount() {
         setTimeout(() => {
             this.getAllMonth();
-        }, 100)
+        }, 500)
     }
 
     getAllMonth = async () => {
@@ -64,13 +64,13 @@ class SubjectSchedule extends Component {
                     subjectSchedule: res.data ? res.data : []
                 })
             }
-            console.log(res);
         }
     }
 
     render() {
         let { arrMonth, subjectSchedule } = this.state;
         let { language } = this.props;
+        console.log("date: ", subjectSchedule);
         return (
             <React.Fragment>
                 <div className="schedule-item">
@@ -88,23 +88,29 @@ class SubjectSchedule extends Component {
                                 }
                             </select>
                         </div>
-
                     </div>
+                </div>
+
+
+                <div className="space-50">
 
                 </div>
 
 
-                <div className="space-50"></div>
 
                 {subjectSchedule && subjectSchedule.length > 0 ?
                     subjectSchedule.map((item, index) => {
                         let time = (language === languages.VI ? item.timeTypeData.vi : item.timeTypeData.en)
+                        let date = moment(new Date(parseInt(item.date))).format('DD-MM-YYYY');
                         return (
-                            <div className="schedule-item">
-                                <div>{time}</div>
-                                <div className="line"></div>
-                                <div key={index} className="button button--long">
-                                    Đăng ký
+                            <div>
+
+                                <div className="schedule-item">
+                                    <div className="schedule-times">{time}</div>
+                                    <div className="schedule-date">Khai giảng: {date}</div>
+                                    <div key={index} className="button button--long">
+                                        Đăng ký
+                                    </div>
                                 </div>
                             </div>
                         )
@@ -116,10 +122,6 @@ class SubjectSchedule extends Component {
                         </div>
                     </div>
                 }
-
-
-
-
             </React.Fragment>
         );
     }

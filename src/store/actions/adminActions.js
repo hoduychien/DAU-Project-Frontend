@@ -485,3 +485,45 @@ export const fetchScheduleTimeStart = () => {
         }
     }
 }
+
+export const getSubjectRequired = () => {
+    return async (dispatch, getState) => {
+        try {
+            dispatch({ type: actionTypes.GET_SUBJECT_REQUIRED })
+            let resPrice = await getAllKeywordsService('PRICE');
+            let resPayment = await getAllKeywordsService('PAYMENT');
+            let resProvince = await getAllKeywordsService('PROVINCE');
+            let resStudyTime = await getAllKeywordsService('STUDYTIME');
+            if (resPrice && resPrice.errorCode === 0
+                && resPayment && resPayment.errorCode === 0
+                && resProvince && resProvince.errorCode === 0
+                && resStudyTime && resStudyTime.errorCode === 0
+            ) {
+                let data = {
+                    resPrice: resPrice.data,
+                    resPayment: resPayment.data,
+                    resProvince: resProvince.data,
+                    resStudyTime: resStudyTime.data,
+                }
+                console.log("chceckdsa data", data)
+                dispatch(getSubjectRequiredSuccess(data))
+            }
+            else {
+                dispatch(getSubjectRequiredFailed())
+
+            }
+        } catch (error) {
+            dispatch(getSubjectRequiredFailed())
+            console.log(error);
+        }
+    }
+}
+
+export const getSubjectRequiredSuccess = (requiredSubjectData) => ({
+    type: actionTypes.GET_SUBJECT_REQUIRED_SUCCESS,
+    data: requiredSubjectData
+})
+
+export const getSubjectRequiredFailed = () => ({
+    type: actionTypes.GET_SUBJECT_REQUIRED_FAILED
+})

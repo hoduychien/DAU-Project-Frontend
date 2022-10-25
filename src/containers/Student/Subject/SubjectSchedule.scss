@@ -1,7 +1,4 @@
 .schedule-time-select {
-    // border: 1px solid #ccc;
-
-
     select {
         width: 105%;
         border: 0;
@@ -18,4 +15,8 @@
 
 .schedule-item-notification {
     font-style: italic;
+}
+
+.schedule-date {
+    min-width: 170px;
 }

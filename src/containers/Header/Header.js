@@ -66,7 +66,6 @@ class Header extends Component {
         if (userAvatar) {
             imgBase64 = new Buffer(userInfo.avatar, 'base64').toString('binary')
         }
-        console.log(this.state)
 
         return (
 
@@ -74,7 +73,9 @@ class Header extends Component {
                 <div className="header-container">
                     <div className="sidebar-title">
                         <i className="fas fa-bars"></i>
-                        <h3>CyberLearn</h3>
+                        <a href="http://localhost:3000" target="_blank" className="sidebar-logo" rel="noreferrer">
+                            <h3>CyberLearn</h3>
+                        </a>
                     </div>
                     <ul className="sidebar">
 

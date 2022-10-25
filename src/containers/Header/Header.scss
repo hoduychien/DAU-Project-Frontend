@@ -158,6 +158,12 @@
                 font-size: 13px;
                 cursor: pointer;
 
+                a {
+                    font-size: 13px;
+                    color: rgb(92, 92, 92);
+                    font-weight: 400;
+                }
+
                 &:nth-child(1),
                 &:nth-child(4) {
                     border-bottom: 1px solid#ccc;
@@ -200,7 +206,13 @@
     height: 500px;
     overflow: auto;
 
+    &-logo {
+        color: #fff;
 
+        &:hover {
+            color: #fff;
+        }
+    }
 
     &-title {
         padding: 20px;

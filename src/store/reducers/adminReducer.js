@@ -9,7 +9,9 @@ const initialState = {
     Lecturers: [],
     subjectData: [],
     detailSubjectData: [],
-    dataTime: []
+    dataTime: [],
+
+    requiredSubjectData: [],
 
 }
 
@@ -120,6 +122,20 @@ const adminReducer = (state = initialState, action) => {
             return {
                 ...state,
             }
+
+        case actionTypes.GET_SUBJECT_REQUIRED_SUCCESS:
+            state.requiredSubjectData = action.data;
+            return {
+                ...state,
+            }
+        case actionTypes.GET_SUBJECT_REQUIRED_FAILED:
+            state.requiredSubjectData = []
+            return {
+                ...state,
+            }
+
+
+
         default:
             return state;
     }
