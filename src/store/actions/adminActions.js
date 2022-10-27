@@ -429,7 +429,6 @@ export const saveInfoDetailSubject = (data) => {
             }
         } catch (error) {
             console.log(error)
-            alert("lỗi 2")
             dispatch({
                 type: actionTypes.SAVE_INFO_SUBJECT_FAILED
             })

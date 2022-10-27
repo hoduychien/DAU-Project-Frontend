@@ -121,7 +121,7 @@ class ModalAddSubject extends Component {
                 <Modal
                     isOpen={this.props.isOpen}
                     toggle={() => this.toggle()}
-                    className={'modal-container'}
+                    className={'modals-container'}
                     size="lg"
                     centered
                 >

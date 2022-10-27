@@ -97,12 +97,12 @@ input {
   font-size: 14px;
   line-height: 24px;
   border-radius: 0;
-  position: absolute;
+  position: fixed;
   width: $calendarWidth;
   box-sizing: border-box;
   touch-action: manipulation;
   top: 30% !important;
-  z-index: 10 !important;
+  z-index: 10;
 
   &.open,
   &.inline {

@@ -8,8 +8,6 @@ import MdEditor from 'react-markdown-editor-lite';
 import 'react-markdown-editor-lite/lib/index.css';
 import Select from 'react-select';
 import { languages } from '../../../../utils';
-
-
 import { getDetailSubject } from '../../../../services/subjectService'
 
 const mdParser = new MarkdownIt();
@@ -56,6 +54,7 @@ class SubjectInfo extends Component {
     handleSaveContent = () => {
         let isValid = this.validateInput();
         if (isValid === true) {
+
             this.props.saveInfoDetailSubject({
                 contentCode: this.state.contentCode,
                 contentText: this.state.contentText,
@@ -75,24 +74,69 @@ class SubjectInfo extends Component {
 
     handleChange = async (selectedOption) => {
         this.setState({ selectedOption }, () =>
-            console.log(`Option selected:`, this.state.selectedOption.value)
+            this.state.selectedOption.value
         );
-        let res = await getDetailSubject(selectedOption.value)
 
+        let { paymentArr, priceArr, provinceArr, studyTimeArr } = this.state
+        let res = await getDetailSubject(selectedOption.value)
         if (res && res.errorCode === 0 && res.data && res.data.Markdown) {
+            let address = '', payment = '',
+                price = '', province = '',
+                studyTime = '', note = '';
+
+            let selectedPayment = ''
+            let selectedPrice = ''
+            let selectedProvince = ''
+            let selectedStudyTime = ''
+
+            if (res.data.Subject_info) {
+                address = res.data.Subject_info.address;
+                note = res.data.Subject_info.note;
+                payment = res.data.Subject_info.payment;
+                price = res.data.Subject_info.price;
+                province = res.data.Subject_info.province;
+                studyTime = res.data.Subject_info.studyTime;
+
+                selectedPayment = paymentArr.find(item => {
+                    return item && item.value === payment
+                });
+                selectedPrice = priceArr.find(item => {
+                    return item && item.value === price
+                });
+                selectedProvince = provinceArr.find(item => {
+                    return item && item.value === province
+                });
+                selectedStudyTime = studyTimeArr.find(item => {
+                    return item && item.value === studyTime
+                });
+
+            }
+
             let markdown = res.data.Markdown
-            if (markdown.desc === null) {
+            if (markdown.desc === null || address === null || note === null) {
                 this.setState({
                     contentText: "",
                     desc: '',
-                    checkData: false
+                    checkData: false,
+                    note: '',
+                    address: '',
+                    selectedPayment: '',
+                    selectedPrice: '',
+                    selectedProvince: '',
+                    selectedStudyTime: '',
                 })
             }
             else {
                 this.setState({
                     contentText: markdown.contentText,
                     desc: markdown.desc,
-                    checkData: true
+                    checkData: true,
+                    note: note,
+                    address: address,
+                    selectedPayment: selectedPayment,
+                    selectedPrice: selectedPrice,
+                    selectedProvince: selectedProvince,
+                    selectedStudyTime: selectedStudyTime,
                 })
             }
         }
@@ -116,7 +160,7 @@ class SubjectInfo extends Component {
             'selectedPayment',
             'selectedProvince',
             'desc',
-            'contentCode',
+            'contentText',
         ]
         let isValid = true;
         for (let i = 0; i < arrInput.length; i++) {
@@ -142,7 +186,7 @@ class SubjectInfo extends Component {
                     case 'desc':
                         error = `Chưa nhập tiêu đề !!!`
                         break;
-                    case 'contentCode':
+                    case 'contentText':
                         error = `Chưa nhập bài viết !!!`
                         break;
 
@@ -265,6 +309,36 @@ class SubjectInfo extends Component {
         let { selectedOption, selectedPrice, selectedPayment, selectedProvince,
             subjectArr, priceArr, studyTimeArr, paymentArr, provinceArr, selectedStudyTime } = this.state;
         let { checkData } = this.state;
+
+        console.log(this.state)
+        const customStyles = {
+            control: base => ({
+                ...base,
+                minHeight: 24
+            }),
+            dropdownIndicator: base => ({
+                ...base,
+                padding: 2
+            }),
+            clearIndicator: base => ({
+                ...base,
+                padding: 2
+            }),
+            multiValue: base => ({
+                ...base,
+            }),
+            valueContainer: base => ({
+                ...base,
+                padding: '0px 8px'
+            }),
+            input: base => ({
+                ...base,
+                margin: 0,
+                padding: 0
+            })
+        };
+
+
         return (
             <div className="subject-container">
                 <div className="subject-title">
@@ -280,6 +354,7 @@ class SubjectInfo extends Component {
                             onChange={this.handleChange}
                             options={subjectArr}
                             placeholder={'Chọn môn học'}
+                            styles={customStyles}
                         />
                     </div>
                     <div className="modals-list">
@@ -293,6 +368,8 @@ class SubjectInfo extends Component {
                                 options={priceArr}
                                 placeholder={'Chọn mức học phí ...'}
                                 name="selectedPrice"
+                                styles={customStyles}
+
                             />
                         </div>
                         <div className="modals-item">
@@ -305,6 +382,7 @@ class SubjectInfo extends Component {
                                 options={paymentArr}
                                 placeholder={'Chọn phương thúc thanh toán ...'}
                                 name="selectedPayment"
+                                styles={customStyles}
 
                             />
                         </div>
@@ -318,6 +396,7 @@ class SubjectInfo extends Component {
                                 options={provinceArr}
                                 placeholder={'Chọn cơ sở ...'}
                                 name="selectedProvince"
+                                styles={customStyles}
 
                             />
                         </div>
@@ -331,6 +410,8 @@ class SubjectInfo extends Component {
                                 options={studyTimeArr}
                                 placeholder={'Chọn thời gian học ...'}
                                 name="selectedStudyTime"
+                                styles={customStyles}
+
                             />
                         </div>
                         <div className="modals-item modals-item-long">

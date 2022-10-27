@@ -35,6 +35,18 @@ const saveSubjectSchedule = (data) => {
 const getScheduleByMonth = (subjectId, month) => {
     return axios.get(`/api/get-subject-schedule-by-month?subjectId=${subjectId}&date=${month}`)
 }
+
+const getExtraInfoSchedule = (subjectId) => {
+    return axios.get(`/api/get-extra-info-subject?subjectId=${subjectId}`)
+}
+
+const getDetailSubjectForMoldal = (subjectId) => {
+    return axios.get(`/api/get-detail-subject-for-modal?subjectId=${subjectId}`)
+}
+
+const postStudentRigister = (data) => {
+    return axios.post(`/api/student-register-subject`, data)
+}
 export {
     getAllSubject,
     createSubjectService,
@@ -43,5 +55,8 @@ export {
     saveInfoSubject,
     getDetailSubject,
     saveSubjectSchedule,
-    getScheduleByMonth
+    getScheduleByMonth,
+    getExtraInfoSchedule,
+    getDetailSubjectForMoldal,
+    postStudentRigister
 };

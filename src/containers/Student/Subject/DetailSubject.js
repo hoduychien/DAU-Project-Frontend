@@ -6,6 +6,7 @@ import "./DetailSubject.scss";
 import Footer from '../../Footer/Footer';
 import * as actions from '../../../store/actions';
 import SubjectSchedule from '../../Student/Subject/SubjectSchedule'
+import SubjectExtraInfo from '../../Student/Subject/SubjectExtraInfo'
 
 class DetailSubject extends Component {
 
@@ -32,7 +33,7 @@ class DetailSubject extends Component {
 
     render() {
         let subjectDetail = this.state.subjectData;
-        console.log(subjectDetail)
+        console.log("đang tìm", subjectDetail)
         let imgBase64 = ''
         if (subjectDetail.image) {
             imgBase64 = new Buffer(subjectDetail.image, 'base64').toString('binary')
@@ -43,16 +44,14 @@ class DetailSubject extends Component {
 
                 <div className="subject-details">
                     <div className="subject-banner">
-                        <img src={banner} alt="" />
+                        <img src={imgBase64} alt="" />
                         <div className="subject-info">
                             <div className="subject-name">
                                 {subjectDetail.name}
                             </div>
-
-
                             {subjectDetail && subjectDetail.Markdown && subjectDetail.Markdown.contentCode
                                 &&
-                                <div>
+                                <div className="subject-descs">
                                     {subjectDetail.Markdown.desc}
                                 </div>
                             }
@@ -107,30 +106,15 @@ class DetailSubject extends Component {
                             />
 
                         </div>
-
+                        <div className="schedule-time">
+                            <p>Thông tin</p>
+                        </div>
                         <div className="schedule-right">
 
-                            <div className="schedule-time">
-                                <p>Thông tin</p>
-                            </div>
+                            <SubjectExtraInfo
+                                subjectId={subjectDetail && subjectDetail.id ? subjectDetail.id : -1}
+                            />
 
-                            <div className="schedule-location">
-                                Địa chỉ: {subjectDetail.location}
-                            </div>
-                            {subjectDetail && subjectDetail.Markdown && subjectDetail.Markdown.contentCode
-                                &&
-                                <div
-                                >
-                                    {subjectDetail.Markdown.desc}
-                                </div>
-                            }
-                            <div className="schedule-price">
-                                Giá: 9.000.000 vnđ
-                            </div>
-                            {/*<div className="schedule-mores">
-                                <p>Xem chi tiết</p>
-                                <i className="fas fa-chevron-right"></i>
-                        </div>*/}
                         </div>
                     </div>
 

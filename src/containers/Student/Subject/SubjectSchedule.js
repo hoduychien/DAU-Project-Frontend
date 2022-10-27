@@ -5,7 +5,9 @@ import "./SubjectSchedule.scss";
 import moment from 'moment';
 import localization from 'moment/locale/vi';
 import { languages } from '../../../utils';
-import { getScheduleByMonth } from '../../../services/subjectService'
+import { getScheduleByMonth } from '../../../services/subjectService';
+import ModalBooking from './Modal/ModalBooking';
+
 
 class SubjectSchedule extends Component {
 
@@ -14,7 +16,9 @@ class SubjectSchedule extends Component {
         this.state = {
             checkOpen: false,
             arrMonth: [],
-            subjectSchedule: []
+            subjectSchedule: [],
+            isOpenModalBooking: false,
+            dataScheduleChoose: {}
         }
     }
 
@@ -67,12 +71,29 @@ class SubjectSchedule extends Component {
         }
     }
 
+
+    handleOpenModalBooking = (schedule) => {
+        this.setState({
+            isOpenModalBooking: true,
+            dataScheduleChoose: schedule
+        })
+    }
+    handleCloseModalBooking = () => {
+        this.setState({
+            isOpenModalBooking: false
+        })
+    }
     render() {
-        let { arrMonth, subjectSchedule } = this.state;
+        let { arrMonth, subjectSchedule, isOpenModalBooking, dataScheduleChoose } = this.state;
         let { language } = this.props;
-        console.log("date: ", subjectSchedule);
         return (
             <React.Fragment>
+
+                <ModalBooking
+                    isOpenModalBooking={isOpenModalBooking}
+                    handleCloseModalBooking={this.handleCloseModalBooking}
+                    dataScheduleChoose={dataScheduleChoose}
+                />
                 <div className="schedule-item">
                     <div className="schedule-time">
                         <div className="schedule-time-select">
@@ -90,14 +111,8 @@ class SubjectSchedule extends Component {
                         </div>
                     </div>
                 </div>
-
-
                 <div className="space-50">
-
                 </div>
-
-
-
                 {subjectSchedule && subjectSchedule.length > 0 ?
                     subjectSchedule.map((item, index) => {
                         let time = (language === languages.VI ? item.timeTypeData.vi : item.timeTypeData.en)
@@ -107,8 +122,12 @@ class SubjectSchedule extends Component {
 
                                 <div className="schedule-item">
                                     <div className="schedule-times">{time}</div>
-                                    <div className="schedule-date">Khai giảng: {date}</div>
-                                    <div key={index} className="button button--long">
+                                    <div className="line"></div>
+                                    <div className="schedule-date">{language === languages.VI ? "Khai giảng :" : "Opening :"} {date}</div>
+                                    <div className="line"></div>
+                                    <div key={index} className="button button--long"
+                                        onClick={() => this.handleOpenModalBooking(item)}
+                                    >
                                         Đăng ký
                                     </div>
                                 </div>
