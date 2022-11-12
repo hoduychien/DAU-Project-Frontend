@@ -8,11 +8,11 @@ import MdEditor from 'react-markdown-editor-lite';
 import 'react-markdown-editor-lite/lib/index.css';
 import Select from 'react-select';
 import { languages } from '../../../../utils';
-import { getDetailSubject } from '../../../../services/subjectService'
+import { getDetailSubject } from '../../../../services/subjectService';
+import Modal from './ModalSubjectShedule';
+
 
 const mdParser = new MarkdownIt();
-
-
 
 class SubjectInfo extends Component {
     constructor(props) {
@@ -21,6 +21,7 @@ class SubjectInfo extends Component {
             contentText: '',
             contentCode: '',
             selectedOption: null,
+            selectedOptionValue: '',
             desc: '',
             address: '',
             note: '',
@@ -36,7 +37,31 @@ class SubjectInfo extends Component {
             selectedPayment: null,
             selectedProvince: null,
 
+
+            isOpen: false,
         }
+    }
+
+
+    handleOpenModal = () => {
+        if (!this.state.selectedOption) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Opps ...',
+                confirmButtonText: 'I get it',
+                text: "Please select subject ...",
+            })
+        } else {
+            this.setState({
+                isOpen: true,
+            })
+        }
+    }
+
+    togglesSubjectModal = () => {
+        this.setState({
+            isOpen: !this.state.isOpen,
+        })
     }
 
     componentDidMount() {
@@ -76,7 +101,6 @@ class SubjectInfo extends Component {
         this.setState({ selectedOption }, () =>
             this.state.selectedOption.value
         );
-
         let { paymentArr, priceArr, provinceArr, studyTimeArr } = this.state
         let res = await getDetailSubject(selectedOption.value)
         if (res && res.errorCode === 0 && res.data && res.data.Markdown) {
@@ -309,8 +333,6 @@ class SubjectInfo extends Component {
         let { selectedOption, selectedPrice, selectedPayment, selectedProvince,
             subjectArr, priceArr, studyTimeArr, paymentArr, provinceArr, selectedStudyTime } = this.state;
         let { checkData } = this.state;
-
-        console.log(this.state)
         const customStyles = {
             control: base => ({
                 ...base,
@@ -338,25 +360,44 @@ class SubjectInfo extends Component {
             })
         };
 
-
+        console.log("isOpen: ", this.state);
         return (
             <div className="subject-container">
-                <div className="subject-title">
-                    Quản lý thông tin môn học
-                </div>
+
+                <Modal
+                    isOpen={this.state.isOpen}
+                    toggle={this.togglesSubjectModal}
+                    selectedOption={this.state.selectedOption}
+                />
+
                 <div className="subject-form">
+                    <div className="modals-item">
+                        <div className="subject-title">
+                            Quản lý thông tin môn học
+                        </div>
+
+                    </div>
                     <div className="modals-item">
                         <label className="modals-item-label">
                             Chọn môn học
                         </label>
-                        <Select
-                            value={selectedOption}
-                            onChange={this.handleChange}
-                            options={subjectArr}
-                            placeholder={'Chọn môn học'}
-                            styles={customStyles}
-                        />
+                        <div className="subject-header">
+
+                            <div className="subject-select">
+                                <Select
+                                    value={selectedOption}
+                                    onChange={this.handleChange}
+                                    options={subjectArr}
+                                    placeholder={'Chọn môn học'}
+                                    styles={customStyles}
+                                />
+                            </div>
+                            <button className={this.state.selectedOption && this.state.selectedOption ? "" : "d-none"} onClick={() => this.handleOpenModal()} >Mở lớp</button>
+                        </div>
                     </div>
+
+
+
                     <div className="modals-list">
                         <div className="modals-item">
                             <label className="modals-item-label">
@@ -463,7 +504,6 @@ class SubjectInfo extends Component {
                         />
                     </div>
                 </div>
-
 
                 <div className={checkData === true ? "button button--update" : "button button--primary"}
                     onClick={() => this.handleSaveContent()}

@@ -11,7 +11,8 @@ import './Header.scss';
 import { languages, USER_ROLE } from '../../utils'
 import avatar from "../../assets/images/avatar-df.png";
 import _ from 'lodash';
-
+import england from '../../assets/images/united-kingdom.png'
+import vietnam from '../../assets/images/vietnam.png'
 
 class Header extends Component {
 
@@ -97,7 +98,6 @@ class Header extends Component {
                             <div>
                                 <i className="fas fa-bookmark"></i>
                                 <Navigator menus={this.state.menuCourse} className="sidebar-item-name" />
-
                             </div>
                         </li>
 
@@ -138,6 +138,28 @@ class Header extends Component {
                     <div className="nav-right">
 
                         <div className="nav-notifi">
+                            <div className="nav-notifi-item">
+                                <img src={language === languages.VI ? vietnam : england} alt="" className="nav-notifi-item-image" />
+
+                                <div className="nav-notifi-item-submenu">
+                                    <div className="nav-notifi-item-submenu-item"
+                                        onClick={() => this.handleChangeLanguage(languages.VI)}
+                                    >
+                                        <img src={vietnam} alt="" />
+                                        <div>
+                                            Viêt Nam
+                                        </div>
+                                    </div>
+                                    <div className="nav-notifi-item-submenu-item"
+                                        onClick={() => this.handleChangeLanguage(languages.EN)}
+                                    >
+                                        <img src={england} alt="" />
+                                        <div>
+                                            English
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div className="nav-notifi-item">
                                 <i className="far fa-envelope"></i>
                             </div>

@@ -14,7 +14,7 @@ import Lecturer from '../routes/Lecturer';
 import Subject from '../routes/Subject';
 import HomePage from './HomePage/HomePage.js';
 import DetailSubject from './Student/Subject/DetailSubject';
-
+import VerifyEmail from './Student/VerifyEmail';
 import { CustomToastCloseButton } from '../components/CustomToast';
 
 class App extends Component {
@@ -52,6 +52,7 @@ class App extends Component {
                                 <Route path={'/subject/'} component={userIsAuthenticated(Subject)} />
                                 <Route path={path.HOMEPAGE} component={(HomePage)} />
                                 <Route path={path.DETAIL_SUBJECT} component={DetailSubject} />
+                                <Route path={path.VERITY_EMAIL} component={VerifyEmail} />
                             </Switch>
 
                         </span>

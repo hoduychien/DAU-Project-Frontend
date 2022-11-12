@@ -122,8 +122,6 @@ class SubjectSchedule extends Component {
         let dateFormat = new Date(curentDate).getTime();
         let monthFormat = (new Date(curentDate).getMonth() + 1) + "/" + new Date(curentDate).getFullYear();
 
-
-
         if (rangeTime && rangeTime.length > 0) {
             let selectedTime = rangeTime.filter(
                 item => item.isSelected === true

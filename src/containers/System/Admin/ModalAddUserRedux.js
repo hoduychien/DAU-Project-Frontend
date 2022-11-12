@@ -277,7 +277,7 @@ class ModalAddUser extends Component {
                                     <label className="modal-item-label">
                                         <FormattedMessage id="modal.gender" />
                                     </label>
-                                    <select id="inputState" className="modal-item-input" onChange={(event) => { this.handleOnchangeInput(event, "gender") }}>
+                                    <select id="inputState" className="modal-item-input">
                                         <option selected disabled hidden>Choose Gender...</option>
 
                                         {

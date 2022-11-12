@@ -33,7 +33,7 @@ class SubjectSchedule extends Component {
         for (let i = 0; i < 5; i++) {
             let object = {}
             object.label = moment(new Date()).add(i, 'months').format('MM - YYYY');
-            object.value = moment(new Date()).add(i, 'months').format('MM/YYYY');
+            object.value = moment(new Date()).add(i, 'months').format('M/YYYY');
             arrDate.push(object);
         }
         if (this.props.subjectId && this.props.subjectId !== -1) {
@@ -60,6 +60,7 @@ class SubjectSchedule extends Component {
         if (this.props.subjectId && this.props.subjectId !== -1) {
             let id = this.props.subjectId;
             let month = event.target.value;
+            console.log("aaaaaaaaaaaa", month)
             let res = await getScheduleByMonth(id, month);
 
 
@@ -86,6 +87,7 @@ class SubjectSchedule extends Component {
     render() {
         let { arrMonth, subjectSchedule, isOpenModalBooking, dataScheduleChoose } = this.state;
         let { language } = this.props;
+        console.log("array month: ", arrMonth);
         return (
             <React.Fragment>
 

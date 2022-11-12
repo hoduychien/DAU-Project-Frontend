@@ -79,17 +79,35 @@
 
         &-input {
             width: 100%;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #aaaaaa;
-            display: flex;
-            gap: 5px;
-            font-size: 15px;
             position: relative;
+            display: flex;
+            align-items: center;
+            // flex-direction: column;
+            gap: 10px;
+
+            // &-label {
+            //     min-width: 100px;
+            // }
+
+            i {
+                position: absolute;
+                right: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+                cursor: pointer;
+                z-index: 1;
+                color: rgb(104, 104, 104);
+            }
 
             input {
                 flex: 1;
-                border: 0;
-                outline: 0;
+                height: 45px;
+                width: 100%;
+                outline: none;
+                border-radius: 2px;
+                border: 1px solid #ccc;
+                padding-left: 15px;
+                transition: all 0.2s linear;
                 background: transparent;
 
                 &:focus .modal-booking-input {
@@ -108,13 +126,14 @@
         &-select {
             width: 250px;
             position: relative;
-
-            Select {
-                width: 100%;
-                border: 0;
-                outline: 0;
-                padding-bottom: 15px;
-            }
+            height: 45px;
+            width: 100%;
+            outline: none;
+            border-radius: 2px;
+            border: 1px solid #ccc;
+            padding-left: 15px;
+            transition: all 0.2s linear;
+            background: transparent;
 
             img {
                 position: absolute;

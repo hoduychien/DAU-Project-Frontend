@@ -13,6 +13,7 @@ import * as actions from '../../../../store/actions'
 import Select from 'react-select';
 import { postStudentRigister } from '../../../../services/subjectService'
 import Swal from 'sweetalert2';
+import _ from "lodash";
 
 
 class ModalBooking extends Component {
@@ -26,6 +27,7 @@ class ModalBooking extends Component {
             email: '',
             address: '',
             birthday: '',
+            date: '',
             genders: '',
             selectedGender: '',
             subjectId: '',
@@ -37,14 +39,17 @@ class ModalBooking extends Component {
         let subjectId = this.props.dataScheduleChoose.subjectId;
         let timeType = this.props.dataScheduleChoose.timeType
         let data = await this.getSubjectInfo(subjectId);
+        let dateChoose = this.props.dataScheduleChoose.date
+
         this.setState({
             dataFromParent: data,
             subjectId: subjectId,
-            timeType: timeType
-
+            timeType: timeType,
+            date: dateChoose
         })
         this.props.getGenderStart();
 
+        console.log("checksada:", this.props)
     }
 
     getSubjectInfo = async (id) => {
@@ -70,11 +75,14 @@ class ModalBooking extends Component {
             let data = await this.getSubjectInfo(this.props.dataScheduleChoose.subjectId);
             let subjectId = this.props.dataScheduleChoose.subjectId
             let timeType = this.props.dataScheduleChoose.timeType
+            let dateChoose = this.props.dataScheduleChoose.date
             this.setState({
                 dataFromParent: data,
                 subjectId: subjectId,
-                timeType: timeType
+                timeType: timeType,
+                date: dateChoose
             })
+
         }
 
         if (this.props.genders !== prevProps.genders) {
@@ -123,16 +131,50 @@ class ModalBooking extends Component {
 
 
     handleConfirm = async () => {
-        let date = new Date(this.state.birthday).getTime();
+        let date = new Date(this.state.date).getTime();
+        let timeString = this.renderTimeBooking(this.props.dataScheduleChoose)
+
+        // let timeString = moment(new Date(parseInt(this.props.dataScheduleChoose.date))).format('DD-MM-YYYY');
+        let subjectName = this.props.detailSubjectData.name
+        let { language } = this.props
+        let { dataFromParent } = this.state
+        let timeStudy = ''
+        if (dataFromParent && dataFromParent.Subject_info) {
+            timeStudy = dataFromParent.Subject_info.studyTimeTypeData.vi
+        }
+
+        console.log("aaaaaaaaaaaa", date)
+        let realTime = new Date()
+        let price = ''
+        if (dataFromParent && dataFromParent.Subject_info) {
+            if (language === languages.VI) {
+                price = new Intl.NumberFormat(
+                    'vi-VN', { style: 'currency', currency: 'VND' }
+                ).format(dataFromParent.Subject_info.priceTypeData.vi);
+            } else {
+                price = new Intl.NumberFormat(
+                    'en-US', { style: 'currency', currency: 'USD' }
+                ).format(dataFromParent.Subject_info.priceTypeData.en);
+            }
+
+        }
+
+        console.log(subjectName)
         let res = await postStudentRigister({
             fullName: this.state.fullName,
             phone: this.state.phone,
             email: this.state.email,
             address: this.state.address,
-            date: date,
+            date: this.state.date,
             selectedGender: this.state.selectedGender,
             subjectId: this.state.subjectId,
             timeType: this.state.timeType,
+            language: this.props.language,
+            timeString: timeString,
+            subjectName: subjectName,
+            price: price,
+            timeStudy: timeStudy,
+            realTime: realTime
         })
 
         if (res && res.errorCode === 0) {
@@ -152,9 +194,24 @@ class ModalBooking extends Component {
         }
     }
 
+    renderTimeBooking = (dataTime) => {
+        let { language } = this.props
+        if (dataTime && !_.isEmpty(dataTime)) {
+            let time = language === languages.VI ?
+                dataTime.timeTypeData.vi : dataTime.timeTypeData.en;
+
+
+            let date = moment(new Date(parseInt(dataTime.date))).format('ddd - DD/MM/YYYY');
+            return `${time} - ${date}`
+        }
+        return ``
+    }
+
     render() {
         let { isOpenModalBooking, handleCloseModalBooking, dataScheduleChoose, language } = this.props
         let { dataFromParent } = this.state
+
+
 
         let currency = ''
         if (dataFromParent && dataFromParent.Subject_info) {
@@ -167,9 +224,12 @@ class ModalBooking extends Component {
                     'en-US', { style: 'currency', currency: 'USD' }
                 ).format(dataFromParent.Subject_info.priceTypeData.en);
             }
+
         }
 
         let date = moment(new Date(parseInt(dataScheduleChoose.date))).format('DD-MM-YYYY');
+
+
 
 
 
@@ -311,53 +371,70 @@ class ModalBooking extends Component {
                             <div className="modal-booking-form">
                                 <div className="modal-booking-form-main">
                                     <div className="modal-booking-input">
-                                        <label htmlFor="">Họ và tên : </label>
+                                        <div className="modal-booking-input-label">
+                                            Họ tên :
+                                        </div>
                                         <input type="text"
-                                            placeholder="Enter your name ..."
+                                            placeholder="Họ và tên ..."
                                             value={this.state.fullName}
                                             onChange={(event) => this.handleOnchangeIput(event, "fullName")}
                                         />
+                                        <i class="fas fa-user"></i>
                                     </div>
                                     <div className="modal-booking-input">
-                                        <label htmlFor="">Số điện thoại :</label>
-                                        <input type="text" placeholder="Enter phone number ..."
+                                        <div className="modal-booking-input-label">
+                                            Số điện thoại :
+                                        </div>
+                                        <input type="text" placeholder="Số điện thoại ..."
                                             value={this.state.phone}
                                             onChange={(event) => this.handleOnchangeIput(event, "phone")}
                                         />
+                                        <i class="fas fa-phone"></i>
                                     </div>
                                     <div className="modal-booking-input">
-                                        <label htmlFor="">Email :</label>
-                                        <input type="email" placeholder="Enter email ..."
+                                        <div className="modal-booking-input-label">
+                                            Email :
+                                        </div>
+                                        <input type="email" placeholder="Địa chỉ email ..."
                                             value={this.state.email}
                                             onChange={(event) => this.handleOnchangeIput(event, "email")}
                                         />
+                                        <i class="fas fa-envelope"></i>
                                     </div>
                                     <div className="modal-booking-input">
-                                        <label htmlFor="">Địa chỉ :</label>
-                                        <input type="text" placeholder="Enter address ..."
+                                        <div className="modal-booking-input-label">
+                                            Địa chỉ :
+                                        </div>
+                                        <input type="text" placeholder="Địa chỉ ..."
                                             value={this.state.address}
                                             onChange={(event) => this.handleOnchangeIput(event, "address")}
                                         />
+                                        <i class="fas fa-map-marker-alt"></i>
                                     </div>
-                                    <div className="modal-booking-group">
-                                        <div className="modal-booking-input">
-                                            <label htmlFor="">Ngày sinh :</label>
-                                            <DatePicker
-                                                onChange={this.handleChangeDate}
-                                                value={this.state.birthday}
-                                            />
+
+                                    <div className="modal-booking-input">
+                                        <div className="modal-booking-input-label">
+                                            Ngày sinh :
                                         </div>
-                                        <div className="modal-booking-select">
+                                        <DatePicker
+                                            onChange={this.handleChangeDate}
+                                            value={this.state.birthday}
+                                            placeholder="Ngày sinh"
+                                        />
+                                        <i class="fas fa-calendar"></i>
+                                    </div>
+                                    {/*<div className="modal-booking-group">
+                                        
+                                          <div className="modal-booking-select">
                                             <Select
                                                 value={this.state.selectedGender}
                                                 onChange={this.handleChangeSelect}
                                                 placeholder={'Giới tính ...'}
                                                 options={this.state.genders}
-
                                             />
                                         </div>
-                                    </div>
-                                    <div className="modal-booking-actions">
+                                    </div>*/}
+                                    <div className="modal-booking-actions ">
                                         <div className="modal-booking-button modal-booking-button-accept"
                                             onClick={() => this.handleConfirm()}
                                         >

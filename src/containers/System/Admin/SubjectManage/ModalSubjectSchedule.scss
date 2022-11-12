@@ -1,0 +1,27 @@
+.subjects-date-picker {
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    z-index: 9999;
+}
+
+.subjects-date {
+    position: relative;
+    background: #ccc;
+    width: 300px;
+
+    i {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        z-index: 1;
+        color: rgb(104, 104, 104);
+    }
+}
+
+.modals-subjects-container {
+    padding: 15px;
+}

@@ -47,6 +47,11 @@ const getDetailSubjectForMoldal = (subjectId) => {
 const postStudentRigister = (data) => {
     return axios.post(`/api/student-register-subject`, data)
 }
+
+const postVerifyEmail = (data) => {
+    return axios.post(`/api/verify-register-subject`, data)
+}
+
 export {
     getAllSubject,
     createSubjectService,
@@ -58,5 +63,6 @@ export {
     getScheduleByMonth,
     getExtraInfoSchedule,
     getDetailSubjectForMoldal,
-    postStudentRigister
+    postStudentRigister,
+    postVerifyEmail
 };

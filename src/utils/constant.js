@@ -6,7 +6,8 @@ export const path = {
     LOG_OUT: '/logout',
     SYSTEM: '/system',
     LECTURER: '/lecturer',
-    DETAIL_SUBJECT: '/detail-subjects/:id'
+    DETAIL_SUBJECT: '/detail-subjects/:id',
+    VERITY_EMAIL: '/verify',
 };
 
 export const languages = {
