@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import { postVerifyEmail } from '../../services/subjectService';
 import HomeHeader from '../HomePage/HomeHeader';
 import Footer from '../Footer/Footer';
-import './verifyEmail.scss'
+import './verifyEmail.scss';
+import bg from '../../assets/images/CyberLearn.png'
 
 class VerifyEmail extends Component {
 
@@ -37,7 +38,6 @@ class VerifyEmail extends Component {
                     errorCode: res.errorMessage
                 })
             }
-            console.log(this.state.errorCode)
         }
     }
 
@@ -52,7 +52,18 @@ class VerifyEmail extends Component {
             <React.Fragment>
                 <HomeHeader />
                 <div className="verify-email">
-                    {errorCode}
+                    <div className="verify-email-heading">
+                        Messsage !
+                    </div>
+                    <div className="verify-email-text">
+                        {errorCode}
+                    </div>
+                    <a href="/" className="button button--primary verify-email-close">
+                        <div>
+                            Close
+                        </div>
+                    </a>
+                    <img src={bg} alt="" />
                 </div>
             </React.Fragment>
         );

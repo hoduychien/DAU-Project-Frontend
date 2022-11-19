@@ -32,13 +32,16 @@ class SubjectInfo extends Component {
             studyTimeArr: [],
             paymentArr: [],
             provinceArr: [],
+            courseArr: [],
             selectedPrice: null,
             selectedStudyTime: null,
             selectedPayment: null,
             selectedProvince: null,
-
+            selectedCourse: null,
 
             isOpen: false,
+
+            courseId: ''
         }
     }
 
@@ -92,6 +95,7 @@ class SubjectInfo extends Component {
                 selectedProvince: this.state.selectedProvince.value,
                 address: this.state.address,
                 note: this.state.note,
+                courseId: this.state.selectedCourse && this.state.selectedCourse.value ? this.state.selectedCourse.value : ''
             })
         }
 
@@ -283,6 +287,14 @@ class SubjectInfo extends Component {
                     result.push(object);
                 })
             }
+            if (type === 'COURSE') {
+                data.map((item, index) => {
+                    let object = {};
+                    object.label = item.name
+                    object.value = item.id;
+                    result.push(object);
+                })
+            }
 
         }
 
@@ -298,17 +310,19 @@ class SubjectInfo extends Component {
             })
         }
         if (prevProps.subjectRequired !== this.props.subjectRequired) {
-            let { resPrice, resPayment, resProvince, resStudyTime } = this.props.subjectRequired
+            let { resPrice, resPayment, resProvince, resStudyTime, resCourses } = this.props.subjectRequired
             let dataPrice = this.dataInputSelect(resPrice, "PRICE")
             let dataStudyTime = this.dataInputSelect(resStudyTime, "STUDYTIME")
             let dataPayment = this.dataInputSelect(resPayment, "PAYMENT")
             let dataProvince = this.dataInputSelect(resProvince, "PROVINCE")
-            console.log(dataPrice)
+            let dataCourse = this.dataInputSelect(resCourses, "COURSE")
+
             this.setState({
                 priceArr: dataPrice,
                 studyTimeArr: dataStudyTime,
                 paymentArr: dataPayment,
                 provinceArr: dataProvince,
+                courseArr: dataCourse
             })
         }
 
@@ -319,6 +333,7 @@ class SubjectInfo extends Component {
             let dataStudyTime = this.dataInputSelect(resStudyTime, "STUDYTIME")
             let dataPayment = this.dataInputSelect(resPayment, "PAYMENT")
             let dataProvince = this.dataInputSelect(resProvince, "PROVINCE")
+
             this.setState({
                 subjectArr: dataSelect,
                 priceArr: dataPrice,
@@ -330,8 +345,9 @@ class SubjectInfo extends Component {
     }
 
     render() {
-        let { selectedOption, selectedPrice, selectedPayment, selectedProvince,
-            subjectArr, priceArr, studyTimeArr, paymentArr, provinceArr, selectedStudyTime } = this.state;
+        let { selectedOption, selectedPrice, selectedPayment, selectedProvince, selectedCourse,
+            subjectArr, priceArr, studyTimeArr, paymentArr, provinceArr, courseArr,
+            selectedStudyTime } = this.state;
         let { checkData } = this.state;
         const customStyles = {
             control: base => ({
@@ -359,8 +375,8 @@ class SubjectInfo extends Component {
                 padding: 0
             })
         };
+        console.log(selectedCourse);
 
-        console.log("isOpen: ", this.state);
         return (
             <div className="subject-container">
 
@@ -451,6 +467,22 @@ class SubjectInfo extends Component {
                                 options={studyTimeArr}
                                 placeholder={'Chọn thời gian học ...'}
                                 name="selectedStudyTime"
+                                styles={customStyles}
+
+                            />
+                        </div>
+
+                        <div className="modals-item ">
+                            <label className="modals-item-label">
+                                Chọn khoá học :
+                            </label>
+
+                            <Select
+                                value={selectedCourse}
+                                onChange={this.handleChangeRequired}
+                                options={courseArr}
+                                placeholder={'Môn học thuộc khoá ...'}
+                                name="selectedCourse"
                                 styles={customStyles}
 
                             />

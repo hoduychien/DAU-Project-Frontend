@@ -72,7 +72,7 @@ class Subjects extends Component {
                                     return (
                                         <div className="subjects-item">
                                             <div onClick={() => this.handleDetailSubject(item)}>
-                                                <img src={imgBase64} alt="" />
+                                                <img src={imgBase64} alt="" className="subjects-item-banner" />
                                             </div>
                                             <div className="subjects-item-info">
                                                 <div className="subjects-item-vote">

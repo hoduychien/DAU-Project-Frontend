@@ -89,6 +89,17 @@
             //     min-width: 100px;
             // }
 
+            .icons {
+                position: absolute;
+                right: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+                cursor: pointer;
+                z-index: 1;
+                color: rgb(104, 104, 104);
+                font-size: 18px;
+            }
+
             i {
                 position: absolute;
                 right: 10px;

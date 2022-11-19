@@ -14,6 +14,9 @@ import Select from 'react-select';
 import { postStudentRigister } from '../../../../services/subjectService'
 import Swal from 'sweetalert2';
 import _ from "lodash";
+import { BiUserCircle, BiPhone, BiMailSend, BiCalendarCheck, BiLocationPlus } from "react-icons/bi";
+
+
 
 
 class ModalBooking extends Component {
@@ -379,7 +382,7 @@ class ModalBooking extends Component {
                                             value={this.state.fullName}
                                             onChange={(event) => this.handleOnchangeIput(event, "fullName")}
                                         />
-                                        <i class="fas fa-user"></i>
+                                        <BiUserCircle className="icons" />
                                     </div>
                                     <div className="modal-booking-input">
                                         <div className="modal-booking-input-label">
@@ -389,7 +392,7 @@ class ModalBooking extends Component {
                                             value={this.state.phone}
                                             onChange={(event) => this.handleOnchangeIput(event, "phone")}
                                         />
-                                        <i class="fas fa-phone"></i>
+                                        <BiPhone className="icons" />
                                     </div>
                                     <div className="modal-booking-input">
                                         <div className="modal-booking-input-label">
@@ -399,7 +402,7 @@ class ModalBooking extends Component {
                                             value={this.state.email}
                                             onChange={(event) => this.handleOnchangeIput(event, "email")}
                                         />
-                                        <i class="fas fa-envelope"></i>
+                                        <BiMailSend className="icons" />
                                     </div>
                                     <div className="modal-booking-input">
                                         <div className="modal-booking-input-label">
@@ -409,7 +412,7 @@ class ModalBooking extends Component {
                                             value={this.state.address}
                                             onChange={(event) => this.handleOnchangeIput(event, "address")}
                                         />
-                                        <i class="fas fa-map-marker-alt"></i>
+                                        <BiLocationPlus className="icons" />
                                     </div>
 
                                     <div className="modal-booking-input">
@@ -421,7 +424,7 @@ class ModalBooking extends Component {
                                             value={this.state.birthday}
                                             placeholder="Ngày sinh"
                                         />
-                                        <i class="fas fa-calendar"></i>
+                                        <BiCalendarCheck className="icons" />
                                     </div>
                                     {/*<div className="modal-booking-group">
                                         

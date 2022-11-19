@@ -493,18 +493,22 @@ export const getSubjectRequired = () => {
             let resPayment = await getAllKeywordsService('PAYMENT');
             let resProvince = await getAllKeywordsService('PROVINCE');
             let resStudyTime = await getAllKeywordsService('STUDYTIME');
+            let resCourses = await getAllCourses('all');
+
+
             if (resPrice && resPrice.errorCode === 0
                 && resPayment && resPayment.errorCode === 0
                 && resProvince && resProvince.errorCode === 0
                 && resStudyTime && resStudyTime.errorCode === 0
+                && resCourses && resCourses.errorCode === 0
             ) {
                 let data = {
                     resPrice: resPrice.data,
                     resPayment: resPayment.data,
                     resProvince: resProvince.data,
                     resStudyTime: resStudyTime.data,
+                    resCourses: resCourses.courses
                 }
-                console.log("chceckdsa data", data)
                 dispatch(getSubjectRequiredSuccess(data))
             }
             else {

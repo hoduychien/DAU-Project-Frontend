@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import HomeHeader from '../../HomePage/HomeHeader';
-import banner from '../../../assets/images/banner.png';
+import banner from '../../../assets/images/banner-detail-subject.png';
 import "./DetailSubject.scss";
 import Footer from '../../Footer/Footer';
 import * as actions from '../../../store/actions';
-import SubjectSchedule from '../../Student/Subject/SubjectSchedule'
-import SubjectExtraInfo from '../../Student/Subject/SubjectExtraInfo'
+import SubjectSchedule from '../../Student/Subject/SubjectSchedule';
+import SubjectExtraInfo from '../../Student/Subject/SubjectExtraInfo';
 
 class DetailSubject extends Component {
 
@@ -48,14 +48,14 @@ class DetailSubject extends Component {
                         <div className="subject-info">
                             <div className="subject-name">
                                 {subjectDetail.name}
-                            </div>
+                            </div >
                             {subjectDetail && subjectDetail.Markdown && subjectDetail.Markdown.contentCode
                                 &&
                                 <div className="subject-descs">
                                     {subjectDetail.Markdown.desc}
                                 </div>
                             }
-                            <div>
+                            <div className="subject-desc">
                                 {subjectDetail.desc}
                             </div>
                             <div className="subject-vote">

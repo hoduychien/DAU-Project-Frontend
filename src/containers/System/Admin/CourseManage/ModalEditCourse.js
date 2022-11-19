@@ -143,13 +143,13 @@ class ModalEditSubjectRedux extends Component {
                     isOpen={this.props.isOpen}
                     toggle={() => this.toggle()}
                     className={'modal-container'}
-                    size="lg"
+                    size="xl"
                     centered
                 >
                     <ModalBody>
                         <div className="modals-body">
                             <h3 className="modals-title">
-                                <FormattedMessage id="modals.create-user" />
+                                Create new Course
                             </h3>
                             <div className="modals-group">
                                 <div className="modals-item">

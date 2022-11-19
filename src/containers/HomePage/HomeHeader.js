@@ -8,7 +8,7 @@ import { languages } from '../../utils';
 import { changeLanguageApp } from '../../store/actions';
 import { withRouter } from 'react-router'
 import avatar from "../../assets/images/avatar-df.png";
-
+import { MdDashboard } from "react-icons/md";
 
 class HomeHeader extends Component {
     changeLanguage = (lang) => {
@@ -125,7 +125,7 @@ class HomeHeader extends Component {
                                     Setting
                                 </div>
                                 <div className={userInfo && userInfo.roleId === 'R3' ? "nav-profile-detail-item d-none" : "nav-profile-detail-item "}>
-                                    <i className="fab fa-windows"></i>
+                                    <MdDashboard />
                                     <a href="/system/user-manage-redux" target="_blank">Dashboard</a>
                                 </div>
                                 <div onClick={processLogout} className="nav-profile-detail-item">
