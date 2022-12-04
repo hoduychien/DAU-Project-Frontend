@@ -1,0 +1,37 @@
+INSERT INTO KEYWORDS (KEYWORDS.type,KEYWORDS.keyMap, KEYWORDS.en, KEYWORDS.vi) values ('ROLE','R1','Admin', 'Quản trị viên' ); 									
+INSERT INTO KEYWORDS (KEYWORDS.type,KEYWORDS.keyMap, KEYWORDS.en, KEYWORDS.vi) values ('ROLE','R2','Lecturers', 'Giảng viên' ); 									
+INSERT INTO KEYWORDS (KEYWORDS.type,KEYWORDS.keyMap, KEYWORDS.en, KEYWORDS.vi) values ('ROLE','R3','Student', 'Học viên' ); 									
+									
+INSERT INTO KEYWORDS (KEYWORDS.type,KEYWORDS.keyMap, KEYWORDS.en, KEYWORDS.vi) values ('STATUS','S1','New', 'Đăng ký mới' ); 									
+INSERT INTO KEYWORDS (KEYWORDS.type,KEYWORDS.keyMap, KEYWORDS.en, KEYWORDS.vi) values ('STATUS','S2','Confirmed', 'Đã xác nhận' ); 									
+INSERT INTO KEYWORDS (KEYWORDS.type,KEYWORDS.keyMap, KEYWORDS.en, KEYWORDS.vi) values ('STATUS','S3','Done', 'Đã hoàn thành' ); 									
+INSERT INTO KEYWORDS (KEYWORDS.type,KEYWORDS.keyMap, KEYWORDS.en, KEYWORDS.vi) values ('STATUS','S4','Cancel', 'Đã hủy' ); 									
+									
+INSERT INTO KEYWORDS (KEYWORDS.type,KEYWORDS.keyMap, KEYWORDS.en, KEYWORDS.vi) values ('TIME','T1','7:30 AM - 10:30 AM', '7:30 - 10:30' ); 									
+INSERT INTO KEYWORDS (KEYWORDS.type,KEYWORDS.keyMap, KEYWORDS.en, KEYWORDS.vi) values ('TIME','T2','1:00 PM - 4:00 PM', '13:00 - 16:00' ); 									
+INSERT INTO KEYWORDS (KEYWORDS.type,KEYWORDS.keyMap, KEYWORDS.en, KEYWORDS.vi) values ('TIME','T3','7:30 PM - 7:30 PM', '19:30 - 22:30' ); 								
+									
+INSERT INTO KEYWORDS (KEYWORDS.type,KEYWORDS.keyMap, KEYWORDS.en, KEYWORDS.vi) values ('POSITION','P0','Lecturers', 'Giảng viên' ); 									
+INSERT INTO KEYWORDS (KEYWORDS.type,KEYWORDS.keyMap, KEYWORDS.en, KEYWORDS.vi) values ('POSITION','P1','Mentor', 'Trợ giảng' ); 									
+INSERT INTO KEYWORDS (KEYWORDS.type,KEYWORDS.keyMap, KEYWORDS.en, KEYWORDS.vi) values ('POSITION','P2','Student', 'Học viên' ); 								
+									
+INSERT INTO KEYWORDS (KEYWORDS.type,KEYWORDS.keyMap, KEYWORDS.en, KEYWORDS.vi) values ('GENDER','M','Male', 'Nam' ); 									
+INSERT INTO KEYWORDS (KEYWORDS.type,KEYWORDS.keyMap, KEYWORDS.en, KEYWORDS.vi) values ('GENDER','F','Female', 'Nữ' ); 									
+									
+INSERT INTO KEYWORDS (KEYWORDS.type,KEYWORDS.keyMap, KEYWORDS.en, KEYWORDS.vi) values ('PRICE','PRI1','140,90', '3500000' ); 									
+INSERT INTO KEYWORDS (KEYWORDS.type,KEYWORDS.keyMap, KEYWORDS.en, KEYWORDS.vi) values ('PRICE','PRI2','362,32', '9000000' ); 									
+INSERT INTO KEYWORDS (KEYWORDS.type,KEYWORDS.keyMap, KEYWORDS.en, KEYWORDS.vi) values ('PRICE','PRI3','483,09', '12000000' ); 									
+									
+INSERT INTO KEYWORDS (KEYWORDS.type,KEYWORDS.keyMap, KEYWORDS.en, KEYWORDS.vi) values ('PAYMENT','PAY1','Cash', 'Tiền mặt' ); 									
+INSERT INTO KEYWORDS (KEYWORDS.type,KEYWORDS.keyMap, KEYWORDS.en, KEYWORDS.vi) values ('PAYMENT','PAY2','Credit card', 'Chuyển khoản' ); 									
+INSERT INTO KEYWORDS (KEYWORDS.type,KEYWORDS.keyMap, KEYWORDS.en, KEYWORDS.vi) values ('PAYMENT','PAY3','All payment method', 'Tất cả' ); 									
+									
+INSERT INTO KEYWORDS (KEYWORDS.type,KEYWORDS.keyMap, KEYWORDS.en, KEYWORDS.vi) values ('PROVINCE','PRO1','Cyberlearn - Ha Noi', 'Cyberlearn Hà Nội' ); 									
+INSERT INTO KEYWORDS (KEYWORDS.type,KEYWORDS.keyMap, KEYWORDS.en, KEYWORDS.vi) values ('PROVINCE','PRO2','Cyberlearn - Ho Chi Minh', 'Cyberlearn Hồ Chí Minh' ); 									
+INSERT INTO KEYWORDS (KEYWORDS.type,KEYWORDS.keyMap, KEYWORDS.en, KEYWORDS.vi) values ('PROVINCE','PRO3','Cyberlearn - Da Nang', 'Cyberlearn Đà Nẵng' ); 								
+
+
+INSERT INTO KEYWORDS (KEYWORDS.type,KEYWORDS.keyMap, KEYWORDS.en, KEYWORDS.vi) values ('STUDYTIME','ST1','3 Month', '3 Tháng' ); 									
+INSERT INTO KEYWORDS (KEYWORDS.type,KEYWORDS.keyMap, KEYWORDS.en, KEYWORDS.vi) values ('STUDYTIME','ST2','6 Month', '6 Tháng' ); 									
+INSERT INTO KEYWORDS (KEYWORDS.type,KEYWORDS.keyMap, KEYWORDS.en, KEYWORDS.vi) values ('STUDYTIME','ST3','9 Month', '9 Tháng' ); 								
+

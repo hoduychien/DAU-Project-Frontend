@@ -1,41 +1,94 @@
 .lecturer-schedule {
-    &-container {
-        margin: 10px;
-        margin-left: 256px;
-        margin-top: 60px;
-    }
+  &-container {
+    margin: 10px;
+    margin-left: 286px;
+    margin-top: 60px;
+  }
 
-    &-title {
-        font-size: 18px;
-        font-weight: 500;
-        line-height: 27px;
-        padding: 10px 0;
-    }
+  &-title {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 27px;
+    padding: 10px 0;
+  }
 
-    &-list {
-        margin: 10px;
-        margin-left: 16px;
-    }
+  &-list {
+    margin: 10px;
+    margin-left: 16px;
+  }
 
-    &-heading {
-        display: flex;
-        align-items: center;
-        margin-top: 50px;
-        margin-bottom: 20px;
-        padding: 0 10px;
-        gap: 10px;
+  &-heading {
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    padding: 0 10px;
+    gap: 10px;
 
-        p {
-            font-size: 16px;
-            font-weight: 600;
-            padding: 0;
-            margin: 0;
-        }
+    p {
+      font-size: 16px;
+      font-weight: 600;
+      padding: 0;
+      margin: 0;
     }
+  }
 
-    &-sent {
-        cursor: pointer;
-        color: rgb(76, 129, 229);
-        font-weight: 500;
+  &-sent {
+    cursor: pointer;
+    color: rgb(76, 129, 229);
+    font-weight: 500;
+  }
+}
+
+.btn {
+  &-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+  }
+  &-confirm {
+    padding: 3px 5px;
+    background-color: #fedb39;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: all 0.2s;
+    &:hover {
+      transform: translateY(-2px);
     }
+  }
+  &-contact {
+    padding: 3px;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: all 0.2s;
+    background-color: #68b984;
+    color: #fff;
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
+  &-cancel {
+    padding: 3px;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: all 0.2s;
+    background-color: #d61c4e;
+    color: #fff;
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
+}
+.nodata {
+  position: absolute;
+  top: 65px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
 }

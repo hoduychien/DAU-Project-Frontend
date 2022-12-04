@@ -5,6 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { withRouter } from 'react-router'
 
 import * as actions from "../../../store/actions"
 
@@ -29,6 +30,12 @@ class Course extends Component {
                 courseArr: this.props.courseData
             })
         }
+    }
+
+    handleDetailCourse = (course) => {
+        this.props.history.push(`/detail-course/${course.id}`);
+        console.log(course.id)
+        // window.scrollTo(0, 0)
     }
 
     render() {
@@ -66,7 +73,9 @@ class Course extends Component {
 
                                     return (
                                         <div className="course-item">
-                                            <img src={imgBase64} alt="" />
+                                            <div onClick={() => this.handleDetailCourse(item)}>
+                                                <img src={imgBase64} alt="" />
+                                            </div>
                                             <div className="course-item-info">
                                                 <div className="course-item-vote">
                                                     <i className="fas fa-star"></i>
@@ -119,4 +128,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Course);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Course));

@@ -1,26 +1,39 @@
 .schedule-time-select {
-    select {
-        width: 105%;
-        border: 0;
-        outline: 0;
-        color: #0094FF;
-    }
+  select {
+    width: 120%;
+    border: 0;
+    outline: 0;
+    color: #0094ff;
+    background-color: transparent;
+    margin-bottom: 10px;
+    // margin-top: 10px;
+    margin-left: -5px;
+    font-size: 13px;
+    font-weight: 600;
+  }
 
-    option {
-        padding: 10px;
-        color: #000000;
-        width: 200px;
-    }
+  option {
+    padding: 10px;
+    color: #000000;
+    width: 200px;
+  }
 }
 
 .schedule-item-notification {
-    font-style: italic;
+  font-style: italic;
 }
 
 .schedule-date {
-    min-width: 180px;
+  min-width: 180px;
 }
 
 .schedule-times {
-    min-width: 100px;
+  min-width: 100px;
+}
+
+.schedule-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 0;
 }

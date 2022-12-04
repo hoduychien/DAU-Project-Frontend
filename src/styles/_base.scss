@@ -3,7 +3,7 @@
  */
 body,
 html {
-  background: #F1F5F9;
+  background: #f1f5f9;
   background-repeat: no-repeat;
   background-size: cover;
   font-family: $fontmain;
@@ -20,19 +20,14 @@ html {
   }
 }
 
-
-
 .space-50 {
   width: 100%;
   height: 0px;
 }
 
-
-
-
 textarea {
   &:focus {
-    border-color: #277BC0;
+    border-color: #277bc0;
     transition: all 0.2s linear;
   }
 }
@@ -66,7 +61,7 @@ textarea {
   transition: all 0.2s linear;
 
   &--primary {
-    background: #1B1C31;
+    background: #1b1c31;
     padding: 14px 20px;
 
     a {
@@ -93,7 +88,7 @@ textarea {
   }
 
   &--enable {
-    background: #FEDB39;
+    background: #fedb39;
     padding: 8px 25px;
     color: #000 !important;
 
@@ -107,7 +102,7 @@ textarea {
   }
 
   &--update {
-    background: #FEDB39;
+    background: #fedb39;
     padding: 14px 40px;
     color: #000 !important;
 
@@ -121,7 +116,7 @@ textarea {
   }
 
   &--long {
-    background: #1B1C31;
+    background: #1b1c31;
     padding: 14px 40px;
 
     a {
@@ -148,7 +143,7 @@ textarea {
   }
 
   &--secondary {
-    background: #1B1C31;
+    background: #1b1c31;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -166,6 +161,13 @@ a {
 }
 
 .blue-span {
-  color: #0094FF;
+  color: #0094ff;
   font-weight: 400 !important;
+  cursor: pointer;
+}
+
+.orange-span {
+  color: #f57059;
+  font-weight: 600;
+  cursor: pointer;
 }
